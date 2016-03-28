@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.IDETestFailureBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            breakpointStackSelectionBehavior = "1">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Expreso Tec App/LoginViewController.swift"
+            timestampString = "480827460.872394"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "hideKeyboard(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Expreso Tec AppTests/LoginTestCase.swift"
+            timestampString = "480828184.589376"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "loginTestGeneric(_:password:login:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Expreso_Tec_AppTests.LoginTestCase.loginTestGeneric (Swift.String, password : Swift.String, login : Swift.Bool) -&gt; ()"
+                  moduleName = "Expreso Tec AppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rikyfocil/Desktop/Expreso%20Tec%20App/Expreso%20Tec%20AppTests/LoginTestCase.swift"
+                  timestampString = "480828184.592043"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Expreso_Tec_AppTests.LoginTestCase.(loginTestGeneric (Swift.String, password : Swift.String, login : Swift.Bool) -&gt; ()).(closure #1)"
+                  moduleName = "Expreso Tec AppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rikyfocil/Desktop/Expreso%20Tec%20App/Expreso%20Tec%20AppTests/LoginTestCase.swift"
+                  timestampString = "480828184.592152"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "69">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Expreso_Tec_AppTests.LoginTestCase.(loginTestGeneric (Swift.String, password : Swift.String, login : Swift.Bool) -&gt; ()).(closure #2)"
+                  moduleName = "Expreso Tec AppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rikyfocil/Desktop/Expreso%20Tec%20App/Expreso%20Tec%20AppTests/LoginTestCase.swift"
+                  timestampString = "480828184.592232"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "35">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
