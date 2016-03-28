@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B31FF3031CA8A64000DB8428 /* LoginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31FF3021CA8A64000DB8428 /* LoginTestCase.swift */; };
+		B3664B401CA8DE2F00072CEB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3664B3F1CA8DE2F00072CEB /* MapKit.framework */; };
 		B38B8CD11CA8513F003B6C5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B8CD01CA8513F003B6C5F /* AppDelegate.swift */; };
 		B38B8CD31CA8513F003B6C5F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B8CD21CA8513F003B6C5F /* LoginViewController.swift */; };
 		B38B8CD61CA8513F003B6C5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B38B8CD41CA8513F003B6C5F /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		B31FF3021CA8A64000DB8428 /* LoginTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTestCase.swift; sourceTree = "<group>"; };
+		B3664B3F1CA8DE2F00072CEB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B38B8CCD1CA8513F003B6C5F /* Expreso Tec App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Expreso Tec App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B8CD01CA8513F003B6C5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B38B8CD21CA8513F003B6C5F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3664B401CA8DE2F00072CEB /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +86,7 @@
 		B38B8CC41CA8513F003B6C5F = {
 			isa = PBXGroup;
 			children = (
+				B3664B3F1CA8DE2F00072CEB /* MapKit.framework */,
 				B38B8CCF1CA8513F003B6C5F /* Expreso Tec App */,
 				B38B8CE41CA8513F003B6C5F /* Expreso Tec AppTests */,
 				B38B8CEF1CA8513F003B6C5F /* Expreso Tec AppUITests */,
