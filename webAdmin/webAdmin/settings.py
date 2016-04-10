@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'login'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -122,5 +121,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Personalizado
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = '/'
+# LOGIN_URL = 'login'
+# LOGIN_REDIRECT_URL = '/'
