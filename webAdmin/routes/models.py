@@ -5,7 +5,7 @@ from django.forms import PasswordInput
 
 class Conductor(models.Model):
     nombre=models.CharField(max_length=80)
-    clave=models.CharField(max_length=50,verbose_name='nueva clase')
+    clave=models.CharField(max_length=50,verbose_name='nueva clave')
     def __str__(self):
         return self.nombre
 
