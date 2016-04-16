@@ -16,5 +16,7 @@ class Ruta(models.Model):
     nombre=models.CharField(max_length=40)
     conductor=models.ForeignKey(Conductor)
     pagina=models.URLField(max_length=100)
+    lat=models.FloatField()
+    lng=models.FloatField()
     def __str__(self):
         return self.nombre
