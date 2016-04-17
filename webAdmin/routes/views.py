@@ -16,7 +16,12 @@ def set(request):
             name = request.GET.get('route')
 
             lat = float(request.GET.get('lat'))
+            if lat < -90 or lat > 90:
+                raise ValueError
+
             lng = float(request.GET.get('lng'))
+            if lng < -180 or lng > 180:
+                raise ValueError
 
             route = Ruta.objects.get(nombre = name)
 
@@ -30,7 +35,7 @@ def set(request):
             message = NO_FIELD
         except Ruta.DoesNotExist:
             message = NO_ROUTE
-        except TypeError:
+        except ValueError:
             message = INV_NUM
 
     return JsonResponse({'result':result,'message':message})
