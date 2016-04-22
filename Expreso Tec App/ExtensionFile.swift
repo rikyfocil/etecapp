@@ -29,4 +29,25 @@ extension UIAlertController{
         }))
         inController.presentViewController(c, animated: true, completion: nil)
     }
+    
+    
+    
+        
+    class func presentConfirmationAlertViewController(title : String, description : String, confirmText : String, cancelText : String, controller : UIViewController, destructive : Bool, confirmAction : ()->(), cancelAction : (()->())?){
+        
+        let alert = UIAlertController(title: title, message: description, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: confirmText, style: destructive ? .Destructive : .Default , handler: {
+            _ in
+            confirmAction()
+        }))
+        alert.addAction(UIAlertAction(title: cancelText, style: .Default, handler: {
+            _ in
+            cancelAction?()
+        }))
+        controller.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+        
+    
+    
 }

@@ -13,6 +13,7 @@ public class User: NSObject {
     
     public let user : String
     public let name : String
+    public private(set) var loadedRoutes = false;
     
     private init(name : String, user : String){
         self.name = name
@@ -81,7 +82,7 @@ public class User: NSObject {
 
     }
     
-    class func validatePassword(text : String?) throws{
+    public class func validatePassword(text : String?) throws{
         guard let text = text else{
             throw LoginError.PasswordNull
         }
@@ -94,6 +95,8 @@ public class User: NSObject {
             throw LoginError.PasswordTooShort
         }
     }
+    
+    
     
 }
 
