@@ -2,6 +2,7 @@ from colorful.fields import RGBColorField
 
 from django.db import models
 from django.forms import PasswordInput
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -23,3 +24,10 @@ class Ruta(models.Model):
     color=RGBColorField()
     def __str__(self):
         return self.nombre
+
+class Perfil(models.Model):
+    auth=models.OneToOneField(User)
+
+class PerfilRuta(models.Model):
+    perfil=models.ForeignKey(Perfil)
+    ruta=models.ForeignKey(Ruta)
