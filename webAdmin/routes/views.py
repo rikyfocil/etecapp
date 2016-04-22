@@ -71,7 +71,7 @@ def getRoutes(request):
     jsonRoutes = []
     for route in routes:
         routeDictionary = {'name':route.nombre, 'id':route.id, 
-                'driver':route.conductor.nombre}
+                'driver':route.conductor.nombre, 'color':route.color}
         jsonRoutes.append(routeDictionary)
 
     return JsonResponse({'routes':jsonRoutes})

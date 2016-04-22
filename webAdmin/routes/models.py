@@ -1,3 +1,5 @@
+from colorful.fields import RGBColorField
+
 from django.db import models
 from django.forms import PasswordInput
 
@@ -18,5 +20,6 @@ class Ruta(models.Model):
     pagina=models.URLField(max_length=100)
     lat=models.FloatField()
     lng=models.FloatField()
+    color=RGBColorField()
     def __str__(self):
         return self.nombre
