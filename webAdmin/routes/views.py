@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+
 from routes.models import Ruta
 
 SUC = 'success'
@@ -63,3 +64,13 @@ def get(request):
             message = NO_ROUTE
 
     return JsonResponse({'result':result,'message':message,'lat':lat,'lng':lng})
+
+def getRoutes(request):
+    routes = Ruta.objects.all()
+
+    jsonRoutes = []
+    for route in routes:
+        routeDictionary = {'name':route.nombre, 'id':route.id}
+        jsonRoutes.append(routeDictionary)
+
+    return JsonResponse({'routes':jsonRoutes})
