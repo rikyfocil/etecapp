@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^set', views.set, name='set'),
     url(r'^getRoutes', views.getRoutes, name='getRoutes'),
     url(r'^get', views.get, name='get'),
+    url(r'^subscribe', views.subscribe, name='subscribe'),
 ]

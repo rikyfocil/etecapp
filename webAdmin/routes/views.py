@@ -1,11 +1,12 @@
 from django.http import JsonResponse
 
-from routes.models import Ruta
+from routes.models import Ruta, Perfil, PerfilRuta
 
 SUC = 'success'
 FAIL = 'failure'
 NO_FIELD = 'no such field'
 NO_ROUTE = 'no such expreso route'
+NO_PROFILE = 'no such profile'
 INV_NUM = 'invalid number'
 
 def set(request):
@@ -75,3 +76,29 @@ def getRoutes(request):
         jsonRoutes.append(routeDictionary)
 
     return JsonResponse({'routes':jsonRoutes})
+
+def subscribe(request):
+    result = FAIL
+    message = ''
+
+    if request.method == 'GET':
+        try:
+            profileId = request.GET.get('profileId')
+            routeId = request.GET.get('routeId')
+
+            profile = Perfil.objects.get(id = profileId)
+            route = Ruta.objects.get(id = routeId)
+
+            perfilRuta = PerfilRuta()
+            perfilRuta.perfil = profile
+            perfilRuta.ruta = route
+            perfilRuta.save()
+
+            result = SUC
+
+        except Perfil.DoesNotExist:
+            message = NO_PROFILE
+        except Ruta.DoesNotExist:
+            message = NO_ROUTE
+
+    return JsonResponse({'result':result,'message':message})
