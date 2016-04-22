@@ -52,7 +52,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
             
             else if let _ = logedUser{
+                
                 self.performSegueWithIdentifier("showMap", sender: nil)
+                self.idTextField.text = ""
+                self.passwordTextField.text = ""
+                
             }
             else{
                 fatalError("Both user and error cannot be nil.")
@@ -107,4 +111,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         return true
     }
+    
+    
+    @IBAction func backToLoginViewController(segue : UIStoryboardSegue){}
 }

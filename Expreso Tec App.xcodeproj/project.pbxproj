@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B31B2EE71CC9A58200256D82 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B31B2EE61CC9A58200256D82 /* CoreLocation.framework */; };
 		B31FF3031CA8A64000DB8428 /* LoginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31FF3021CA8A64000DB8428 /* LoginTestCase.swift */; };
+		B32A47A91CC9EACB00E72CA1 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A47A81CC9EACB00E72CA1 /* Route.swift */; };
+		B32A47AB1CC9EB8200E72CA1 /* RouteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A47AA1CC9EB8200E72CA1 /* RouteLoader.swift */; };
+		B32A47AD1CC9FAC200E72CA1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A47AC1CC9FAC200E72CA1 /* MainViewController.swift */; };
+		B32A47AF1CC9FACD00E72CA1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A47AE1CC9FACD00E72CA1 /* SettingsViewController.swift */; };
+		B32A47B11CCA012200E72CA1 /* RouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A47B01CCA012200E72CA1 /* RouteTableViewCell.swift */; };
 		B3664B401CA8DE2F00072CEB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3664B3F1CA8DE2F00072CEB /* MapKit.framework */; };
 		B38B8CD11CA8513F003B6C5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B8CD01CA8513F003B6C5F /* AppDelegate.swift */; };
 		B38B8CD31CA8513F003B6C5F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B8CD21CA8513F003B6C5F /* LoginViewController.swift */; };
@@ -38,7 +44,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B31B2EE61CC9A58200256D82 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B31FF3021CA8A64000DB8428 /* LoginTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTestCase.swift; sourceTree = "<group>"; };
+		B32A47A81CC9EACB00E72CA1 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		B32A47AA1CC9EB8200E72CA1 /* RouteLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteLoader.swift; sourceTree = "<group>"; };
+		B32A47AC1CC9FAC200E72CA1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B32A47AE1CC9FACD00E72CA1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B32A47B01CCA012200E72CA1 /* RouteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTableViewCell.swift; sourceTree = "<group>"; };
 		B3664B3F1CA8DE2F00072CEB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B38B8CCD1CA8513F003B6C5F /* Expreso Tec App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Expreso Tec App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B8CD01CA8513F003B6C5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B31B2EE71CC9A58200256D82 /* CoreLocation.framework in Frameworks */,
 				B3664B401CA8DE2F00072CEB /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,6 +99,7 @@
 		B38B8CC41CA8513F003B6C5F = {
 			isa = PBXGroup;
 			children = (
+				B31B2EE61CC9A58200256D82 /* CoreLocation.framework */,
 				B3664B3F1CA8DE2F00072CEB /* MapKit.framework */,
 				B38B8CCF1CA8513F003B6C5F /* Expreso Tec App */,
 				B38B8CE41CA8513F003B6C5F /* Expreso Tec AppTests */,
@@ -108,10 +122,15 @@
 			isa = PBXGroup;
 			children = (
 				B38B8CD01CA8513F003B6C5F /* AppDelegate.swift */,
-				B38B8CD21CA8513F003B6C5F /* LoginViewController.swift */,
-				B38B8CD41CA8513F003B6C5F /* Main.storyboard */,
-				B38B8CFE1CA8676F003B6C5F /* User.swift */,
 				B38B8D001CA86C7E003B6C5F /* ExtensionFile.swift */,
+				B38B8CD21CA8513F003B6C5F /* LoginViewController.swift */,
+				B32A47A81CC9EACB00E72CA1 /* Route.swift */,
+				B32A47AA1CC9EB8200E72CA1 /* RouteLoader.swift */,
+				B32A47B01CCA012200E72CA1 /* RouteTableViewCell.swift */,
+				B32A47AC1CC9FAC200E72CA1 /* MainViewController.swift */,
+				B38B8CD41CA8513F003B6C5F /* Main.storyboard */,
+				B32A47AE1CC9FACD00E72CA1 /* SettingsViewController.swift */,
+				B38B8CFE1CA8676F003B6C5F /* User.swift */,
 				B38B8CD71CA8513F003B6C5F /* Assets.xcassets */,
 				B38B8CD91CA8513F003B6C5F /* LaunchScreen.storyboard */,
 				B38B8CDC1CA8513F003B6C5F /* Info.plist */,
@@ -206,6 +225,7 @@
 				TargetAttributes = {
 					B38B8CCC1CA8513F003B6C5F = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = V5M688Z463;
 					};
 					B38B8CE01CA8513F003B6C5F = {
 						CreatedOnToolsVersion = 7.3;
@@ -269,10 +289,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B32A47AD1CC9FAC200E72CA1 /* MainViewController.swift in Sources */,
+				B32A47B11CCA012200E72CA1 /* RouteTableViewCell.swift in Sources */,
+				B32A47AB1CC9EB8200E72CA1 /* RouteLoader.swift in Sources */,
 				B38B8CD31CA8513F003B6C5F /* LoginViewController.swift in Sources */,
 				B38B8CD11CA8513F003B6C5F /* AppDelegate.swift in Sources */,
 				B38B8CFF1CA8676F003B6C5F /* User.swift in Sources */,
+				B32A47A91CC9EACB00E72CA1 /* Route.swift in Sources */,
 				B38B8D011CA86C7E003B6C5F /* ExtensionFile.swift in Sources */,
+				B32A47AF1CC9FACD00E72CA1 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,11 +442,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Expreso Tec App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AliBabaAnd4Thieves.ExpresoApp.Expreso-Tec-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -429,11 +457,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Expreso Tec App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AliBabaAnd4Thieves.ExpresoApp.Expreso-Tec-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
