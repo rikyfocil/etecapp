@@ -96,7 +96,7 @@ class ViewTest(TestCase):
     
 
     def testLngLowerBound(self):
-        self.checkSucSet(1,-90)
+        self.checkSucSet(1,-180)
 
     
     def testLatUpperOut(self):
@@ -112,7 +112,7 @@ class ViewTest(TestCase):
     
 
     def testLngUpperBound(self):
-        self.checkSucSet(1,90)
+        self.checkSucSet(1,180)
 
 
     # Reference - nothing external to reference
