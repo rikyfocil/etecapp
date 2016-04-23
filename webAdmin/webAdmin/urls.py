@@ -17,6 +17,6 @@ from django.conf.urls import include, url
 from routes.admin import admin_site
 
 urlpatterns = [
-    url(r'^routes/',include('routes.urls')),
+    url(r'^routes/', include('routes.urls')),
     url(r'^', admin_site.urls),
 ]

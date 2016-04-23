@@ -57,7 +57,7 @@ ROOT_URLCONF = 'webAdmin.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ 'routes/templates' ],
+        'DIRS': ['routes/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

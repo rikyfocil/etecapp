@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 from time import time
-from django.core.urlresolvers import resolve, reverse
+
 
 class UrlTest(TestCase):
     def setUp(self):
@@ -10,7 +10,7 @@ class UrlTest(TestCase):
     def testUrls(self):
         response = self.c.get('/')
 
-        self.assertEquals('/login/?next=/',response.url)
+        self.assertEquals('/login/?next=/', response.url)
 
     # Boundaries - no boundaries here
 
@@ -22,8 +22,8 @@ class UrlTest(TestCase):
 
     # Performance
     def testUrlPerformance(self):
-        inicio=time()
-        response = self.c.get('/')
-        fin=time()
+        inicio = time()
+        self.c.get('/')
+        fin = time()
 
-        self.assertLess(fin-inicio,2)
+        self.assertLess(fin - inicio, 2)
