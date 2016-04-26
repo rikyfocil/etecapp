@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django import forms
 
-from .models import Ruta, Conductor
+from .models import Ruta, Conductor, Perfil, PerfilRuta
 
 
 class CustomAdmin(admin.AdminSite):
@@ -26,5 +26,7 @@ class ConductorAdmin(admin.ModelAdmin):
 admin_site = CustomAdmin(name='customAdmin')
 admin_site.register(Ruta)
 admin_site.register(Conductor, ConductorAdmin)
+admin_site.register(Perfil)
+admin_site.register(PerfilRuta)
 
 # Register your models here.

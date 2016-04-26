@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from colorful.fields import RGBColorField
 
 from django.db import models
@@ -37,3 +38,7 @@ class Perfil(models.Model):
 class PerfilRuta(models.Model):
     perfil = models.ForeignKey(Perfil)
     ruta = models.ForeignKey(Ruta)
+
+    class Meta:
+        verbose_name = 'suscripción'
+        verbose_name_plural = 'suscripciones'

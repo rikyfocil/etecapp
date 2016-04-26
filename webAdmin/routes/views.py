@@ -1,4 +1,6 @@
 from django.http import JsonResponse
+from django.views.decorators.http import require_GET
+from django.contrib.auth import authenticate
 
 from routes.models import Ruta, Perfil, PerfilRuta
 
@@ -7,7 +9,9 @@ FAIL = 'failure'
 NO_FIELD = 'no such field'
 NO_ROUTE = 'no such expreso route'
 NO_PROFILE = 'no such profile'
+NO_REGISTER = 'no such register'
 INV_NUM = 'invalid number'
+DUPLICATE = 'that subscription already exists'
 
 
 def set(request):
@@ -95,16 +99,86 @@ def subscribe(request):
             profile = Perfil.objects.get(id=profileId)
             route = Ruta.objects.get(id=routeId)
 
-            perfilRuta = PerfilRuta()
-            perfilRuta.perfil = profile
-            perfilRuta.ruta = route
-            perfilRuta.save()
+            try:
+                PerfilRuta.objects.get(perfil=profileId, ruta=routeId)
+            except PerfilRuta.DoesNotExist:
+                perfilRuta = PerfilRuta()
+                perfilRuta.perfil = profile
+                perfilRuta.ruta = route
+                perfilRuta.save()
 
-            result = SUC
+                result = SUC
+            else:
+                message = DUPLICATE
 
         except Perfil.DoesNotExist:
             message = NO_PROFILE
         except Ruta.DoesNotExist:
             message = NO_ROUTE
+        except ValueError:
+            message = INV_NUM
+
+    return JsonResponse({'result': result, 'message': message})
+
+
+def unsubscribe(request):
+    result = FAIL
+    message = ''
+
+    if request.method == 'GET':
+        try:
+            profileId = request.GET.get('profileId')
+            routeId = request.GET.get('routeId')
+
+            perfilRuta = PerfilRuta.objects.get(perfil=profileId, ruta=routeId)
+            perfilRuta.delete()
+
+            result = SUC
+        except PerfilRuta.DoesNotExist:
+            message = NO_REGISTER
+
+    return JsonResponse({'result': result, 'message': message})
+
+
+@require_GET
+def getUserRoutes(request):
+    result = FAIL
+    message = ''
+
+    userId = request.GET.get('userId')
+
+    try:
+        profile = Perfil.objects.get(id=userId)
+        profileRoutes = PerfilRuta.objects.filter(perfil=profile)
+
+        routes = []
+        for profileRoute in profileRoutes:
+            route = profileRoute.ruta
+            routeDictionary = {'id': route.id, 'name': route.nombre}
+            routes.append(routeDictionary)
+
+        result = SUC
+
+    except Perfil.DoesNotExist:
+        message = NO_PROFILE
+
+    return JsonResponse({'result': result, 'message': message,
+                         'routes': routes})
+
+
+@require_GET
+def mobileLogin(request):
+    result = FAIL
+    message = ''
+
+    username = request.GET.get('username')
+    password = request.GET.get('password')
+
+    user = authenticate(username=username, password=password)
+
+    if user is not None:
+        result = SUC
+    else:
+        message = NO_PROFILE
 
     return JsonResponse({'result': result, 'message': message})

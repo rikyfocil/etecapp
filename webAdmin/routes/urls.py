@@ -19,7 +19,10 @@ from . import views
 
 urlpatterns = [
     url(r'^set', views.set, name='set'),
+    url(r'^getUserRoutes', views.getUserRoutes, name='getUserRoutes'),
     url(r'^getRoutes', views.getRoutes, name='getRoutes'),
     url(r'^get', views.get, name='get'),
     url(r'^subscribe', views.subscribe, name='subscribe'),
+    url(r'^unsubscribe', views.unsubscribe, name='unsubscribe'),
+    url(r'^mobileLogin', views.mobileLogin, name='mobileLogin')
 ]

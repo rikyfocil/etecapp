@@ -1,16 +1,62 @@
 # -*- coding: utf-8 -*-
 from django.test import TestCase, Client
 from django import forms
+from django.contrib.auth.models import User
 
+from json import dumps
 
 from routes.apps import RoutesConfig
 from routes.admin import CustomAdmin, ConductorForm, ConductorAdmin, admin_site
-from routes.models import Conductor, Ruta
+from routes.models import Conductor, Ruta, Perfil, PerfilRuta
 from routes.__init__ import default_app_config
 from routes.views import SUC, FAIL, INV_NUM
 
 
-class ViewTest(TestCase):
+class TestBase(TestCase):
+    @classmethod
+    def setUpTestData(self):
+        self.client = Client()
+
+    def checkJson(self, response, attribute, value):
+        self.assertEquals(response.json()[attribute], value)
+
+    def checkSuc(self, response):
+        self.checkJson(response, 'result', SUC)
+
+    def checkFail(self, response):
+        self.checkJson(response, 'result', FAIL)
+
+
+class TestRoute(TestBase):
+    def setUp(self):
+        ruta = Ruta(nombre='Test', lat='1', lng='1', conductor_id=1,
+                    color='#000000')
+        ruta.save()
+
+        return ruta
+
+
+class TestRouteDriver(TestRoute):
+    def setUp(self):
+        conductor = Conductor(nombre='TestDriver')
+        conductor.save()
+        super(TestRouteDriver, self).setUp()
+
+
+class TestRouteProfile(TestRoute):
+    def setUp(self):
+        user = User.objects.create_user('testUser', 'test@example.com',
+                                        'password')
+        user.save()
+        profile = Perfil(auth=user)
+        profile.save()
+
+        ruta = super(TestRouteProfile, self).setUp()
+        perfilRuta = PerfilRuta(perfil=profile, ruta=ruta)
+        perfilRuta.save()
+
+
+class GetSetTest(TestRoute):
     def get(self, route='Test'):
         return self.client.get('/routes/get/', {'route': route})
 
@@ -18,22 +64,16 @@ class ViewTest(TestCase):
         return self.client.get('/routes/set/', {'route': route, 'lat': lat,
                                                 'lng': lng})
 
-    def checkJson(self, response, attribute, code):
-        self.assertEquals(response.json()[attribute], code)
-
     def checkFailSet(self, lat, lng, errorCode):
         response = self.set(lat, lng)
 
-        self.checkJson(response, 'result', FAIL)
+        self.checkFail(response)
         self.checkJson(response, 'message', errorCode)
 
     def checkFailGet(self, route):
         response = self.get(route)
 
-        self.checkJson(response, 'result', FAIL)
-
-    def checkSuc(self, response):
-        self.checkJson(response, 'result', SUC)
+        self.checkFail(response)
 
     def checkSucGet(self):
         response = self.get()
@@ -47,12 +87,6 @@ class ViewTest(TestCase):
 
         self.assertEquals(ruta.lat, lat)
         self.assertEquals(ruta.lng, lng)
-
-    def setUp(self):
-        ruta = Ruta(nombre='Test', lat='1', lng='1', conductor_id=1)
-        ruta.save()
-
-        self.client = Client()
 
     # Right
     def testSet(self):
@@ -135,6 +169,118 @@ class ViewTest(TestCase):
 
     # Performance - no need to check performance (no complex algorithms or time
     # limits for the interaction between server and client)
+
+
+class GetRoutesTest(TestRouteDriver):
+    def getRoutes(self):
+        return self.client.get('/routes/getRoutes/')
+
+    # Right
+    def testGetRoutes(self):
+        routes = [{'name': 'Test', 'id': 1, 'driver': 'TestDriver',
+                   'color': '#000000'}]
+
+        self.checkJson(self.getRoutes(), 'routes', routes)
+
+    # Boundaries - no boundaries here
+
+    # Inverse relations - no inverse relations to test
+
+    # Cross-check - no algorithm to cross-check
+
+    # Errors - no error conditions
+
+    # Performance - no need to check performance
+
+
+class SubscribeUnsubscribeTest(TestRouteProfile):
+    def subscribe(self, profileId=1, routeId=1):
+        return self.client.get('/routes/subscribe/', {'profileId': profileId,
+                                                      'routeId': routeId})
+
+    def unsubscribe(self, profileId=1, routeId=1):
+        return self.client.get('/routes/unsubscribe/', {'profileId': profileId,
+                                                        'routeId': routeId})
+
+    def checkSubscribeFail(self, profile, route):
+        response = self.subscribe(profile, route)
+        self.checkFail(response)
+
+    def checkSubscribeSuc(self, profile=1, route=1):
+        response = self.subscribe(profile, route)
+        self.checkSuc(response)
+
+    def checkUnsubscribeFail(self, profile, route):
+        response = self.unsubscribe(profile, route)
+        self.checkFail(response)
+
+    def checkUnsubscribeSuc(self, profile=1, route=1):
+        response = self.unsubscribe(profile, route)
+        self.checkSuc(response)
+
+    def checkSubsUnsSuc(self, profile=1, route=1):
+        self.checkSubscribeSuc(profile, route)
+        self.checkUnsubscribeSuc(profile, route)
+
+    # Right
+    def testSubscribeUnsubscribe(self):
+        self.checkUnsubscribeSuc(1, 1)
+        self.checkSubsUnsSuc(1, 1)
+
+    # Boundaries
+
+    # Conformance
+    def testSubscribeProfileConformance(self):
+        self.checkSubscribeFail('a', 1)
+
+    def testSubscribeRouteConformance(self):
+        self.checkSubscribeFail(1, 'a')
+
+    # Order - no order to check
+
+    # Range - no range to check
+
+    # Reference - nothing external is referenced
+
+    # Existence
+    def testSubscribeProfileExistence(self):
+        self.checkSubscribeFail(1, '')
+
+    def testSubscribeRouteExistence(self):
+        self.checkSubscribeFail('', 1)
+
+    # Cardinality
+    def testSubscribeCardinality(self):
+        response = self.client.get('/routes/subscribe/', {
+            'profileId': '1'})
+        self.checkFail(response)
+
+    # Time
+    def testInvalidUnsubscribe(self):
+        self.checkUnsubscribeSuc(1, 1)
+        self.checkUnsubscribeFail(1, 1)
+
+    # Inverse relations - already checked in right
+
+    # Cross-check - no algorithm to cross-check
+
+    # Errors - no error conditions
+
+    # Performance - no need to check performance
+
+
+class getUserRoutesTest(TestRouteProfile):
+    # Right
+    def testGetUserRoutes(self):
+        routes = [{'name': 'Test', 'id': 1}]
+
+        routesDict = {'result': SUC, 'message': '', 'routes': routes}
+
+        response = self.client.get('/routes/getUserRoutes',
+                                   {'userId': 1})
+
+        self.checkSuc(response)
+        self.assertEquals(response.json(), routesDict)
 
 
 class RoutesTest(TestCase):
