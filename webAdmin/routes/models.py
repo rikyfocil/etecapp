@@ -45,6 +45,9 @@ class PerfilRuta(models.Model):
     perfil = models.ForeignKey(Perfil)
     ruta = models.ForeignKey(Ruta)
 
+    def __str__(self):
+        return str(self.perfil) + '-' + str(self.ruta)
+
     class Meta:
         verbose_name = 'suscripción'
         verbose_name_plural = 'suscripciones'
