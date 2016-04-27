@@ -3,8 +3,6 @@ from django.test import TestCase, Client
 from django import forms
 from django.contrib.auth.models import User
 
-from json import dumps
-
 from routes.apps import RoutesConfig
 from routes.admin import CustomAdmin, ConductorForm, ConductorAdmin, admin_site
 from routes.models import Conductor, Ruta, Perfil, PerfilRuta
@@ -54,6 +52,14 @@ class TestRouteProfile(TestRoute):
         ruta = super(TestRouteProfile, self).setUp()
         perfilRuta = PerfilRuta(perfil=profile, ruta=ruta)
         perfilRuta.save()
+
+
+class TestUser(TestBase):
+    def setUp(self):
+        user = User.objects.create_user('test', 'test@example.com', 'test')
+        user.save()
+
+        super(TestUser, self).setUp()
 
 
 class GetSetTest(TestRoute):
@@ -277,10 +283,64 @@ class getUserRoutesTest(TestRouteProfile):
         routesDict = {'result': SUC, 'message': '', 'routes': routes}
 
         response = self.client.get('/routes/getUserRoutes',
-                                   {'userId': 1})
+                                   {'profileId': 1})
 
         self.checkSuc(response)
         self.assertEquals(response.json(), routesDict)
+
+    # Boundaries - no boundary
+
+    # Inverse relations - no inverse
+
+    # Cross-check - no algorithm to cross checkFail
+
+    # Errors
+    def testGetUserRoutesEmptyList(self):
+        self.client.get('/routes/unsubscribe/', {'profileId': 1,
+                                                 'routeId': 1})
+
+        routes = []
+
+        routesDict = {'result': SUC, 'message': '', 'routes': routes}
+
+        response = self.client.get('/routes/getUserRoutes',
+                                   {'profileId': 1})
+
+        self.checkSuc(response)
+        self.assertEquals(response.json(), routesDict)
+
+    # Performance - no need
+
+
+class MobileLoginTest(TestUser):
+    def login(self, username='test', password='test'):
+        return self.client.get('/routes/mobileLogin/', {'username': username,
+                                                        'password': password})
+
+    def checkSucLogin(self, username='test', password='test'):
+        self.checkSuc(self.login(username, password))
+
+    def checkFailLogin(self, username, password):
+        self.checkFail(self.login(username, password))
+
+    # Right
+    def testLogin(self):
+        self.checkSucLogin()
+
+    # Boundaries - no boundaries
+
+    # Inverse - no inverse
+
+    # Cross - no algorithm to cross-checkFail
+
+    # Error
+    def testLoginBadPassword(self):
+        self.checkFailLogin('test', 'test1')
+
+    def testLoginBadUsername(self):
+        self.checkFailLogin('test1', 'test')
+
+    # Performance - no need to check performance
 
 
 class RoutesTest(TestCase):

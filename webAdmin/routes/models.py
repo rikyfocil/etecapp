@@ -32,7 +32,13 @@ class Ruta(models.Model):
 
 
 class Perfil(models.Model):
-    auth = models.OneToOneField(User)
+    auth = models.OneToOneField(User, verbose_name='usuario correspondiente')
+
+    def __str__(self):
+        return self.auth.username
+
+    class Meta:
+        verbose_name_plural = 'perfiles'
 
 
 class PerfilRuta(models.Model):

@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 
 from routes.models import Ruta, Perfil, PerfilRuta
 
@@ -144,14 +145,14 @@ def unsubscribe(request):
 def getUserRoutes(request):
     result = FAIL
     message = ''
+    routes = []
 
-    userId = request.GET.get('userId')
+    profileId = request.GET.get('profileId')
 
     try:
-        profile = Perfil.objects.get(id=userId)
+        profile = Perfil.objects.get(id=profileId)
         profileRoutes = PerfilRuta.objects.filter(perfil=profile)
 
-        routes = []
         for profileRoute in profileRoutes:
             route = profileRoute.ruta
             routeDictionary = {'id': route.id, 'name': route.nombre}
