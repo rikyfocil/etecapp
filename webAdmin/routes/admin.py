@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from django import forms
+from django.contrib.auth.models import User
 
 from .models import Ruta, Conductor, Perfil, PerfilRuta
 
@@ -28,5 +29,6 @@ admin_site.register(Ruta)
 admin_site.register(Conductor, ConductorAdmin)
 admin_site.register(Perfil)
 admin_site.register(PerfilRuta)
+admin_site.register(User)
 
 # Register your models here.
