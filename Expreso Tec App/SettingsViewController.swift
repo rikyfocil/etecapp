@@ -49,7 +49,6 @@ public class SettingsViewController: UIViewController, UITableViewDataSource, UI
         // Dispose of any resources that can be recreated.
     }
     
-    
     @IBAction func logout(sender: AnyObject) {
         
         UIAlertController.presentConfirmationAlertViewController("¿Estas seguro?", description: "Si cierras sesión no podremos informarte de la ubicación del expreso y dejarás de recibir notificaciones", confirmText: "Sí, cerrar sesión", cancelText: "Cambie de idea", controller: self, destructive: true, confirmAction: { 

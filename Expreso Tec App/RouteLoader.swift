@@ -155,18 +155,25 @@ public class RouteLoader: NSObject {
         let name = routeDictionary["name"] as? String
         let id = routeDictionary["id"] as? Int
         let driver = routeDictionary["driver"] as? String
+        let color = UIColor(fromHexHashtagedString: (routeDictionary["color"] as? String) ?? "")
         
-        
-        guard name != nil && id != nil && driver != nil else{
+        guard name != nil && id != nil && driver != nil && color != nil else{
             throw GenericError.GenericError
         }
         
-        return Route(id: id!, color: UIColor.redColor(), name: name!, conductor: driver!)
+        return Route(id: id!, color: color! , name: name!, conductor: driver!)
         
     }
+    
+    
     
 }
 
 enum GenericError : ErrorType{
+    
     case GenericError
+    case JSONParsingError
+    case HTTPError
+    case WebSiteError
+    
 }

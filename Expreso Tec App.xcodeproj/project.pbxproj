@@ -15,6 +15,8 @@
 		B32A47AF1CC9FACD00E72CA1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A47AE1CC9FACD00E72CA1 /* SettingsViewController.swift */; };
 		B32A47B11CCA012200E72CA1 /* RouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A47B01CCA012200E72CA1 /* RouteTableViewCell.swift */; };
 		B3664B401CA8DE2F00072CEB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3664B3F1CA8DE2F00072CEB /* MapKit.framework */; };
+		B3672C3B1CD4930000EC131F /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = B3672C3A1CD4930000EC131F /* UIColor+Hex.m */; };
+		B3672C3D1CD49A4A00EC131F /* HTTPRequestSimplified.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3672C3C1CD49A4A00EC131F /* HTTPRequestSimplified.swift */; };
 		B38B8CD11CA8513F003B6C5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B8CD01CA8513F003B6C5F /* AppDelegate.swift */; };
 		B38B8CD31CA8513F003B6C5F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B8CD21CA8513F003B6C5F /* LoginViewController.swift */; };
 		B38B8CD61CA8513F003B6C5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B38B8CD41CA8513F003B6C5F /* Main.storyboard */; };
@@ -52,6 +54,10 @@
 		B32A47AE1CC9FACD00E72CA1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B32A47B01CCA012200E72CA1 /* RouteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTableViewCell.swift; sourceTree = "<group>"; };
 		B3664B3F1CA8DE2F00072CEB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B3672C381CD4930000EC131F /* Expreso Tec App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Expreso Tec App-Bridging-Header.h"; sourceTree = "<group>"; };
+		B3672C391CD4930000EC131F /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		B3672C3A1CD4930000EC131F /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		B3672C3C1CD49A4A00EC131F /* HTTPRequestSimplified.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequestSimplified.swift; sourceTree = "<group>"; };
 		B38B8CCD1CA8513F003B6C5F /* Expreso Tec App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Expreso Tec App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38B8CD01CA8513F003B6C5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B38B8CD21CA8513F003B6C5F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +129,7 @@
 			children = (
 				B38B8CD01CA8513F003B6C5F /* AppDelegate.swift */,
 				B38B8D001CA86C7E003B6C5F /* ExtensionFile.swift */,
+				B3672C3C1CD49A4A00EC131F /* HTTPRequestSimplified.swift */,
 				B38B8CD21CA8513F003B6C5F /* LoginViewController.swift */,
 				B32A47A81CC9EACB00E72CA1 /* Route.swift */,
 				B32A47AA1CC9EB8200E72CA1 /* RouteLoader.swift */,
@@ -130,10 +137,13 @@
 				B32A47AC1CC9FAC200E72CA1 /* MainViewController.swift */,
 				B38B8CD41CA8513F003B6C5F /* Main.storyboard */,
 				B32A47AE1CC9FACD00E72CA1 /* SettingsViewController.swift */,
+				B3672C391CD4930000EC131F /* UIColor+Hex.h */,
+				B3672C3A1CD4930000EC131F /* UIColor+Hex.m */,
 				B38B8CFE1CA8676F003B6C5F /* User.swift */,
 				B38B8CD71CA8513F003B6C5F /* Assets.xcassets */,
 				B38B8CD91CA8513F003B6C5F /* LaunchScreen.storyboard */,
 				B38B8CDC1CA8513F003B6C5F /* Info.plist */,
+				B3672C381CD4930000EC131F /* Expreso Tec App-Bridging-Header.h */,
 			);
 			path = "Expreso Tec App";
 			sourceTree = "<group>";
@@ -290,7 +300,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B32A47AD1CC9FAC200E72CA1 /* MainViewController.swift in Sources */,
+				B3672C3B1CD4930000EC131F /* UIColor+Hex.m in Sources */,
 				B32A47B11CCA012200E72CA1 /* RouteTableViewCell.swift in Sources */,
+				B3672C3D1CD49A4A00EC131F /* HTTPRequestSimplified.swift in Sources */,
 				B32A47AB1CC9EB8200E72CA1 /* RouteLoader.swift in Sources */,
 				B38B8CD31CA8513F003B6C5F /* LoginViewController.swift in Sources */,
 				B38B8CD11CA8513F003B6C5F /* AppDelegate.swift in Sources */,
@@ -442,6 +454,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Expreso Tec App/Info.plist";
@@ -450,6 +463,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AliBabaAnd4Thieves.ExpresoApp.Expreso-Tec-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Expreso Tec App/Expreso Tec App-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -457,6 +472,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Expreso Tec App/Info.plist";
@@ -465,6 +481,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AliBabaAnd4Thieves.ExpresoApp.Expreso-Tec-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Expreso Tec App/Expreso Tec App-Bridging-Header.h";
 			};
 			name = Release;
 		};
