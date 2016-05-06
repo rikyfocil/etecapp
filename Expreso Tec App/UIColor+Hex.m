@@ -12,9 +12,8 @@
 
 +(instancetype _Nullable) colorFromHexHashtagedString: (NSString* _Nonnull) string{
     
-    NSString *stringColor = @"#AABBCC";
     NSUInteger red, green, blue;
-    int scanned = sscanf([stringColor UTF8String], "#%2lX%2lX%2lX", &red, &green, &blue);
+    int scanned = sscanf([string UTF8String], "#%2lX%2lX%2lX", &red, &green, &blue);
     
     if(scanned < 3){
         return nil;
