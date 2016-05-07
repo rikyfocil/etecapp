@@ -26,6 +26,7 @@
 		B38B8CF11CA8513F003B6C5F /* Expreso_Tec_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B8CF01CA8513F003B6C5F /* Expreso_Tec_AppUITests.swift */; };
 		B38B8CFF1CA8676F003B6C5F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B8CFE1CA8676F003B6C5F /* User.swift */; };
 		B38B8D011CA86C7E003B6C5F /* ExtensionFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B8D001CA86C7E003B6C5F /* ExtensionFile.swift */; };
+		B39BCAA71CDCF312004D0192 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39BCAA61CDCF312004D0192 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		B38B8CF21CA8513F003B6C5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B38B8CFE1CA8676F003B6C5F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B38B8D001CA86C7E003B6C5F /* ExtensionFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionFile.swift; sourceTree = "<group>"; };
+		B39BCAA61CDCF312004D0192 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				B32A47B01CCA012200E72CA1 /* RouteTableViewCell.swift */,
 				B32A47AC1CC9FAC200E72CA1 /* MainViewController.swift */,
 				B38B8CD41CA8513F003B6C5F /* Main.storyboard */,
+				B39BCAA61CDCF312004D0192 /* MapViewController.swift */,
 				B32A47AE1CC9FACD00E72CA1 /* SettingsViewController.swift */,
 				B3672C391CD4930000EC131F /* UIColor+Hex.h */,
 				B3672C3A1CD4930000EC131F /* UIColor+Hex.m */,
@@ -306,6 +309,7 @@
 				B32A47AB1CC9EB8200E72CA1 /* RouteLoader.swift in Sources */,
 				B38B8CD31CA8513F003B6C5F /* LoginViewController.swift in Sources */,
 				B38B8CD11CA8513F003B6C5F /* AppDelegate.swift in Sources */,
+				B39BCAA71CDCF312004D0192 /* MapViewController.swift in Sources */,
 				B38B8CFF1CA8676F003B6C5F /* User.swift in Sources */,
 				B32A47A91CC9EACB00E72CA1 /* Route.swift in Sources */,
 				B38B8D011CA86C7E003B6C5F /* ExtensionFile.swift in Sources */,

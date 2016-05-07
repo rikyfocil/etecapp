@@ -13,13 +13,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var opaqueView: UIView!
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     
     @IBAction func loginButtonPressed(sender: AnyObject) {
         
         self.view.userInteractionEnabled = false
-        
+        self.opaqueView.hidden = false
+        self.indicatorView.startAnimating()
         User.loginWithData(self.idTextField.text, password: self.passwordTextField.text, callback: {
+            
             (logedUser, loginError) in
+            
+            self.opaqueView.hidden = true
             self.view.userInteractionEnabled = true
             if let le = loginError{
                 switch le {
@@ -63,9 +69,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         })
         
-        
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
