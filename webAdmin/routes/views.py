@@ -9,6 +9,7 @@ FAIL = 'failure'
 NO_FIELD = 'no such field'
 NO_ROUTE = 'no such expreso route'
 NO_PROFILE = 'no such profile'
+NO_USER = 'no such user'
 NO_REGISTER = 'no such register'
 INV_NUM = 'invalid number'
 DUPLICATE = 'that subscription already exists'
@@ -175,6 +176,8 @@ def mobileLogin(request):
     result = FAIL
     message = ''
     routes = []
+    profileId = -1
+    first_name = ''
 
     username = request.GET.get('username')
     password = request.GET.get('password')
@@ -182,15 +185,17 @@ def mobileLogin(request):
     user = authenticate(username=username, password=password)
 
     if user is not None:
-        profileId = Perfil.objects.get(auth=user).id
-
         try:
-            _getSubscriptions(profileId, routes)
-            result = SUC
+            profileId = Perfil.objects.get(auth=user).id
         except Perfil.DoesNotExist:
             message = NO_PROFILE
+
+        first_name = user.first_name
+        _getSubscriptions(profileId, routes)
+        result = SUC
     else:
-        message = NO_PROFILE
+        message = NO_USER
 
     return JsonResponse({'result': result, 'message': message,
-                         'routes': routes})
+                         'routes': routes, 'id': profileId,
+                         'name': first_name})

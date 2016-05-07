@@ -57,6 +57,7 @@ class TestRouteProfile(TestRoute):
 class TestUser(TestBase):
     def setUp(self):
         user = User.objects.create_user('test', 'test@example.com', 'test')
+        user.first_name = 'test'
         user.save()
         profile = Perfil(auth=user)
         profile.save()
@@ -320,10 +321,16 @@ class MobileLoginTest(TestUser):
                                                         'password': password})
 
     def checkSucLogin(self, username='test', password='test'):
-        self.checkSuc(self.login(username, password))
+        response = self.login(username, password)
+        self.checkSuc(response)
+        self.checkJson(response, 'id', 1)
+        self.checkJson(response, 'name', 'test')
 
     def checkFailLogin(self, username, password):
-        self.checkFail(self.login(username, password))
+        response = self.login(username, password)
+        self.checkFail(response)
+        self.checkJson(response, 'id', -1)
+        self.checkJson(response, 'name', '')
 
     # Right
     def testLogin(self):
@@ -333,7 +340,7 @@ class MobileLoginTest(TestUser):
 
     # Inverse - no inverse
 
-    # Cross - no algorithm to cross-checkFail
+    # Cross - no algorithm to cross-check
 
     # Error
     def testLoginBadPassword(self):
