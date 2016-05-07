@@ -1,7 +1,6 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
 
 from routes.models import Ruta, Perfil, PerfilRuta
 
@@ -16,6 +15,7 @@ DUPLICATE = 'that subscription already exists'
 
 
 def set(request):
+    """Uzh"""
     result = FAIL
     message = ''
 
@@ -141,6 +141,16 @@ def unsubscribe(request):
     return JsonResponse({'result': result, 'message': message})
 
 
+def _getSubscriptions(profileId, routes):
+    profile = Perfil.objects.get(id=profileId)
+    profileRoutes = PerfilRuta.objects.filter(perfil=profile)
+
+    for profileRoute in profileRoutes:
+        route = profileRoute.ruta
+        routeDictionary = {'id': route.id, 'name': route.nombre}
+        routes.append(routeDictionary)
+
+
 @require_GET
 def getUserRoutes(request):
     result = FAIL
@@ -150,14 +160,7 @@ def getUserRoutes(request):
     profileId = request.GET.get('profileId')
 
     try:
-        profile = Perfil.objects.get(id=profileId)
-        profileRoutes = PerfilRuta.objects.filter(perfil=profile)
-
-        for profileRoute in profileRoutes:
-            route = profileRoute.ruta
-            routeDictionary = {'id': route.id, 'name': route.nombre}
-            routes.append(routeDictionary)
-
+        _getSubscriptions(profileId, routes)
         result = SUC
 
     except Perfil.DoesNotExist:
@@ -171,6 +174,7 @@ def getUserRoutes(request):
 def mobileLogin(request):
     result = FAIL
     message = ''
+    routes = []
 
     username = request.GET.get('username')
     password = request.GET.get('password')
@@ -178,8 +182,15 @@ def mobileLogin(request):
     user = authenticate(username=username, password=password)
 
     if user is not None:
-        result = SUC
+        profileId = Perfil.objects.get(auth=user).id
+
+        try:
+            _getSubscriptions(profileId, routes)
+            result = SUC
+        except Perfil.DoesNotExist:
+            message = NO_PROFILE
     else:
         message = NO_PROFILE
 
-    return JsonResponse({'result': result, 'message': message})
+    return JsonResponse({'result': result, 'message': message,
+                         'routes': routes})

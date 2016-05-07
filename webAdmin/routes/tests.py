@@ -58,6 +58,8 @@ class TestUser(TestBase):
     def setUp(self):
         user = User.objects.create_user('test', 'test@example.com', 'test')
         user.save()
+        profile = Perfil(auth=user)
+        profile.save()
 
         super(TestUser, self).setUp()
 
