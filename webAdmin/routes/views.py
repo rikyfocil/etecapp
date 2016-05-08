@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET, require_POST
 from django.contrib.auth import authenticate
+from django.views.decorators.csrf import csrf_exempt
 
 from routes.models import Ruta, Perfil, PerfilRuta
 
@@ -171,6 +172,7 @@ def getUserRoutes(request):
                          'routes': routes})
 
 
+@csrf_exempt
 @require_POST
 def mobileLogin(request):
     result = FAIL
