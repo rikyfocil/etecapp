@@ -317,8 +317,8 @@ class getUserRoutesTest(TestRouteProfile):
 
 class MobileLoginTest(TestUser):
     def login(self, username='test', password='test'):
-        return self.client.get('/routes/mobileLogin/', {'username': username,
-                                                        'password': password})
+        return self.client.post('/routes/mobileLogin/', {'username': username,
+                                                         'password': password})
 
     def checkSucLogin(self, username='test', password='test'):
         response = self.login(username, password)

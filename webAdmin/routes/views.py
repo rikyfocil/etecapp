@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_GET, require_POST
 from django.contrib.auth import authenticate
 
 from routes.models import Ruta, Perfil, PerfilRuta
@@ -171,7 +171,7 @@ def getUserRoutes(request):
                          'routes': routes})
 
 
-@require_GET
+@require_POST
 def mobileLogin(request):
     result = FAIL
     message = ''
@@ -179,8 +179,8 @@ def mobileLogin(request):
     profileId = -1
     first_name = ''
 
-    username = request.GET.get('username')
-    password = request.GET.get('password')
+    username = request.POST.get('username')
+    password = request.POST.get('password')
 
     user = authenticate(username=username, password=password)
 
