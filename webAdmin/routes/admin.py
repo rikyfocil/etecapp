@@ -2,6 +2,7 @@
 from django.contrib import admin
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
 
 from .models import Ruta, Conductor, Perfil, PerfilRuta
 
@@ -24,11 +25,12 @@ class ConductorForm(forms.ModelForm):
 class ConductorAdmin(admin.ModelAdmin):
     form = ConductorForm
 
+
 admin_site = CustomAdmin(name='customAdmin')
 admin_site.register(Ruta)
 admin_site.register(Conductor, ConductorAdmin)
 admin_site.register(Perfil)
 admin_site.register(PerfilRuta)
-admin_site.register(User)
+admin_site.register(User, UserAdmin)
 
 # Register your models here.
