@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B31A1E2B1CDEE04700240A12 /* BusMapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31A1E2A1CDEE04700240A12 /* BusMapAnnotationView.swift */; };
 		B31B2EE71CC9A58200256D82 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B31B2EE61CC9A58200256D82 /* CoreLocation.framework */; };
 		B31FF3031CA8A64000DB8428 /* LoginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31FF3021CA8A64000DB8428 /* LoginTestCase.swift */; };
 		B32A47A91CC9EACB00E72CA1 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A47A81CC9EACB00E72CA1 /* Route.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B31A1E2A1CDEE04700240A12 /* BusMapAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusMapAnnotationView.swift; sourceTree = "<group>"; };
 		B31B2EE61CC9A58200256D82 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B31FF3021CA8A64000DB8428 /* LoginTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTestCase.swift; sourceTree = "<group>"; };
 		B32A47A81CC9EACB00E72CA1 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				B38B8CD01CA8513F003B6C5F /* AppDelegate.swift */,
+				B31A1E2A1CDEE04700240A12 /* BusMapAnnotationView.swift */,
 				B38B8D001CA86C7E003B6C5F /* ExtensionFile.swift */,
 				B3672C3C1CD49A4A00EC131F /* HTTPRequestSimplified.swift */,
 				B38B8CD21CA8513F003B6C5F /* LoginViewController.swift */,
@@ -180,6 +183,7 @@
 				B38B8CC91CA8513F003B6C5F /* Sources */,
 				B38B8CCA1CA8513F003B6C5F /* Frameworks */,
 				B38B8CCB1CA8513F003B6C5F /* Resources */,
+				B3196B271CDE742000C11BBB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -297,12 +301,29 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B3196B271CDE742000C11BBB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"TODO:|FIXME:|WARNING:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B38B8CC91CA8513F003B6C5F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B32A47AD1CC9FAC200E72CA1 /* MainViewController.swift in Sources */,
+				B31A1E2B1CDEE04700240A12 /* BusMapAnnotationView.swift in Sources */,
 				B3672C3B1CD4930000EC131F /* UIColor+Hex.m in Sources */,
 				B32A47B11CCA012200E72CA1 /* RouteTableViewCell.swift in Sources */,
 				B3672C3D1CD49A4A00EC131F /* HTTPRequestSimplified.swift in Sources */,

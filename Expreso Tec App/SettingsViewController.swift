@@ -11,12 +11,21 @@ import UIKit
 public class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     private var loaded = false
+    
     private var routes : [Route]?
+    private var selectedRoutes : [Route]!
+    
+    var user = User(name: "Ricardo", userID: "A01327311")
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var blockingView: UIView!
     @IBOutlet weak var routesTable: UITableView!
     
-    
-    
-    override public func viewDidLoad() {
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var backButtonOutlet: UIBarButtonItem!
+
+    override public func viewDidLoad(){
+        
         super.viewDidLoad()
         routesTable.rowHeight = UITableViewAutomaticDimension
         routesTable.estimatedRowHeight = 56
@@ -42,6 +51,8 @@ public class SettingsViewController: UIViewController, UITableViewDataSource, UI
             
         }
         
+        selectedRoutes = user.subscribedRoutes
+        updateBackButton()
     }
 
     override public func didReceiveMemoryWarning() {
@@ -95,6 +106,8 @@ public class SettingsViewController: UIViewController, UITableViewDataSource, UI
             
             let cell = tableView.dequeueReusableCellWithIdentifier("routeCell") as! RouteTableViewCell
             cell.route = routes![indexPath.row]
+            cell.accessoryType = selectedRoutes.contains(cell.route!) ? .Checkmark : .None
+            cell.tintColor = UIColor.whiteColor()
             return cell
             
         }
@@ -102,8 +115,53 @@ public class SettingsViewController: UIViewController, UITableViewDataSource, UI
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        if loaded{
+            
+            let route = routes![indexPath.row]
+            
+            if let index = self.selectedRoutes.indexOf(route){
+                self.selectedRoutes.removeAtIndex(index)
+            }
+            else{
+                self.selectedRoutes.append(route)
+            }
+            
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            
+        }
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        updateBackButton()
+
+    }
+    
+    @IBAction func goToMap(sender: AnyObject) {
+        
+        self.backButtonOutlet.enabled = false
+        self.blockingView.hidden = false
+        self.activityIndicator.startAnimating()
+        user.updateRouteSubscriptions(self.selectedRoutes) {
+            
+            (updated) in
+            
+            self.selectedRoutes = self.user.subscribedRoutes
+            self.blockingView.hidden = true
+            self.updateBackButton()
+            
+            if !updated{
+                UIAlertController.presentErrorMessage(description: "No pudimos actualizar todas tus rutas. Ahora te mostramos lo que si pudimos actualizar. Si deseas volver a intentarlo realiza de nuevo tus modificaciones e intenta volver al mapa otra vez.\nSi no haces cambios y tienes al menos una ruta podrás volver al mapa de inmediato.", controller: self, completition: nil)
+                self.selectedRoutes = self.user.subscribedRoutes
+                self.tableView.reloadData()
+            }
+            else{
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+        }
         
     }
     
+    func updateBackButton(){
+        self.backButtonOutlet.enabled = !self.selectedRoutes.isEmpty
+    }
 }
