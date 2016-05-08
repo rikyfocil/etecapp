@@ -15,7 +15,6 @@ public class User: NSObject {
     public let name : String
     private var databaseID = 0
 
-    public private(set) var loadedRoutes = false;
     public private(set) var subscribedRoutes = [Route]()
     
     //TODO: Change for private

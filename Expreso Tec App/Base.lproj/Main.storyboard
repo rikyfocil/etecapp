@@ -143,10 +143,10 @@
             </objects>
             <point key="canvasLocation" x="871" y="667"/>
         </scene>
-        <!--View Controller-->
+        <!--Driver View Controller-->
         <scene sceneID="Yur-Em-6Aa">
             <objects>
-                <viewController id="BaE-D5-WdT" sceneMemberID="viewController">
+                <viewController id="BaE-D5-WdT" customClass="DriverViewController" customModule="Expreso_Tec_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="J01-uC-OuC"/>
                         <viewControllerLayoutGuide type="bottom" id="dON-EL-Ljl"/>
@@ -181,6 +181,9 @@
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i4o-ae-y5t">
                                                 <rect key="frame" x="9" y="31" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="attempToUpdate:" destination="BaE-D5-WdT" eventType="valueChanged" id="rth-qS-9Jj"/>
+                                                </connections>
                                             </switch>
                                         </subviews>
                                     </stackView>
@@ -190,6 +193,9 @@
                                         <state key="normal" title="Cerrar sesión">
                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="logout:" destination="BaE-D5-WdT" eventType="touchUpInside" id="GgY-Th-otc"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -202,8 +208,15 @@
                             <constraint firstItem="Mm0-ZU-kHR" firstAttribute="leading" secondItem="bED-rl-2DY" secondAttribute="leadingMargin" id="qh6-ky-cGw"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="nameLabel" destination="00c-Pl-UPc" id="6zI-4o-mqR"/>
+                        <outlet property="routeLabel" destination="pBL-w6-Mf5" id="leq-kQ-bpV"/>
+                        <outlet property="trackingSwitch" destination="i4o-ae-y5t" id="IUt-Ns-yIP"/>
+                        <segue destination="qsi-W7-nad" kind="unwind" identifier="logout" unwindAction="backToLoginViewController:" id="ZqN-PB-Ksp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iBQ-UD-rVD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="qsi-W7-nad" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="871" y="1447"/>
         </scene>

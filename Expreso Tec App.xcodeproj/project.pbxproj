@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B31A1E2B1CDEE04700240A12 /* BusMapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31A1E2A1CDEE04700240A12 /* BusMapAnnotationView.swift */; };
+		B31A1E2D1CDF003600240A12 /* DriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31A1E2C1CDF003600240A12 /* DriverViewController.swift */; };
+		B31A1E2F1CDF010700240A12 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31A1E2E1CDF010700240A12 /* Driver.swift */; };
 		B31B2EE71CC9A58200256D82 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B31B2EE61CC9A58200256D82 /* CoreLocation.framework */; };
 		B31FF3031CA8A64000DB8428 /* LoginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31FF3021CA8A64000DB8428 /* LoginTestCase.swift */; };
 		B32A47A91CC9EACB00E72CA1 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A47A81CC9EACB00E72CA1 /* Route.swift */; };
@@ -49,6 +51,8 @@
 
 /* Begin PBXFileReference section */
 		B31A1E2A1CDEE04700240A12 /* BusMapAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusMapAnnotationView.swift; sourceTree = "<group>"; };
+		B31A1E2C1CDF003600240A12 /* DriverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverViewController.swift; sourceTree = "<group>"; };
+		B31A1E2E1CDF010700240A12 /* Driver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		B31B2EE61CC9A58200256D82 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B31FF3021CA8A64000DB8428 /* LoginTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTestCase.swift; sourceTree = "<group>"; };
 		B32A47A81CC9EACB00E72CA1 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 			children = (
 				B38B8CD01CA8513F003B6C5F /* AppDelegate.swift */,
 				B31A1E2A1CDEE04700240A12 /* BusMapAnnotationView.swift */,
+				B39BCAA61CDCF312004D0192 /* MapViewController.swift */,
 				B38B8D001CA86C7E003B6C5F /* ExtensionFile.swift */,
 				B3672C3C1CD49A4A00EC131F /* HTTPRequestSimplified.swift */,
 				B38B8CD21CA8513F003B6C5F /* LoginViewController.swift */,
@@ -141,7 +146,8 @@
 				B32A47B01CCA012200E72CA1 /* RouteTableViewCell.swift */,
 				B32A47AC1CC9FAC200E72CA1 /* MainViewController.swift */,
 				B38B8CD41CA8513F003B6C5F /* Main.storyboard */,
-				B39BCAA61CDCF312004D0192 /* MapViewController.swift */,
+				B31A1E2E1CDF010700240A12 /* Driver.swift */,
+				B31A1E2C1CDF003600240A12 /* DriverViewController.swift */,
 				B32A47AE1CC9FACD00E72CA1 /* SettingsViewController.swift */,
 				B3672C391CD4930000EC131F /* UIColor+Hex.h */,
 				B3672C3A1CD4930000EC131F /* UIColor+Hex.m */,
@@ -243,6 +249,11 @@
 					B38B8CCC1CA8513F003B6C5F = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = V5M688Z463;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					B38B8CE01CA8513F003B6C5F = {
 						CreatedOnToolsVersion = 7.3;
@@ -322,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B31A1E2F1CDF010700240A12 /* Driver.swift in Sources */,
 				B32A47AD1CC9FAC200E72CA1 /* MainViewController.swift in Sources */,
 				B31A1E2B1CDEE04700240A12 /* BusMapAnnotationView.swift in Sources */,
 				B3672C3B1CD4930000EC131F /* UIColor+Hex.m in Sources */,
@@ -334,6 +346,7 @@
 				B38B8CFF1CA8676F003B6C5F /* User.swift in Sources */,
 				B32A47A91CC9EACB00E72CA1 /* Route.swift in Sources */,
 				B38B8D011CA86C7E003B6C5F /* ExtensionFile.swift in Sources */,
+				B31A1E2D1CDF003600240A12 /* DriverViewController.swift in Sources */,
 				B32A47AF1CC9FACD00E72CA1 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

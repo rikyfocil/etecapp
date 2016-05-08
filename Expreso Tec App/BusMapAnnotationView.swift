@@ -8,10 +8,25 @@
 
 import MapKit
 
+/**
+ This class provides the bus annotation that the user can see in the map. 
+ 
+ This annotation is created as a bus with a certain color that represents the route
+ 
+ */
 class BusMapAnnotationView: MKAnnotationView {
     
-    var imageView : UIImageView?
+    /// The image view that displays the bus image
+    private var imageView : UIImageView?
     
+    /**
+     This method has two functions
+     
+     + It provides a way to create the image view if it hasn't been created yet
+     + It changes the tint color of the bus when needed
+     
+      - parameter color: The color that represents the route
+     */
     func setBusColor(color : UIColor){
         
         if let iv = imageView{
