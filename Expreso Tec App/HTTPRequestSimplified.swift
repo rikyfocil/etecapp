@@ -12,7 +12,7 @@ import UIKit
 class HTTPRequestSimplified{
     
     class private func getURL() -> String{
-        return "https://expreso.herokuapp.com/"
+        return "https://expreso.herokuapp.com/routes/"
     }
     
     class func getStandardOnlyTextRequest(site : String, method : HTTPMethod = .GET,  httpdata: String? = nil)->NSMutableURLRequest{

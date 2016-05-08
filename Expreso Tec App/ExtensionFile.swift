@@ -48,6 +48,20 @@ extension UIAlertController{
         
     }
         
-    
+    class func presentErrorMessage(title : String = "Error", description : String,  okText : String = "Ok", controller : UIViewController, completition : (()->())?){
+        
+        let alert = UIAlertController(title: title, message: description, preferredStyle: .Alert)
+        
+        alert.addAction(UIAlertAction(title: okText, style: .Default , handler: {
+            
+            _ in
+            completition?()
+            
+        }))
+        
+        controller.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+
     
 }

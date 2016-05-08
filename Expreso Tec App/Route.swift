@@ -24,4 +24,16 @@ public class Route : NSObject{
         
     }
     
+    public override func isEqual(object: AnyObject?) -> Bool {
+        
+        if let route = object as? Route{
+            return self.id == route.id
+        }
+        
+        return super.isEqual(object)
+        
+    }
+    
+    
+    
 }

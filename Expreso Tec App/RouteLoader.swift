@@ -165,8 +165,6 @@ public class RouteLoader: NSObject {
         
     }
     
-    
-    
 }
 
 enum GenericError : ErrorType{

@@ -123,7 +123,7 @@ class LoginTestCase: XCTestCase {
         User.loginWithData(id, password: password) {
             (u, e) in
             if let user = u{
-                if user.user == id.capitalizedString{
+                if user.userID == id.capitalizedString{
                     userLogged = true
                 }
                 else{
