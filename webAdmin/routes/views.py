@@ -3,7 +3,7 @@ from django.views.decorators.http import require_GET, require_POST
 from django.contrib.auth import authenticate
 from django.views.decorators.csrf import csrf_exempt
 
-from routes.models import Ruta, Perfil, PerfilRuta
+from routes.models import Ruta, Perfil, PerfilRuta, Conductor
 
 SUC = 'success'
 FAIL = 'failure'
@@ -149,7 +149,15 @@ def _getSubscriptions(profileId, routes):
 
     for profileRoute in profileRoutes:
         route = profileRoute.ruta
-        routeDictionary = {'id': route.id, 'name': route.nombre}
+
+        try:
+            driver = route.conductor.nombre
+        except Conductor.DoesNotExist:
+            driver = ''
+
+        routeDictionary = {'id': route.id, 'name': route.nombre,
+                           'driver': driver,
+                           'color': route.color}
         routes.append(routeDictionary)
 
 
