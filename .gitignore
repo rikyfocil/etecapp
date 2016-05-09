@@ -1,3 +1,9 @@
+Misc.
+
+# Ignore the SQLite testing database
+db.sqlite3
+
+
 ##### Python #####
 
 
