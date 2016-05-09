@@ -1,14 +1,16 @@
 """This module defines possible views for the Django app.
 
-================
-Things in common
-================
+==================
+Things to consider
+==================
 
 - Their responses are valid JSON because XML should die a slow and painful
   death.
 - Except for getRoutes, they all return a **result**, which can be *success*
   or *failure*, and a message, which can be an empty string if the result was
   *success* or a string describing an error if the result was *failure*.
+- A routes array contains routes with the following properties: name (string),
+  id (integer), driver (string), color (string) and page (string)
 
 ----
 
@@ -130,26 +132,6 @@ def get(request):
                          'lng': lng})
 
 
-def getRoutes(request):
-    """| **Parameters**: NONE
-
-    **Returns**: routes (array) with name (string), id (integer), driver
-    (string) and color (string).
-
-    The getRoutes view returns a list of all the routes as *routes*.
-    """
-    routes = Ruta.objects.all().order_by('id')
-
-    jsonRoutes = []
-    for route in routes:
-        routeDictionary = {'name': route.nombre, 'id': route.id,
-                           'driver': route.conductor.nombre,
-                           'color': route.color}
-        jsonRoutes.append(routeDictionary)
-
-    return JsonResponse({'routes': jsonRoutes})
-
-
 @require_GET
 def subscribe(request):
     """| **Parameters**: profileId (integer) and routeId (integer)
@@ -217,6 +199,19 @@ def unsubscribe(request):
     return JsonResponse({'result': result, 'message': message})
 
 
+def _addRoute(route, routes):
+    """Add route to the routes list"""
+    try:
+        driver = route.conductor.nombre
+    except Conductor.DoesNotExist:
+        driver = ''
+
+    routeDictionary = {'id': route.id, 'name': route.nombre,
+                       'driver': driver, 'page': route.pagina,
+                       'color': route.color}
+    routes.append(routeDictionary)
+
+
 def _getSubscriptions(profileId, routes):
     """Put profileId subscriptions in routes.
 
@@ -228,24 +223,30 @@ def _getSubscriptions(profileId, routes):
 
     for profileRoute in profileRoutes:
         route = profileRoute.ruta
+        _addRoute(route, routes)
 
-        try:
-            driver = route.conductor.nombre
-        except Conductor.DoesNotExist:
-            driver = ''
 
-        routeDictionary = {'id': route.id, 'name': route.nombre,
-                           'driver': driver,
-                           'color': route.color}
-        routes.append(routeDictionary)
+def getRoutes(request):
+    """| **Parameters**: NONE
+
+    **Returns**: routes (array).
+
+    The getRoutes view returns a list of all the routes as *routes*.
+    """
+    routes = Ruta.objects.all().order_by('id')
+
+    jsonRoutes = []
+    for route in routes:
+        _addRoute(route, jsonRoutes)
+
+    return JsonResponse({'routes': jsonRoutes})
 
 
 @require_GET
 def getUserRoutes(request):
     """| **Parameters**: profileId (integer)
 
-    **Returns**: result, message and routes (array) with name (string),
-    id (integer), driver (string) and color (string).
+    **Returns**: result, message and routes (array).
 
     The getUserRoutes view returns the routes from the profile matching
     *profileId* inside a *routes* array.
@@ -274,8 +275,7 @@ def mobileLogin(request):
     """| **Parameters**: username (string) and password (string)
 
     **Returns**: result, message, id (integer), name (string) and routes
-    (array) with name (string), id (integer), driver (string) and color
-    (string).
+    (array).
 
     The mobileLogin view returns whether *username* and *password* are a valid
     combination for and existing user and, if so, also returns its *routes*,

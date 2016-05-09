@@ -40,14 +40,16 @@
   <div class="section" id="module-routes.views">
 <span id="views"></span><h1>Views<a class="headerlink" href="#module-routes.views" title="Permalink to this headline">¶</a></h1>
 <p>This module defines possible views for the Django app.</p>
-<div class="section" id="things-in-common">
-<h2>Things in common<a class="headerlink" href="#things-in-common" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="things-to-consider">
+<h2>Things to consider<a class="headerlink" href="#things-to-consider" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Their responses are valid JSON because XML should die a slow and painful
 death.</li>
 <li>Except for getRoutes, they all return a <strong>result</strong>, which can be <em>success</em>
 or <em>failure</em>, and a message, which can be an empty string if the result was
 <em>success</em> or a string describing an error if the result was <em>failure</em>.</li>
+<li>A routes array contains routes with the following properties: name (string),
+id (integer), driver (string), color (string) and page (string)</li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -92,8 +94,7 @@ to.</dd>
 <dd><div class="line-block">
 <div class="line"><strong>Parameters</strong>: NONE</div>
 </div>
-<p><strong>Returns</strong>: routes (array) with name (string), id (integer), driver
-(string) and color (string).</p>
+<p><strong>Returns</strong>: routes (array).</p>
 <p>The getRoutes view returns a list of all the routes as <em>routes</em>.</p>
 </dd></dl>
 
@@ -103,8 +104,7 @@ to.</dd>
 <dd><div class="line-block">
 <div class="line"><strong>Parameters</strong>: profileId (integer)</div>
 </div>
-<p><strong>Returns</strong>: result, message and routes (array) with name (string),
-id (integer), driver (string) and color (string).</p>
+<p><strong>Returns</strong>: result, message and routes (array).</p>
 <p>The getUserRoutes view returns the routes from the profile matching
 <em>profileId</em> inside a <em>routes</em> array.
 .</p>
@@ -117,8 +117,7 @@ id (integer), driver (string) and color (string).</p>
 <div class="line"><strong>Parameters</strong>: username (string) and password (string)</div>
 </div>
 <p><strong>Returns</strong>: result, message, id (integer), name (string) and routes
-(array) with name (string), id (integer), driver (string) and color
-(string).</p>
+(array).</p>
 <p>The mobileLogin view returns whether <em>username</em> and <em>password</em> are a valid
 combination for and existing user and, if so, also returns its <em>routes</em>,
 <em>name</em> and profile <em>id</em>.</p>
@@ -168,7 +167,7 @@ route matching <em>routeId</em>.</p>
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Views</a><ul>
-<li><a class="reference internal" href="#things-in-common">Things in common</a></li>
+<li><a class="reference internal" href="#things-to-consider">Things to consider</a></li>
 <li><a class="reference internal" href="#list-of-non-empty-messages">List of non-empty messages</a></li>
 <li><a class="reference internal" href="#list-of-views">List of views</a></li>
 </ul>
