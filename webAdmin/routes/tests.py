@@ -281,7 +281,7 @@ class SubscribeUnsubscribeTest(TestRouteProfile):
 class getUserRoutesTest(TestRouteProfile):
     # Right
     def testGetUserRoutes(self):
-        routes = [{'name': 'Test', 'id': 1}]
+        routes = [{'color': '#000000', 'driver': '', 'name': 'Test', 'id': 1}]
 
         routesDict = {'result': SUC, 'message': '', 'routes': routes}
 

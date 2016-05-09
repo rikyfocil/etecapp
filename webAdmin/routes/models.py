@@ -20,7 +20,7 @@ class Conductor(models.Model):
 
 
 class Ruta(models.Model):
-    nombre = models.CharField(max_length=40)
+    nombre = models.CharField(max_length=40, unique=True)
     conductor = models.ForeignKey(Conductor)
     pagina = models.URLField(max_length=100)
     lat = models.FloatField()

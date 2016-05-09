@@ -3,7 +3,7 @@ from django.views.decorators.http import require_GET, require_POST
 from django.contrib.auth import authenticate
 from django.views.decorators.csrf import csrf_exempt
 
-from routes.models import Ruta, Perfil, PerfilRuta
+from routes.models import Ruta, Perfil, PerfilRuta, Conductor
 
 SUC = 'success'
 FAIL = 'failure'
@@ -16,62 +16,62 @@ INV_NUM = 'invalid number'
 DUPLICATE = 'that subscription already exists'
 
 
+@require_GET
 def set(request):
     """Uzh"""
     result = FAIL
     message = ''
 
-    if request.method == 'GET':
-        try:
-            name = request.GET.get('route')
+    try:
+        name = request.GET.get('route')
 
-            lat = float(request.GET.get('lat'))
-            if lat < -90 or lat > 90:
-                raise ValueError
+        lat = float(request.GET.get('lat'))
+        if lat < -90 or lat > 90:
+            raise ValueError
 
-            lng = float(request.GET.get('lng'))
-            if lng < -180 or lng > 180:
-                raise ValueError
+        lng = float(request.GET.get('lng'))
+        if lng < -180 or lng > 180:
+            raise ValueError
 
-            route = Ruta.objects.get(nombre=name)
+        route = Ruta.objects.get(nombre=name)
 
-            route.lat = lat
-            route.lng = lng
-            route.save()
+        route.lat = lat
+        route.lng = lng
+        route.save()
 
-            result = SUC
+        result = SUC
 
-        except KeyError:
-            message = NO_FIELD
-        except Ruta.DoesNotExist:
-            message = NO_ROUTE
-        except ValueError:
-            message = INV_NUM
+    except KeyError:
+        message = NO_FIELD
+    except Ruta.DoesNotExist:
+        message = NO_ROUTE
+    except ValueError:
+        message = INV_NUM
 
     return JsonResponse({'result': result, 'message': message})
 
 
+@require_GET
 def get(request):
     result = FAIL
     message = ''
     lat = ''
     lng = ''
 
-    if request.method == 'GET':
-        try:
-            name = request.GET.get('route')
+    try:
+        name = request.GET.get('route')
 
-            route = Ruta.objects.get(nombre=name)
+        route = Ruta.objects.get(nombre=name)
 
-            lat = route.lat
-            lng = route.lng
+        lat = route.lat
+        lng = route.lng
 
-            result = SUC
+        result = SUC
 
-        except KeyError:
-            message = NO_FIELD
-        except Ruta.DoesNotExist:
-            message = NO_ROUTE
+    except KeyError:
+        message = NO_FIELD
+    except Ruta.DoesNotExist:
+        message = NO_ROUTE
 
     return JsonResponse({'result': result, 'message': message, 'lat': lat,
                          'lng': lng})
@@ -90,55 +90,55 @@ def getRoutes(request):
     return JsonResponse({'routes': jsonRoutes})
 
 
+@require_GET
 def subscribe(request):
     result = FAIL
     message = ''
 
-    if request.method == 'GET':
+    try:
+        profileId = request.GET.get('profileId')
+        routeId = request.GET.get('routeId')
+
+        profile = Perfil.objects.get(id=profileId)
+        route = Ruta.objects.get(id=routeId)
+
         try:
-            profileId = request.GET.get('profileId')
-            routeId = request.GET.get('routeId')
+            PerfilRuta.objects.get(perfil=profileId, ruta=routeId)
+        except PerfilRuta.DoesNotExist:
+            perfilRuta = PerfilRuta()
+            perfilRuta.perfil = profile
+            perfilRuta.ruta = route
+            perfilRuta.save()
 
-            profile = Perfil.objects.get(id=profileId)
-            route = Ruta.objects.get(id=routeId)
+            result = SUC
+        else:
+            message = DUPLICATE
 
-            try:
-                PerfilRuta.objects.get(perfil=profileId, ruta=routeId)
-            except PerfilRuta.DoesNotExist:
-                perfilRuta = PerfilRuta()
-                perfilRuta.perfil = profile
-                perfilRuta.ruta = route
-                perfilRuta.save()
-
-                result = SUC
-            else:
-                message = DUPLICATE
-
-        except Perfil.DoesNotExist:
-            message = NO_PROFILE
-        except Ruta.DoesNotExist:
-            message = NO_ROUTE
-        except ValueError:
-            message = INV_NUM
+    except Perfil.DoesNotExist:
+        message = NO_PROFILE
+    except Ruta.DoesNotExist:
+        message = NO_ROUTE
+    except ValueError:
+        message = INV_NUM
 
     return JsonResponse({'result': result, 'message': message})
 
 
+@require_GET
 def unsubscribe(request):
     result = FAIL
     message = ''
 
-    if request.method == 'GET':
-        try:
-            profileId = request.GET.get('profileId')
-            routeId = request.GET.get('routeId')
+    try:
+        profileId = request.GET.get('profileId')
+        routeId = request.GET.get('routeId')
 
-            perfilRuta = PerfilRuta.objects.get(perfil=profileId, ruta=routeId)
-            perfilRuta.delete()
+        perfilRuta = PerfilRuta.objects.get(perfil=profileId, ruta=routeId)
+        perfilRuta.delete()
 
-            result = SUC
-        except PerfilRuta.DoesNotExist:
-            message = NO_REGISTER
+        result = SUC
+    except PerfilRuta.DoesNotExist:
+        message = NO_REGISTER
 
     return JsonResponse({'result': result, 'message': message})
 
@@ -149,7 +149,15 @@ def _getSubscriptions(profileId, routes):
 
     for profileRoute in profileRoutes:
         route = profileRoute.ruta
-        routeDictionary = {'id': route.id, 'name': route.nombre}
+
+        try:
+            driver = route.conductor.nombre
+        except Conductor.DoesNotExist:
+            driver = ''
+
+        routeDictionary = {'id': route.id, 'name': route.nombre,
+                           'driver': driver,
+                           'color': route.color}
         routes.append(routeDictionary)
 
 
