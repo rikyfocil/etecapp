@@ -7,6 +7,7 @@ Developed in iOS using Swift.
 * Foundation
 * UIKit
 * MapKit
+* CoreLocation
 
 ## Web admin
 
