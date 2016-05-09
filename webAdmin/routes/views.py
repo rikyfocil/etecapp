@@ -1,3 +1,46 @@
+"""This module defines possible views for the Django app.
+
+==================
+Things to consider
+==================
+
+- Their responses are valid JSON because XML should die a slow and painful
+  death.
+- Except for getRoutes, they all return a **result**, which can be *success*
+  or *failure*, and a message, which can be an empty string if the result was
+  *success* or a string describing an error if the result was *failure*.
+- A routes array contains routes with the following properties: name (string),
+  id (integer), driver (string), color (string) and page (string)
+
+----
+
+==========================
+List of non-empty messages
+==========================
+
+**no such field**
+   The route is probably missing a latitude and/or longitude value.
+**no such expreso route**
+   The route id does not match any known route.
+**no such profile**
+   The profile id or user provided does not match any known profile (remember
+   to associate the user with a profile if you are trying to authenticate).
+**no such user**
+   A user with that combination of username and password doesn't exist.
+**no such register**
+   The request tried to unsubscribe the user from a route he did not subscribe
+   to.
+**invalid number**
+   The value sent to the view is not an actual number.
+**subscription already exists**
+   The request tried to resubscribe a user to a route.
+
+----
+
+=============
+List of views
+=============
+"""
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET, require_POST
 from django.contrib.auth import authenticate
@@ -13,12 +56,17 @@ NO_PROFILE = 'no such profile'
 NO_USER = 'no such user'
 NO_REGISTER = 'no such register'
 INV_NUM = 'invalid number'
-DUPLICATE = 'that subscription already exists'
+DUPLICATE = 'subscription already exists'
 
 
 @require_GET
 def set(request):
-    """Uzh"""
+    """| **Parameters**: route (string), lat (float) and lng (float)
+
+    **Returns**: result and message.
+
+    The set view sets the latitude and longitude of *route* to *lat* and *lng*.
+    """
     result = FAIL
     message = ''
 
@@ -53,6 +101,13 @@ def set(request):
 
 @require_GET
 def get(request):
+    """| **Parameters**: route (string)
+
+    **Returns**: result, message, lat (float) and lng (float).
+
+    The get view gets the latitude and longitude from *route* as *lat* and
+    *lng*.
+    """
     result = FAIL
     message = ''
     lat = ''
@@ -77,21 +132,15 @@ def get(request):
                          'lng': lng})
 
 
-def getRoutes(request):
-    routes = Ruta.objects.all()
-
-    jsonRoutes = []
-    for route in routes:
-        routeDictionary = {'name': route.nombre, 'id': route.id,
-                           'driver': route.conductor.nombre,
-                           'color': route.color}
-        jsonRoutes.append(routeDictionary)
-
-    return JsonResponse({'routes': jsonRoutes})
-
-
 @require_GET
 def subscribe(request):
+    """| **Parameters**: profileId (integer) and routeId (integer)
+
+    **Returns**: result and message.
+
+    The subscribe view subscribes a profile matching *profileId* to a route
+    matching *routeId*.
+    """
     result = FAIL
     message = ''
 
@@ -126,6 +175,13 @@ def subscribe(request):
 
 @require_GET
 def unsubscribe(request):
+    """| **Parameters**: profileId (integer) and routeId (integer)
+
+    **Returns**: result and message.
+
+    The unsubscribe view unsubscribes a profile matching *profileId* from a
+    route matching *routeId*.
+    """
     result = FAIL
     message = ''
 
@@ -143,26 +199,59 @@ def unsubscribe(request):
     return JsonResponse({'result': result, 'message': message})
 
 
+def _addRoute(route, routes):
+    """Add route to the routes list"""
+    try:
+        driver = route.conductor.nombre
+    except Conductor.DoesNotExist:
+        driver = ''
+
+    routeDictionary = {'id': route.id, 'name': route.nombre,
+                       'driver': driver, 'page': route.pagina,
+                       'color': route.color}
+    routes.append(routeDictionary)
+
+
 def _getSubscriptions(profileId, routes):
+    """Put profileId subscriptions in routes.
+
+    This method appends the routes to which the profile matching profileId is
+    subscribed to the routes list provided.
+    """
     profile = Perfil.objects.get(id=profileId)
     profileRoutes = PerfilRuta.objects.filter(perfil=profile)
 
     for profileRoute in profileRoutes:
         route = profileRoute.ruta
+        _addRoute(route, routes)
 
-        try:
-            driver = route.conductor.nombre
-        except Conductor.DoesNotExist:
-            driver = ''
 
-        routeDictionary = {'id': route.id, 'name': route.nombre,
-                           'driver': driver,
-                           'color': route.color}
-        routes.append(routeDictionary)
+def getRoutes(request):
+    """| **Parameters**: NONE
+
+    **Returns**: routes (array).
+
+    The getRoutes view returns a list of all the routes as *routes*.
+    """
+    routes = Ruta.objects.all().order_by('id')
+
+    jsonRoutes = []
+    for route in routes:
+        _addRoute(route, jsonRoutes)
+
+    return JsonResponse({'routes': jsonRoutes})
 
 
 @require_GET
 def getUserRoutes(request):
+    """| **Parameters**: profileId (integer)
+
+    **Returns**: result, message and routes (array).
+
+    The getUserRoutes view returns the routes from the profile matching
+    *profileId* inside a *routes* array.
+    .
+    """
     result = FAIL
     message = ''
     routes = []
@@ -183,6 +272,15 @@ def getUserRoutes(request):
 @csrf_exempt
 @require_POST
 def mobileLogin(request):
+    """| **Parameters**: username (string) and password (string)
+
+    **Returns**: result, message, id (integer), name (string) and routes
+    (array).
+
+    The mobileLogin view returns whether *username* and *password* are a valid
+    combination for and existing user and, if so, also returns its *routes*,
+    *name* and profile *id*.
+    """
     result = FAIL
     message = ''
     routes = []
@@ -197,12 +295,11 @@ def mobileLogin(request):
     if user is not None:
         try:
             profileId = Perfil.objects.get(auth=user).id
+            first_name = user.first_name
+            _getSubscriptions(profileId, routes)
+            result = SUC
         except Perfil.DoesNotExist:
             message = NO_PROFILE
-
-        first_name = user.first_name
-        _getSubscriptions(profileId, routes)
-        result = SUC
     else:
         message = NO_USER
 

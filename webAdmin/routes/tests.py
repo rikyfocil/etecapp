@@ -187,7 +187,7 @@ class GetRoutesTest(TestRouteDriver):
     # Right
     def testGetRoutes(self):
         routes = [{'name': 'Test', 'id': 1, 'driver': 'TestDriver',
-                   'color': '#000000'}]
+                   'color': '#000000', 'page': ''}]
 
         self.checkJson(self.getRoutes(), 'routes', routes)
 
@@ -281,7 +281,8 @@ class SubscribeUnsubscribeTest(TestRouteProfile):
 class getUserRoutesTest(TestRouteProfile):
     # Right
     def testGetUserRoutes(self):
-        routes = [{'color': '#000000', 'driver': '', 'name': 'Test', 'id': 1}]
+        routes = [{'color': '#000000', 'driver': '', 'name': 'Test', 'id': 1,
+                   'page': ''}]
 
         routesDict = {'result': SUC, 'message': '', 'routes': routes}
 

@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Views &mdash; Expreso Tec App Web Admin 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Expreso Tec App Web Admin 1.0 documentation" href="../index.html" />
+    <link rel="prev" title="Models" href="models.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-routes.views">
+<span id="views"></span><h1>Views<a class="headerlink" href="#module-routes.views" title="Permalink to this headline">¶</a></h1>
+<p>This module defines possible views for the Django app.</p>
+<div class="section" id="things-to-consider">
+<h2>Things to consider<a class="headerlink" href="#things-to-consider" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Their responses are valid JSON because XML should die a slow and painful
+death.</li>
+<li>Except for getRoutes, they all return a <strong>result</strong>, which can be <em>success</em>
+or <em>failure</em>, and a message, which can be an empty string if the result was
+<em>success</em> or a string describing an error if the result was <em>failure</em>.</li>
+<li>A routes array contains routes with the following properties: name (string),
+id (integer), driver (string), color (string) and page (string)</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="list-of-non-empty-messages">
+<h2>List of non-empty messages<a class="headerlink" href="#list-of-non-empty-messages" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><strong>no such field</strong></dt>
+<dd>The route is probably missing a latitude and/or longitude value.</dd>
+<dt><strong>no such expreso route</strong></dt>
+<dd>The route id does not match any known route.</dd>
+<dt><strong>no such profile</strong></dt>
+<dd>The profile id or user provided does not match any known profile (remember
+to associate the user with a profile if you are trying to authenticate).</dd>
+<dt><strong>no such user</strong></dt>
+<dd>A user with that combination of username and password doesn&#8217;t exist.</dd>
+<dt><strong>no such register</strong></dt>
+<dd>The request tried to unsubscribe the user from a route he did not subscribe
+to.</dd>
+<dt><strong>invalid number</strong></dt>
+<dd>The value sent to the view is not an actual number.</dd>
+<dt><strong>subscription already exists</strong></dt>
+<dd>The request tried to resubscribe a user to a route.</dd>
+</dl>
+</div>
+<hr class="docutils" />
+<div class="section" id="list-of-views">
+<h2>List of views<a class="headerlink" href="#list-of-views" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="routes.views.get">
+<code class="descclassname">routes.views.</code><code class="descname">get</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#routes.views.get" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><strong>Parameters</strong>: route (string)</div>
+</div>
+<p><strong>Returns</strong>: result, message, lat (float) and lng (float).</p>
+<p>The get view gets the latitude and longitude from <em>route</em> as <em>lat</em> and
+<em>lng</em>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.views.getRoutes">
+<code class="descclassname">routes.views.</code><code class="descname">getRoutes</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#routes.views.getRoutes" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><strong>Parameters</strong>: NONE</div>
+</div>
+<p><strong>Returns</strong>: routes (array).</p>
+<p>The getRoutes view returns a list of all the routes as <em>routes</em>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.views.getUserRoutes">
+<code class="descclassname">routes.views.</code><code class="descname">getUserRoutes</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#routes.views.getUserRoutes" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><strong>Parameters</strong>: profileId (integer)</div>
+</div>
+<p><strong>Returns</strong>: result, message and routes (array).</p>
+<p>The getUserRoutes view returns the routes from the profile matching
+<em>profileId</em> inside a <em>routes</em> array.
+.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.views.mobileLogin">
+<code class="descclassname">routes.views.</code><code class="descname">mobileLogin</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#routes.views.mobileLogin" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><strong>Parameters</strong>: username (string) and password (string)</div>
+</div>
+<p><strong>Returns</strong>: result, message, id (integer), name (string) and routes
+(array).</p>
+<p>The mobileLogin view returns whether <em>username</em> and <em>password</em> are a valid
+combination for and existing user and, if so, also returns its <em>routes</em>,
+<em>name</em> and profile <em>id</em>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.views.set">
+<code class="descclassname">routes.views.</code><code class="descname">set</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#routes.views.set" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><strong>Parameters</strong>: route (string), lat (float) and lng (float)</div>
+</div>
+<p><strong>Returns</strong>: result and message.</p>
+<p>The set view sets the latitude and longitude of <em>route</em> to <em>lat</em> and <em>lng</em>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.views.subscribe">
+<code class="descclassname">routes.views.</code><code class="descname">subscribe</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#routes.views.subscribe" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><strong>Parameters</strong>: profileId (integer) and routeId (integer)</div>
+</div>
+<p><strong>Returns</strong>: result and message.</p>
+<p>The subscribe view subscribes a profile matching <em>profileId</em> to a route
+matching <em>routeId</em>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.views.unsubscribe">
+<code class="descclassname">routes.views.</code><code class="descname">unsubscribe</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#routes.views.unsubscribe" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><strong>Parameters</strong>: profileId (integer) and routeId (integer)</div>
+</div>
+<p><strong>Returns</strong>: result and message.</p>
+<p>The unsubscribe view unsubscribes a profile matching <em>profileId</em> from a
+route matching <em>routeId</em>.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Views</a><ul>
+<li><a class="reference internal" href="#things-to-consider">Things to consider</a></li>
+<li><a class="reference internal" href="#list-of-non-empty-messages">List of non-empty messages</a></li>
+<li><a class="reference internal" href="#list-of-views">List of views</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="models.html" title="previous chapter">Models</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/views.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Ali Ghahraei.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+      |
+      <a href="../_sources/modules/views.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
