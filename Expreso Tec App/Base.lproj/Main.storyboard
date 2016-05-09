@@ -469,7 +469,6 @@
                         <outlet property="backButtonOutlet" destination="099-4W-36A" id="XHP-CA-9jD"/>
                         <outlet property="blockingView" destination="Yg3-Af-2Gk" id="vZa-8d-LJV"/>
                         <outlet property="routesTable" destination="lO7-5X-u1n" id="gXy-A1-fj6"/>
-                        <outlet property="tableView" destination="lO7-5X-u1n" id="qZq-TX-4J1"/>
                         <outlet property="userIDLabel" destination="WfE-x3-XTI" id="v2e-u2-B1p"/>
                         <outlet property="userNameLabel" destination="Fsx-cm-MfZ" id="HMl-Hu-QEi"/>
                         <segue destination="IsG-xD-yrg" kind="unwind" identifier="backToLogin" unwindAction="backToLoginViewController:" id="aAi-ST-fbc"/>

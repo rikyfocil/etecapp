@@ -8,15 +8,46 @@
 
 import UIKit
 
+/**
+ 
+ This class represents a user in the database
+ 
+ As the user may change some settings any time, this class is the right way to do it.
+ 
+ To instanciate an user a login is required. 
+ 
+ **This model follows observer design pattern**
+ 
+ */
 public class User: NSObject {
 
-    
+    /// The user unique identifier. The one with which he logs in
     public private(set) var userID : String = ""
+    
+    /// The user name
     public let name : String
+    
+    /// The database id that uniquely identifies this user
     private var databaseID = 0
 
+    /// An array of the routes to which the user is suscribed to
     public private(set) var subscribedRoutes = [Route]()
     
+    /// An array of observers that shoul be notified whenever the user changes its subscribed routes preferences
+    private var listOfRouteChangingObservs = Array< (User, didUpdateRoutes : [Route] )->(Bool) >()
+
+    /**
+     
+     The only user constructor. This constructor is kept private to avoid external classes to attempt to avoid the login system. 
+     
+     - parameter dictionary: A dictionary containing all the user information. Required keys:
+        + name : String -> The riders name
+        + id : Int -> The unique database identifier
+        + routes : [NSDictionary] -> An array containing dictionaries ready to instanciate the routes
+     
+     - returns: nil if the dictionary is invalid for user creation
+     
+     */
     private init?(dictionary : NSDictionary){
         
         let name = dictionary["name"] as? String
@@ -41,8 +72,17 @@ public class User: NSObject {
         
     }
         
-    private var listOfRouteChangingObservs = Array< (User, didUpdateRoutes : [Route] )->(Bool) >()
-    
+    /**
+     
+     This is the standard way to create a User. 
+     
+     - parameter id: The id that identifies the user
+     - parameter password: The user associated password
+     - parameter callback: A block of code that should be called whit the login result
+        + User?: The logged in user or nil if there was an error
+        + LoginError?: The error explaining why the user in nil
+     
+     */
     public class func loginWithData(id : String?, password : String?, callback : (User?, LoginError?)->()){
         
         do{
@@ -98,6 +138,15 @@ public class User: NSObject {
         
     }
     
+    /**
+     
+     This method can verify if the user id is valid or not
+     
+     - parameter text: The id that needs to be validated
+     
+     - throws: LoginError if the id is not in the right formed
+     
+     */
     public class func validateID(text : String?) throws{
         
         guard let text = text else{
@@ -126,6 +175,18 @@ public class User: NSObject {
 
     }
     
+    /**
+     
+     This method can verify if the user password is valid or not
+     
+     - important: Even if this method doesn't throw an error that doesn't mean the password is associated with the user. It just means that is a valid password for any user.
+
+     - parameter text: The id that needs to be validated
+     
+     - throws: LoginError if the password is not in the right formed
+     
+     
+     */
     public class func validatePassword(text : String?) throws{
         guard let text = text else{
             throw LoginError.PasswordNull
@@ -140,10 +201,29 @@ public class User: NSObject {
         }
     }
     
+    /**
+     
+     This is the standard way to register some code block to be called whenever the user registered routes change
+     
+     - parameter notificationHandler: The code of block to call
+        + User: The user that changed his preferences
+        + Routes: The new user registered routes
+        + Returning Bool: Tells if the code block must be kept for future notifications
+     
+     */
     func registerForRouteChangingNotifications( notificationHandler : (User, didUpdateRoutes : [Route] )->(Bool)  ){
         self.listOfRouteChangingObservs.append(notificationHandler)
     }
     
+    /**
+     
+     This method should be called when the user preferences should change
+     
+     - parameter routes: An array containing to which routs should the user be subscribed after the update
+     - parameter doneCallback: The block of code that will be called when the update is complete
+        + Bool: Tells wheter the update was done completly or partially. The user *subscribedRoutes* property will reflect the new set of routes in case of faliure (or success).
+     
+     */
     func updateRouteSubscriptions( routes : [Route], doneCallback : (Bool)->() ){
         
         var deSuscribedroutes = [Route]()
@@ -239,19 +319,4 @@ public class User: NSObject {
         
     }
     
-}
-
-public enum LoginError : ErrorType{
-    case IDEmpty
-    case IDInvalidLength
-    case IDMalformed
-    case IDNull
-    
-    case PasswordEmpty
-    case PasswordNull
-    case PasswordTooShort
-
-    case InvalidData
-    case ApiMalformed
-    case UnknownError
 }

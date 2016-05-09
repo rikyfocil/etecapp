@@ -34,7 +34,15 @@ class DriverViewController: UIViewController, CLLocationManagerDelegate {
     /// Tells wheter the location has been uploaded at least once. With this booleean the distance verification is ommited the first time
     private var updatedOnce = false
     
-    
+    /**
+     
+     This override provides the following behavior:
+     
+     + Requests user authorization
+     + Starts updating the user location
+     + Sets the UI content
+     
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,7 +56,13 @@ class DriverViewController: UIViewController, CLLocationManagerDelegate {
         
     }
 
-
+    /**
+     
+     This method is triggered when the user presses the logout button
+     
+     A confirmation is displayed and if the user accepts it the *manager* stops updating the location and the controller is dismised.
+     
+     */
     @IBAction func logout(sender: AnyObject) {
         
         UIAlertController.presentConfirmationAlertViewController("Cerrar sesión", description: "Si cierras sesión los alumnos no podrán ver donde estas", confirmText: "Sí, cerrar sesión", cancelText: "Mejor no", controller: self, destructive: true, confirmAction: { 
@@ -58,6 +72,21 @@ class DriverViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
+    /**
+     
+     **This method should only be called by *manager***
+     
+     This method is called when there is new location information available. This method have the following behavior
+    
+     + If the location has never being updated the location is informed to the server
+     + If the new location has a difference greater than 30 meters from the old one then its informed to the server
+     + Otherwise the new location is discarded
+     
+     - parameter manager: The manager that is triggering the action
+     - parameter didUpdateToLocation: The new recorded user location
+     - parameter fromLocation: The old registered location
+     
+     */
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         
         if newLocation.distanceFromLocation(oldLocation) > 30 || !updatedOnce{
@@ -77,6 +106,16 @@ class DriverViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
+    /**
+     
+     This method is called when the user toogles the switch of tracking location. The behavior is as follows:
+     
+     + if the new state is off the action is confirmed to the user. If he confirms then the manager location updates are stoped and *updatedOnce* is reset.
+     + If the new state is on, the manager is told to recieve notifications without user confirmation
+     
+     - parameter sender: The item that is triggering the action **This param is allways ignored**
+     
+     */
     @IBAction func attempToUpdate(sender: AnyObject) {
         
         if !trackingSwitch.on{
