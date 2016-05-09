@@ -4,10 +4,12 @@ from colorful.fields import RGBColorField
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+from routes.validators import validateConductorUsername
 
 
 class Conductor(models.Model):
+    usuario = models.CharField(validators=[validateConductorUsername, ],
+                               max_length=9, unique=True)
     nombre = models.CharField(max_length=80)
     clave = models.CharField(max_length=50, verbose_name='nueva clave',
                              blank=True)

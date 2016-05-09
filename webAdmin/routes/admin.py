@@ -16,7 +16,7 @@ class CustomAdmin(admin.AdminSite):
 class ConductorForm(forms.ModelForm):
     class Meta:
         model = Conductor
-        fields = ['nombre', 'clave']
+        fields = ['nombre', 'clave', 'usuario']
         widgets = {
             'clave': forms.PasswordInput(),
         }
