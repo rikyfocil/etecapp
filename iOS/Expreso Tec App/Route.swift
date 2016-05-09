@@ -25,22 +25,9 @@ public class Route : NSObject{
     /// The identifier on the database of the route
     public let id : Int
     
-    /**
-     This method is the default initializer for a route.
-     
-     - parameter id: The database id of the route  
-     - parameter color: The color that describes the route
-     - parameter name: The name of the route
-     - parameter conductor: The drivers name
-     */
-    init(id : Int, color : UIColor, name : String, conductor : String) {
-        
-        self.id = id
-        self.color = color
-        self.name = name
-        self.conductor = conductor
-        
-    }
+    /// The site that should be requested to check the bus schedule
+    public let webImage : String
+
     
     /**
      This function tells if another route is equal by comparing the id
@@ -71,9 +58,10 @@ public class Route : NSObject{
         + id : Int -> The id that represents this route in the database
         + driver : String -> The drivers name
         + color : String -> A hex string that represent the color of the route (#FFFFFF)
+        + page : String -> The web page linked to the current schedule
      
      */
-    init?(route : NSDictionary?){
+    public init?(route : NSDictionary?){
         
         guard let routeDictionary = route else{
             return nil
@@ -83,8 +71,9 @@ public class Route : NSObject{
         let id = routeDictionary["id"] as? Int
         let driver = routeDictionary["driver"] as? String
         let color = UIColor(fromHexHashtagedString: (routeDictionary["color"] as? String) ?? "")
+        let webPage = routeDictionary["page"] as? String
         
-        guard name != nil && id != nil && driver != nil && color != nil else{
+        guard name != nil && id != nil && driver != nil && color != nil && webPage != nil else{
             return nil
         }
         
@@ -92,7 +81,7 @@ public class Route : NSObject{
         self.id = id!
         self.conductor = driver!
         self.color = color!
-        
+        self.webImage = webPage!
     }
     
 }

@@ -23,7 +23,7 @@ class Driver: NSObject {
     private(set) var name = ""
     
     /// The route that the driver drive
-    private(set) var route = Route(id: 8, color: UIColor.greenColor(), name: "San manuel", conductor: "Carlos")
+    private(set) var route : Route!
     
     /**
      
