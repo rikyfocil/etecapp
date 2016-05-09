@@ -279,51 +279,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f5k-NK-9DI">
-                                <rect key="frame" x="20" y="72" width="560" height="106"/>
+                                <rect key="frame" x="20" y="72" width="560" height="77"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="751" verticalCompressionResistancePriority="755" text="A01327311" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WfE-x3-XTI">
-                                        <rect key="frame" x="112" y="48" width="440" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="751" verticalCompressionResistancePriority="755" text="ITC11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Z7-lW-bNV">
-                                        <rect key="frame" x="112" y="77" width="440" height="21"/>
+                                        <rect key="frame" x="83" y="48" width="469" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" image="bg-user-icon" translatesAutoresizingMaskIntoConstraints="NO" id="XhJ-5P-KNd">
-                                        <rect key="frame" x="18" y="19" width="79" height="79"/>
+                                        <rect key="frame" x="18" y="19" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="XhJ-5P-KNd" secondAttribute="height" multiplier="1:1" id="iee-E0-1n2"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="751" verticalCompressionResistancePriority="755" text="Ricardo López Fócil" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fsx-cm-MfZ">
-                                        <rect key="frame" x="112" y="19" width="440" height="21"/>
+                                        <rect key="frame" x="83" y="19" width="469" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="1Z7-lW-bNV" secondAttribute="bottom" constant="8" id="0aS-AX-LYr"/>
-                                    <constraint firstItem="1Z7-lW-bNV" firstAttribute="top" secondItem="WfE-x3-XTI" secondAttribute="bottom" constant="8" id="Icl-Qe-f8V"/>
-                                    <constraint firstItem="1Z7-lW-bNV" firstAttribute="bottom" secondItem="XhJ-5P-KNd" secondAttribute="bottom" id="KHU-wk-kJ9"/>
                                     <constraint firstItem="WfE-x3-XTI" firstAttribute="top" secondItem="Fsx-cm-MfZ" secondAttribute="bottom" constant="8" id="N7Q-vb-If0"/>
-                                    <constraint firstItem="1Z7-lW-bNV" firstAttribute="trailing" secondItem="Fsx-cm-MfZ" secondAttribute="trailing" id="S0C-17-4th"/>
                                     <constraint firstAttribute="trailing" secondItem="Fsx-cm-MfZ" secondAttribute="trailing" constant="8" id="TnA-DF-jAk"/>
+                                    <constraint firstItem="WfE-x3-XTI" firstAttribute="bottom" secondItem="XhJ-5P-KNd" secondAttribute="bottom" id="Wfv-fd-oml"/>
                                     <constraint firstItem="WfE-x3-XTI" firstAttribute="trailing" secondItem="Fsx-cm-MfZ" secondAttribute="trailing" id="cNO-wh-m3o"/>
                                     <constraint firstItem="WfE-x3-XTI" firstAttribute="leading" secondItem="Fsx-cm-MfZ" secondAttribute="leading" id="dCP-UA-x4S"/>
                                     <constraint firstItem="Fsx-cm-MfZ" firstAttribute="top" secondItem="f5k-NK-9DI" secondAttribute="top" constant="19" id="fr5-H8-18d"/>
-                                    <constraint firstItem="1Z7-lW-bNV" firstAttribute="leading" secondItem="Fsx-cm-MfZ" secondAttribute="leading" id="gwj-jy-0fP"/>
+                                    <constraint firstAttribute="bottom" secondItem="WfE-x3-XTI" secondAttribute="bottom" constant="8" id="hw8-uf-Pme"/>
                                     <constraint firstItem="Fsx-cm-MfZ" firstAttribute="leading" secondItem="XhJ-5P-KNd" secondAttribute="trailing" constant="15" id="tnl-2A-dy6"/>
                                     <constraint firstItem="XhJ-5P-KNd" firstAttribute="leading" secondItem="f5k-NK-9DI" secondAttribute="leading" constant="18" id="utp-8r-1kh"/>
                                     <constraint firstItem="Fsx-cm-MfZ" firstAttribute="top" secondItem="XhJ-5P-KNd" secondAttribute="top" id="vCF-Xe-ZVU"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="48" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lO7-5X-u1n">
-                                <rect key="frame" x="20" y="186" width="560" height="368"/>
+                                <rect key="frame" x="20" y="157" width="560" height="397"/>
                                 <color key="backgroundColor" red="0.1529411765" green="0.30196078430000001" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -479,6 +470,8 @@
                         <outlet property="blockingView" destination="Yg3-Af-2Gk" id="vZa-8d-LJV"/>
                         <outlet property="routesTable" destination="lO7-5X-u1n" id="gXy-A1-fj6"/>
                         <outlet property="tableView" destination="lO7-5X-u1n" id="qZq-TX-4J1"/>
+                        <outlet property="userIDLabel" destination="WfE-x3-XTI" id="v2e-u2-B1p"/>
+                        <outlet property="userNameLabel" destination="Fsx-cm-MfZ" id="HMl-Hu-QEi"/>
                         <segue destination="IsG-xD-yrg" kind="unwind" identifier="backToLogin" unwindAction="backToLoginViewController:" id="aAi-ST-fbc"/>
                     </connections>
                 </viewController>

@@ -9,15 +9,31 @@
 import UIKit
 import CoreLocation
 
+/**
+ 
+ This class provides all the functionality that a driver needs in orde to be tracked or not by the users
+ 
+ */
 class DriverViewController: UIViewController, CLLocationManagerDelegate {
 
+    /// The label greeting the driver
     @IBOutlet weak var nameLabel: UILabel!
+    
+    /// The label telling the driver whose route is driving
     @IBOutlet weak var routeLabel: UILabel!
+    
+    /// A switch tell wheter the location of the bus is being tracked or not
     @IBOutlet weak var trackingSwitch: UISwitch!
     
-    let manager = CLLocationManager()
+    /// The Core location manager responsible of updating the user loaction
+    private let manager = CLLocationManager()
+    
+    /// The current driver. This variable must be set by the previous controller
     let driver : Driver! = nil
+    
+    /// Tells wheter the location has been uploaded at least once. With this booleean the distance verification is ommited the first time
     private var updatedOnce = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +48,6 @@ class DriverViewController: UIViewController, CLLocationManagerDelegate {
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     @IBAction func logout(sender: AnyObject) {
         
@@ -49,7 +60,7 @@ class DriverViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         
-        if newLocation.distanceFromLocation(oldLocation) > 50 || !updatedOnce{
+        if newLocation.distanceFromLocation(oldLocation) > 30 || !updatedOnce{
             let request = HTTPRequestSimplified.getStandardOnlyTextRequest("set", httpdata: HTTPRequestSimplified.generateParamString(["route":driver.route.name, "lat":"\(newLocation.coordinate.latitude)","lng": "\(newLocation.coordinate.longitude)"]))
             HTTPRequestSimplified.getDictionaryOfParsingJSONFromRequest(request, callback: {
                 

@@ -8,17 +8,40 @@
 
 import UIKit
 
+/**
+ 
+ This class provides an starting point for all classes among the application so no extra calls to getRoutes are performed
+ 
+ This works as a observer design pattern
+ 
+ */
 public class RouteLoader: NSObject {
     
-    public private(set) static var routes : [Route]?
+    /// The loaded routes. This wont be nil if *hasLoadedRoutes* is true but **this does not guarantee** that if *hasLoadedRoutes* is false then the variable is nil
+    private static var routes : [Route]? = nil
+    
+    /// A boolean indicating if the routes are already loaded or not
     public private(set) static var hasLoadedRoutes = false
 
+    /// An array of block codes that should be informed when the routes are fully loaded
     private static var waitingList = Array<([Route]?)->()>()
+    
+    /// A variable that tells if there is a web service call in progress
     private static var loading = false
     
+    /**
+     
+     This method should be called when some object wants to start the route loading
+     
+     The behavior of this method is defined as follows: 
+     
+     + If the routes are already loaded or there is a request in progress the request is ignored
+     + Otherwise A new request to the web service is started
+     
+     */
     public static func startGetingRoutes(){
         
-        if loading{
+        if loading || hasLoadedRoutes{
             return
         }
         
@@ -77,6 +100,7 @@ public class RouteLoader: NSObject {
                         
                     }
                     catch{
+                        RouteLoader.routes = nil
                         cancelWaitingList()
                     }
                     
@@ -95,9 +119,22 @@ public class RouteLoader: NSObject {
         
     }
     
+    /**
+    
+     This method is the standard way to recieve the routes when they are ready.
+     
+     The behavior of this method is as described below 
+     
+     + If the routes are not yet loaded the *callback* is appended to the waiting list
+     + If the lists are loaded then the *callback* is loaded inmediatly 
+     
+     - parameter callback: The block of code that should be called when the route request is finished
+        - [Route]? is the array of retirved routes or nil if there was an error when requesting the web service
+     
+     */
     public static func notifyWhenLoaded( callBack : ([Route]?)->() ){
     
-        if !hasLoadedRoutes && !loading{
+        if !hasLoadedRoutes{
             waitingList.append(callBack)
         }
         else{
@@ -106,6 +143,17 @@ public class RouteLoader: NSObject {
         
     }
     
+    /**
+     
+     This method will be called when there is an error processing the routes by the web service. The behavior is stated below. 
+     
+     **This method will allways work on the main tread so calling it does not guarantee inmediate results**
+     
+     + The loading variable is set to false so new requests can be started
+     + Each observer is called with a nil array
+     + The waiting list is flushed
+     
+     */
     private static func cancelWaitingList(){
         
         if !NSThread.isMainThread(){
@@ -116,20 +164,30 @@ public class RouteLoader: NSObject {
             
         }
         else{
-        
+            
+            RouteLoader.loading = false
+
             for i in waitingList{
                 i(nil)
             }
             
             waitingList.removeAll()
-            
-            RouteLoader.routes = nil
-            RouteLoader.hasLoadedRoutes = false
-            RouteLoader.loading = false
         }
     
     }
 
+    /**
+     
+     This method will be called when the routes are ready to be used. The behavior is stated below.
+     
+     **This method will allways work on the main tread so calling it does not guarantee inmediate results**
+     
+     + Each observer is called with the routes array
+     + The waiting list is flushed
+     
+     **Important**: Loading will be set to false via *startGetingRoutes*
+     
+     */
     private static func informWaitingListOfCompletedLoading(){
     
         if !NSThread.isMainThread(){
@@ -150,14 +208,5 @@ public class RouteLoader: NSObject {
 
     }
     
-    
-}
-
-enum GenericError : ErrorType{
-    
-    case GenericError
-    case JSONParsingError
-    case HTTPError
-    case WebSiteError
     
 }

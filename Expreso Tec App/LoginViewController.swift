@@ -8,14 +8,36 @@
 
 import UIKit
 
+/**
+ 
+ This class is the first view controller that the user see. This class provide Model and UI logic that validates his input and validates the data.
+ 
+ This class is also responsible for calling the appopiate method according to the introduced ID and to change the screen when the user is logged.
+ 
+ */
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
-    
+    /// The text field in whic the user introduces his id
     @IBOutlet weak var idTextField: UITextField!
+    /// The secured text field in which the user enters his password
     @IBOutlet weak var passwordTextField: UITextField!
+    /// The view that blocks all the content when the user validation is on progress
     @IBOutlet weak var opaqueView: UIView!
+    /// This is a subview of *opaqueView* and its function is to tell the user that there is an action in progress.
     @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     
+    /**
+     
+     This method is called when the user press the login button. This class will do the following
+     
+     + Block the user content to avoid more calls to login.
+     + Call the user login block TODO: select between driver and user and make inherance between this classes.
+     + In case of error, see which error is responsable and tell the user about it.
+     + Otherwise reset the testfields and present the corresponding screen
+     
+     - parameter sender: The ibject that triggered the method **Will allways be ignored**
+     
+     */
     @IBAction func loginButtonPressed(sender: AnyObject) {
         
         self.view.userInteractionEnabled = false
@@ -30,30 +52,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if let le = loginError{
                 switch le {
                 case .IDEmpty, .IDNull:
-                    UIAlertController.showAlertMessage("Please insert your ID", inController: self, withTitle: "Error", block: {
+                    UIAlertController.showAlertMessage("Por favor introduce tu Matrícula / Nómina / Identificador", inController: self, withTitle: "Error", block: {
                         self.idTextField.becomeFirstResponder()
                     })
                 case .IDInvalidLength, .IDMalformed:
-                    UIAlertController.showAlertMessage("Your ID is wrong. Please check that it has its 9 characters and its formed like A or L followed by 8 numbers", inController: self, withTitle: "Error", block: {
+                    UIAlertController.showAlertMessage("Tu identificador es incorrecto. Por favor verifica que tenga 9 caracteres y que este formado como A, L o D seguido 8 números", inController: self, withTitle: "Error", block: {
                         self.idTextField.becomeFirstResponder()
                     })
                 case .PasswordEmpty, .PasswordNull:
-                    UIAlertController.showAlertMessage("Please insert your password", inController: self, withTitle: "Error", block: {
+                    UIAlertController.showAlertMessage("Por favor introduce tu contraseña", inController: self, withTitle: "Error", block: {
                         self.passwordTextField.becomeFirstResponder()
                     })
                 case .PasswordTooShort:
-                    UIAlertController.showAlertMessage("It seems like the entered password is too short. Please try again with your ITESM password", inController: self, withTitle: "Error", block: {
+                    UIAlertController.showAlertMessage("Parece que el password es muy corto. Por favor intentalo de nuevo con tu contraseña del ITESM", inController: self, withTitle: "Error", block: {
                         self.passwordTextField.becomeFirstResponder()
                     })
                 case .InvalidData:
-                    UIAlertController.showAlertMessage("It seems like the entered data is wrong. Please try again with your ITESM account", inController: self, withTitle: "Error", block: {
-                        self.idTextField.becomeFirstResponder()
-                    })
+                    UIAlertController.showAlertMessage("Parece que los datos son incorrectos. Por favor intentalo de nuevo con los datos de tu cuenta del ITESM", inController: self, withTitle: "Error", block: nil)
                 
                 default:
-                    UIAlertController.showAlertMessage("It seems like something is wrong. Please check your Internet or try again later", inController: self, withTitle: "Error", block: {
-                        self.idTextField.becomeFirstResponder()
-                    })
+                    UIAlertController.showAlertMessage("Parece que algo anda mal. Por favor verifica tu conexión a Internet y vuelve a intentarlo", inController: self, withTitle: "Error", block: nil)
                 }
             }
             
@@ -71,6 +89,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    /**
+     
+     This override only provide the following behaviors:
+     
+     + Register the class for moving the view when a keyboard comes to it
+     + Adds a gesture recognizer to dismiss the keyboard
+     
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.showKeyboard(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
@@ -78,10 +104,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard)))
     }
     
+    /**
+        
+     This method dissmises any editinf action that is going on on the controller
+     
+     Tipically its triggered when the user triggers the tap gesture recognizer or when he taps the login button
+     
+     */
     func dismissKeyboard(){
         self.view.endEditing(true)
     }
     
+    /**
+     
+     **This method should only be called by *NSNotificationCenter***
+     
+     This method should calculate the size of the keyboard and ove the view so the *firstResponder* is not hided.
+     
+     - parameter aNotification: The generated NSNotification
+     
+     */
     func showKeyboard(aNotification : NSNotification){
         
         let kbRect = aNotification.userInfo![UIKeyboardFrameEndUserInfoKey]?.CGRectValue()
@@ -96,15 +138,31 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    /**
+     
+      **This method should only be called by *NSNotificationCenter***
+     
+     This method should restore the view position after the keyboard is dismissed
+     
+     - parameter aNotification: The generated NSNotification **This parameter is allways ignored**
+     
+     */
     func hideKeyboard(aNotification : NSNotification){
         self.view.frame.origin.y = 0
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
+    /**
+     
+     Default delegate implementation for *UITextField*
+     
+     This method provides the following behavior:
+     
+     + If the id is the current responder then the password becomes the first responder
+     + If the password is the current responder the ogin is triggered
+     
+     - returns: true
+     
+     */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == idTextField{
             self.passwordTextField.becomeFirstResponder()
@@ -116,10 +174,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    
+    /**
+     
+     This method is a way for any controller to go back to the login screen
+     
+     - parameter segue: The storyboard swgue including information such as the view controller that trigered it **Right now this parameter is ignored**
+     
+     */
     @IBAction func backToLoginViewController(segue : UIStoryboardSegue){}
     
-    
+    /**
+     
+     This override provides the following behaviors: 
+     
+     + if the segue is because of a normal user login, it will pass the user to the *MapViewController*
+     
+     - parameter segue: The storybooard segue containing information such as *destinationViewController* and *identifier*
+     - parameter sender: This param vary according to the login type:
+        + *showMap* segue should have a user as a sender
+     
+     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showMap"{
             let nvc = segue.destinationViewController as! UINavigationController

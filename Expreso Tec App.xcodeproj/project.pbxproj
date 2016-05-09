@@ -12,9 +12,9 @@
 		B31A1E2F1CDF010700240A12 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31A1E2E1CDF010700240A12 /* Driver.swift */; };
 		B31B2EE71CC9A58200256D82 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B31B2EE61CC9A58200256D82 /* CoreLocation.framework */; };
 		B31FF3031CA8A64000DB8428 /* LoginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31FF3021CA8A64000DB8428 /* LoginTestCase.swift */; };
+		B321A31C1CE0434F00456F3E /* GenericError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321A31B1CE0434F00456F3E /* GenericError.swift */; };
 		B32A47A91CC9EACB00E72CA1 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A47A81CC9EACB00E72CA1 /* Route.swift */; };
 		B32A47AB1CC9EB8200E72CA1 /* RouteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A47AA1CC9EB8200E72CA1 /* RouteLoader.swift */; };
-		B32A47AD1CC9FAC200E72CA1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A47AC1CC9FAC200E72CA1 /* MainViewController.swift */; };
 		B32A47AF1CC9FACD00E72CA1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A47AE1CC9FACD00E72CA1 /* SettingsViewController.swift */; };
 		B32A47B11CCA012200E72CA1 /* RouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A47B01CCA012200E72CA1 /* RouteTableViewCell.swift */; };
 		B3664B401CA8DE2F00072CEB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3664B3F1CA8DE2F00072CEB /* MapKit.framework */; };
@@ -55,9 +55,9 @@
 		B31A1E2E1CDF010700240A12 /* Driver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		B31B2EE61CC9A58200256D82 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B31FF3021CA8A64000DB8428 /* LoginTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTestCase.swift; sourceTree = "<group>"; };
+		B321A31B1CE0434F00456F3E /* GenericError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericError.swift; sourceTree = "<group>"; };
 		B32A47A81CC9EACB00E72CA1 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		B32A47AA1CC9EB8200E72CA1 /* RouteLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteLoader.swift; sourceTree = "<group>"; };
-		B32A47AC1CC9FAC200E72CA1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B32A47AE1CC9FACD00E72CA1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B32A47B01CCA012200E72CA1 /* RouteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTableViewCell.swift; sourceTree = "<group>"; };
 		B3664B3F1CA8DE2F00072CEB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -115,9 +115,16 @@
 			children = (
 				B38B8CD01CA8513F003B6C5F /* AppDelegate.swift */,
 				B31A1E2A1CDEE04700240A12 /* BusMapAnnotationView.swift */,
+				B31A1E2E1CDF010700240A12 /* Driver.swift */,
+				B3672C381CD4930000EC131F /* Expreso Tec App-Bridging-Header.h */,
 				B38B8D001CA86C7E003B6C5F /* ExtensionFile.swift */,
+				B321A31B1CE0434F00456F3E /* GenericError.swift */,
 				B3672C3C1CD49A4A00EC131F /* HTTPRequestSimplified.swift */,
+				B38B8CD21CA8513F003B6C5F /* LoginViewController.swift */,
 				B39BCAA61CDCF312004D0192 /* MapViewController.swift */,
+				B32A47A81CC9EACB00E72CA1 /* Route.swift */,
+				B32A47AA1CC9EB8200E72CA1 /* RouteLoader.swift */,
+				B32A47B01CCA012200E72CA1 /* RouteTableViewCell.swift */,
 				B3672C391CD4930000EC131F /* UIColor+Hex.h */,
 				B3672C3A1CD4930000EC131F /* UIColor+Hex.m */,
 			);
@@ -150,20 +157,13 @@
 			isa = PBXGroup;
 			children = (
 				B31D82EA1CDFBC3D00C47D1C /* Documented */,
-				B38B8CD21CA8513F003B6C5F /* LoginViewController.swift */,
-				B32A47AA1CC9EB8200E72CA1 /* RouteLoader.swift */,
-				B32A47B01CCA012200E72CA1 /* RouteTableViewCell.swift */,
-				B32A47AC1CC9FAC200E72CA1 /* MainViewController.swift */,
 				B38B8CD41CA8513F003B6C5F /* Main.storyboard */,
-				B31A1E2E1CDF010700240A12 /* Driver.swift */,
 				B31A1E2C1CDF003600240A12 /* DriverViewController.swift */,
 				B32A47AE1CC9FACD00E72CA1 /* SettingsViewController.swift */,
-				B32A47A81CC9EACB00E72CA1 /* Route.swift */,
 				B38B8CFE1CA8676F003B6C5F /* User.swift */,
 				B38B8CD71CA8513F003B6C5F /* Assets.xcassets */,
 				B38B8CD91CA8513F003B6C5F /* LaunchScreen.storyboard */,
 				B38B8CDC1CA8513F003B6C5F /* Info.plist */,
-				B3672C381CD4930000EC131F /* Expreso Tec App-Bridging-Header.h */,
 			);
 			path = "Expreso Tec App";
 			sourceTree = "<group>";
@@ -342,9 +342,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B31A1E2F1CDF010700240A12 /* Driver.swift in Sources */,
-				B32A47AD1CC9FAC200E72CA1 /* MainViewController.swift in Sources */,
 				B31A1E2B1CDEE04700240A12 /* BusMapAnnotationView.swift in Sources */,
 				B3672C3B1CD4930000EC131F /* UIColor+Hex.m in Sources */,
+				B321A31C1CE0434F00456F3E /* GenericError.swift in Sources */,
 				B32A47B11CCA012200E72CA1 /* RouteTableViewCell.swift in Sources */,
 				B3672C3D1CD49A4A00EC131F /* HTTPRequestSimplified.swift in Sources */,
 				B32A47AB1CC9EB8200E72CA1 /* RouteLoader.swift in Sources */,

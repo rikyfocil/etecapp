@@ -59,6 +59,20 @@ public class Route : NSObject{
         
     }
     
+    /**
+     
+     This is the default constructor for a route
+     
+     **Never attempt to create a route with a custom created dictionary** 
+     The success of all the application depends on the database data. Because of this if there are routes without its correspondent database instance weird errors may occur.
+     
+     - parameter route: A dictionary containing the route information. The dictionary must contain the following fields:
+        + name : String -> The name of the route
+        + id : Int -> The id that represents this route in the database
+        + driver : String -> The drivers name
+        + color : String -> A hex string that represent the color of the route (#FFFFFF)
+     
+     */
     init?(route : NSDictionary?){
         
         guard let routeDictionary = route else{

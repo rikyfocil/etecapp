@@ -17,6 +17,10 @@ public class SettingsViewController: UIViewController, UITableViewDataSource, UI
     
     var user : User!
     
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userIDLabel: UILabel!
+    
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var blockingView: UIView!
     @IBOutlet weak var routesTable: UITableView!
@@ -29,6 +33,9 @@ public class SettingsViewController: UIViewController, UITableViewDataSource, UI
         super.viewDidLoad()
         routesTable.rowHeight = UITableViewAutomaticDimension
         routesTable.estimatedRowHeight = 56
+        
+        userNameLabel.text = user.name
+        userIDLabel.text = user.userID
         
         RouteLoader.notifyWhenLoaded {
             [weak self]
@@ -55,7 +62,6 @@ public class SettingsViewController: UIViewController, UITableViewDataSource, UI
         updateBackButton()
     }
 
-    
     @IBAction func logout(sender: AnyObject) {
         
         UIAlertController.presentConfirmationAlertViewController("¿Estas seguro?", description: "Si cierras sesión no podremos informarte de la ubicación del expreso y dejarás de recibir notificaciones", confirmText: "Sí, cerrar sesión", cancelText: "Cambie de idea", controller: self, destructive: true, confirmAction: { 
