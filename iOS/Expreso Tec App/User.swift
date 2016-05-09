@@ -211,7 +211,7 @@ public class User: NSObject {
         + Returning Bool: Tells if the code block must be kept for future notifications
      
      */
-    func registerForRouteChangingNotifications( notificationHandler : (User, didUpdateRoutes : [Route] )->(Bool)  ){
+    public func registerForRouteChangingNotifications( notificationHandler : (User, didUpdateRoutes : [Route] )->(Bool)  ){
         self.listOfRouteChangingObservs.append(notificationHandler)
     }
     
@@ -224,7 +224,7 @@ public class User: NSObject {
         + Bool: Tells wheter the update was done completly or partially. The user *subscribedRoutes* property will reflect the new set of routes in case of faliure (or success).
      
      */
-    func updateRouteSubscriptions( routes : [Route], doneCallback : (Bool)->() ){
+    public func updateRouteSubscriptions( routes : [Route], doneCallback : (Bool)->() ){
         
         var deSuscribedroutes = [Route]()
         var subcribingRoutes = [Route]()
