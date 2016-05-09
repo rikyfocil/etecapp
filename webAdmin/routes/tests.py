@@ -65,6 +65,16 @@ class TestUser(TestBase):
         super(TestUser, self).setUp()
 
 
+class TestDriver(TestRoute):
+    def setUp(self):
+        driver = Conductor(usuario='D00000000', nombre='test', clave='test')
+        driver.save()
+
+        route = super(TestDriver, self).setUp()
+        route.driver = driver
+        route.save()
+
+
 class GetSetTest(TestRoute):
     def get(self, route='Test'):
         return self.client.get('/routes/get/', {'route': route})
@@ -353,6 +363,48 @@ class MobileLoginTest(TestUser):
     # Performance - no need to check performance
 
 
+class DriverLoginTest(TestDriver):
+    def login(self, username='test', password='test'):
+        return self.client.post('/routes/driverLogin/', {'username': username,
+                                                         'password': password})
+
+    def checkSucLogin(self, username='D00000000', password='test'):
+        response = self.login(username, password)
+        self.checkSuc(response)
+        self.checkJson(response, 'route', {'page': '', 'id': 1,
+                                           'name': 'Test',
+                                           'driver': 'test',
+                                           'color': '#000000'})
+        self.checkJson(response, 'id', 1)
+        self.checkJson(response, 'name', 'test')
+
+    def checkFailLogin(self, username, password):
+        response = self.login(username, password)
+        self.checkFail(response)
+        self.checkJson(response, 'name', '')
+        self.checkJson(response, 'id', -1)
+        self.checkJson(response, 'route', {})
+
+    # Right
+    def testLogin(self):
+        self.checkSucLogin()
+
+    # Boundaries - no boundaries
+
+    # Inverse - no inverse
+
+    # Cross - no algorithm to cross-check
+
+    # Error
+    def testLoginBadPassword(self):
+        self.checkFailLogin('test', 'test1')
+
+    def testLoginBadUsername(self):
+        self.checkFailLogin('test1', 'test')
+
+    # Performance - no need to check performance
+
+
 class RoutesTest(TestCase):
     # Right
     def testRoutesConfig(self):
@@ -382,7 +434,8 @@ class AdminTest(TestCase):
 
     def testConductorForm(self):
         self.assertEquals(ConductorForm.Meta.model, Conductor)
-        self.assertEquals(ConductorForm.Meta.fields, ['nombre', 'clave'])
+        self.assertEquals(ConductorForm.Meta.fields, ['nombre', 'clave',
+                                                      'usuario'])
         self.assertIsInstance(ConductorForm.Meta.widgets['clave'],
                               forms.PasswordInput)
 

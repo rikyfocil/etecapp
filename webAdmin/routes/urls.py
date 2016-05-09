@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^get', views.get, name='get'),
     url(r'^subscribe', views.subscribe, name='subscribe'),
     url(r'^unsubscribe', views.unsubscribe, name='unsubscribe'),
-    url(r'^mobileLogin', views.mobileLogin, name='mobileLogin')
+    url(r'^mobileLogin', views.mobileLogin, name='mobileLogin'),
+    url(r'^driverLogin', views.driverLogin, name='driverLogin'),
 ]

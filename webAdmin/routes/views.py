@@ -9,8 +9,9 @@ Things to consider
 - Except for getRoutes, they all return a **result**, which can be *success*
   or *failure*, and a message, which can be an empty string if the result was
   *success* or a string describing an error if the result was *failure*.
-- A routes array contains routes with the following properties: name (string),
-  id (integer), driver (string), color (string) and page (string)
+- A route is composed of the following properties: name (string),
+  id (integer), driver (string), color (string) and page (string). They can be
+  included in arrays.
 
 ----
 
@@ -199,7 +200,7 @@ def unsubscribe(request):
     return JsonResponse({'result': result, 'message': message})
 
 
-def _addRoute(route, routes):
+def _getRouteDictionary(route):
     """Add route to the routes list"""
     try:
         driver = route.conductor.nombre
@@ -209,7 +210,7 @@ def _addRoute(route, routes):
     routeDictionary = {'id': route.id, 'name': route.nombre,
                        'driver': driver, 'page': route.pagina,
                        'color': route.color}
-    routes.append(routeDictionary)
+    return routeDictionary
 
 
 def _getSubscriptions(profileId, routes):
@@ -223,7 +224,7 @@ def _getSubscriptions(profileId, routes):
 
     for profileRoute in profileRoutes:
         route = profileRoute.ruta
-        _addRoute(route, routes)
+        routes.append(_getRouteDictionary(route))
 
 
 def getRoutes(request):
@@ -237,7 +238,7 @@ def getRoutes(request):
 
     jsonRoutes = []
     for route in routes:
-        _addRoute(route, jsonRoutes)
+        jsonRoutes.append(_getRouteDictionary(route))
 
     return JsonResponse({'routes': jsonRoutes})
 
@@ -278,7 +279,7 @@ def mobileLogin(request):
     (array).
 
     The mobileLogin view returns whether *username* and *password* are a valid
-    combination for and existing user and, if so, also returns its *routes*,
+    combination for an existing user and, if so, also returns its *routes*,
     *name* and profile *id*.
     """
     result = FAIL
@@ -306,3 +307,39 @@ def mobileLogin(request):
     return JsonResponse({'result': result, 'message': message,
                          'routes': routes, 'id': profileId,
                          'name': first_name})
+
+
+@require_POST
+def driverLogin(request):
+    """| **Parameters**: username (string) and password (string)
+
+    **Returns**: result, message, id (integer), name (string) and route.
+
+    The driverLogin view returns whether *username* and *password* are a valid
+    combination for a driver and, if so, also returns its *route*, *name* and
+    *id*.
+    """
+    result = FAIL
+    message = ''
+    id = -1
+    name = ''
+    route = {}
+
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+
+    try:
+        driver = Conductor.objects.get(usuario=username, clave=password)
+
+        route = _getRouteDictionary(Ruta.objects.get(conductor=driver))
+
+        id = driver.id
+        name = driver.nombre
+        result = SUC
+    except Conductor.DoesNotExist:
+        message = NO_USER
+    except Ruta.DoesNotExist:
+        message = NO_ROUTE
+
+    return JsonResponse({'result': result, 'message': message,
+                         'route': route, 'id': id, 'name': name})
