@@ -4,6 +4,10 @@ Find out the location of the Expreso Tec and how far it is.
 
 ## iOS application
 Developed in iOS using Swift.
+* Foundation
+* UIKit
+* MapKit
+* CoreLocation
 
 ## Web admin
 
