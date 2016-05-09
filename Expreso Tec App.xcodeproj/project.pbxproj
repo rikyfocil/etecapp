@@ -110,6 +110,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B31D82EA1CDFBC3D00C47D1C /* Documented */ = {
+			isa = PBXGroup;
+			children = (
+				B38B8CD01CA8513F003B6C5F /* AppDelegate.swift */,
+				B31A1E2A1CDEE04700240A12 /* BusMapAnnotationView.swift */,
+				B38B8D001CA86C7E003B6C5F /* ExtensionFile.swift */,
+				B3672C3C1CD49A4A00EC131F /* HTTPRequestSimplified.swift */,
+				B39BCAA61CDCF312004D0192 /* MapViewController.swift */,
+				B3672C391CD4930000EC131F /* UIColor+Hex.h */,
+				B3672C3A1CD4930000EC131F /* UIColor+Hex.m */,
+			);
+			name = Documented;
+			sourceTree = "<group>";
+		};
 		B38B8CC41CA8513F003B6C5F = {
 			isa = PBXGroup;
 			children = (
@@ -135,13 +149,8 @@
 		B38B8CCF1CA8513F003B6C5F /* Expreso Tec App */ = {
 			isa = PBXGroup;
 			children = (
-				B38B8CD01CA8513F003B6C5F /* AppDelegate.swift */,
-				B31A1E2A1CDEE04700240A12 /* BusMapAnnotationView.swift */,
-				B39BCAA61CDCF312004D0192 /* MapViewController.swift */,
-				B38B8D001CA86C7E003B6C5F /* ExtensionFile.swift */,
-				B3672C3C1CD49A4A00EC131F /* HTTPRequestSimplified.swift */,
+				B31D82EA1CDFBC3D00C47D1C /* Documented */,
 				B38B8CD21CA8513F003B6C5F /* LoginViewController.swift */,
-				B32A47A81CC9EACB00E72CA1 /* Route.swift */,
 				B32A47AA1CC9EB8200E72CA1 /* RouteLoader.swift */,
 				B32A47B01CCA012200E72CA1 /* RouteTableViewCell.swift */,
 				B32A47AC1CC9FAC200E72CA1 /* MainViewController.swift */,
@@ -149,8 +158,7 @@
 				B31A1E2E1CDF010700240A12 /* Driver.swift */,
 				B31A1E2C1CDF003600240A12 /* DriverViewController.swift */,
 				B32A47AE1CC9FACD00E72CA1 /* SettingsViewController.swift */,
-				B3672C391CD4930000EC131F /* UIColor+Hex.h */,
-				B3672C3A1CD4930000EC131F /* UIColor+Hex.m */,
+				B32A47A81CC9EACB00E72CA1 /* Route.swift */,
 				B38B8CFE1CA8676F003B6C5F /* User.swift */,
 				B38B8CD71CA8513F003B6C5F /* Assets.xcassets */,
 				B38B8CD91CA8513F003B6C5F /* LaunchScreen.storyboard */,

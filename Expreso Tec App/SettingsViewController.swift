@@ -15,7 +15,7 @@ public class SettingsViewController: UIViewController, UITableViewDataSource, UI
     private var routes : [Route]?
     private var selectedRoutes : [Route]!
     
-    var user = User(name: "Ricardo", userID: "A01327311")
+    var user : User!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var blockingView: UIView!
@@ -55,10 +55,6 @@ public class SettingsViewController: UIViewController, UITableViewDataSource, UI
         updateBackButton()
     }
 
-    override public func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func logout(sender: AnyObject) {
         

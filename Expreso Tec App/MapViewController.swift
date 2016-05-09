@@ -33,7 +33,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var annotation = [MKPointAnnotation]()
     
     /// The current logged user instance. The previous view controller is responsable for assigning this variable
-    var user = User(name: "Ricardo", userID: "A01327311")
+    var user : User!
     
     /// A variable that tells wheter the buses are being tracked or not
     var updating = false
@@ -77,10 +77,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
         
         map.delegate = self
-        
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: 19.019026,longitude: -98.242097)
-        map.addAnnotation(annotation)
         updateAllBusses()
         
     }
@@ -131,6 +127,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 (dictionary, error) in
                 
                 if error != nil || dictionary!["result"] as? String != "success"{
+                    print("Error. Request returned error while getting bus location\n\(dictionary)\n \(#file):\(#line)")
+
                     return
                 }
             
@@ -170,8 +168,28 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             annotationBus = BusMapAnnotationView(annotation: annotation, reuseIdentifier: "bus")
         }
         
-        annotationBus!.setBusColor(UIColor.redColor())
+        if let pointAnnotation = annotation as? MKPointAnnotation , let index = self.annotation.indexOf(pointAnnotation){
+             annotationBus!.setBusColor(self.trackingRoutes[index].color)
+        }
         return annotationBus
     }
     
+    /**
+     
+     This overriding provides the following behaviors:
+     
+     + If the segue is to settings the user will be passed to the controller
+     + Otherwise the segue will be continued in an unnmodified manner
+     
+     */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "goSettings"{
+            
+            let vc = segue.destinationViewController as! SettingsViewController
+            vc.user = user
+   
+        }
+    
+    }
 }

@@ -11,41 +11,80 @@ import UIKit
 public class User: NSObject {
 
     
-    public let userID : String
+    public private(set) var userID : String = ""
     public let name : String
     private var databaseID = 0
 
     public private(set) var subscribedRoutes = [Route]()
     
-    //TODO: Change for private
-    internal init(name : String, userID : String){
-        self.name = name
-        self.userID = userID
+    private init?(dictionary : NSDictionary){
+        
+        let name = dictionary["name"] as? String
+        let id = dictionary["id"] as? Int
+        let routes = dictionary["routes"] as? Array<NSDictionary>
+        
+        guard name != nil && id != nil && routes != nil else{
+            return nil
+        }
+    
+        self.name = name!
+        self.databaseID = id!
+        
+        for routeDic in routes!{
+            if let route = Route(route: routeDic){
+                self.subscribedRoutes.append(route)
+            }
+            else{
+                return nil
+            }
+        }
+        
     }
-    
-    //TODO: Change this for real database connection
-    private static let dictionary = ["A01327311" : "testing1", "A01327312" : "testing2" , "A01327313" : "testing3"]
-    
+        
     private var listOfRouteChangingObservs = Array< (User, didUpdateRoutes : [Route] )->(Bool) >()
     
     public class func loginWithData(id : String?, password : String?, callback : (User?, LoginError?)->()){
         
         do{
+            
             try validateID(id)
             try validatePassword(password)
             
+            let request = HTTPRequestSimplified.getStandardOnlyTextRequest("mobileLogin", method: .POST, httpdata: HTTPRequestSimplified.generateParamString(["username":id!, "password":password!]))
             
-            
-            let delay = 2 * Double(NSEC_PER_SEC)
-            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-            dispatch_after(time, dispatch_get_main_queue(), {
-                if self.dictionary.keys.contains(id!.capitalizedString) && self.dictionary[id!.capitalizedString] == password!{
-                    callback(User(name : "Nombre del usuario", userID: id!.capitalizedString), nil)
+            HTTPRequestSimplified.getDictionaryOfParsingJSONFromRequest(request, callback: {
+                
+                (loginDictionaryOptional, error) in
+                
+                if let error = error{
+                    
+                    print("Error. Error while attempting to login user. Dictionary was not formed\n\(error)\n \(#file):\(#line)")
+                    callback(nil, LoginError.UnknownError)
+                    return
+                    
+                }
+                
+                let dictionary = loginDictionaryOptional!
+                
+                if let message = dictionary["result"] as? String where message == "success"{
+                    
+                    if let user = User(dictionary: dictionary){
+                        
+                        user.userID = id!
+                        callback(user, nil)
+                        
+                    }
+                    else{
+                        callback(nil, LoginError.ApiMalformed)
+                    }
+                    
                 }
                 else{
                     callback(nil, LoginError.InvalidData)
                 }
+                
             })
+            
         }
         catch{
             
@@ -155,7 +194,7 @@ public class User: NSObject {
                 (dictionary, generatedError) in
                 
                 
-                if generatedError != nil || dictionary!["message"] as? String != "success"{
+                if generatedError != nil || dictionary!["result"] as? String != "success"{
                     allCompleted = false
                 }
                 else{
@@ -180,7 +219,7 @@ public class User: NSObject {
                 (dictionary, generatedError) in
                 
                 
-                if generatedError != nil || dictionary!["message"] as? String != "success"{
+                if generatedError != nil || dictionary!["result"] as? String != "success"{
                     allCompleted = false
                 }
                 else{
@@ -213,5 +252,6 @@ public enum LoginError : ErrorType{
     case PasswordTooShort
 
     case InvalidData
+    case ApiMalformed
     case UnknownError
 }

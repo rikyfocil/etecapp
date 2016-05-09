@@ -63,8 +63,12 @@ public class RouteLoader: NSObject {
                         
                         for route in routes{
                             
-                            try RouteLoader.routes?.append( parseRoute(route as? NSDictionary))
-                            
+                            if let routeDic = route as? NSDictionary, let route = Route(route: routeDic){
+                                RouteLoader.routes?.append( route )
+                            }
+                            else{
+                                throw GenericError.GenericError
+                            }
                         }
                         
                         RouteLoader.hasLoadedRoutes = true
@@ -146,24 +150,6 @@ public class RouteLoader: NSObject {
 
     }
     
-    private static func parseRoute(route : NSDictionary?) throws ->Route{
-        
-        guard let routeDictionary = route else{
-            throw GenericError.GenericError
-        }
-        
-        let name = routeDictionary["name"] as? String
-        let id = routeDictionary["id"] as? Int
-        let driver = routeDictionary["driver"] as? String
-        let color = UIColor(fromHexHashtagedString: (routeDictionary["color"] as? String) ?? "")
-        
-        guard name != nil && id != nil && driver != nil && color != nil else{
-            throw GenericError.GenericError
-        }
-        
-        return Route(id: id!, color: color! , name: name!, conductor: driver!)
-        
-    }
     
 }
 

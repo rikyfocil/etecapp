@@ -57,9 +57,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
             }
             
-            else if let _ = logedUser{
+            else if let user = logedUser{
                 
-                self.performSegueWithIdentifier("showMap", sender: nil)
+                self.performSegueWithIdentifier("showMap", sender: user)
                 self.idTextField.text = ""
                 self.passwordTextField.text = ""
                 
@@ -118,4 +118,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func backToLoginViewController(segue : UIStoryboardSegue){}
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showMap"{
+            let nvc = segue.destinationViewController as! UINavigationController
+            let vc = nvc.viewControllers[0] as! MapViewController 
+            vc.user = sender as! User
+        }
+    }
 }
