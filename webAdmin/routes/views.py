@@ -138,7 +138,7 @@ def getRoutes(request):
 
     The getRoutes view returns a list of all the routes as *routes*.
     """
-    routes = Ruta.objects.all()
+    routes = Ruta.objects.all().order_by('id')
 
     jsonRoutes = []
     for route in routes:
