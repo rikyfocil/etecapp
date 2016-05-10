@@ -76,8 +76,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }) {
             
             (le) in
-            unblockUI()
             
+            unblockUI()
             switch le {
             case .IDEmpty, .IDNull:
                 UIAlertController.showAlertMessage("Por favor introduce tu Matrícula / Nómina / Identificador", inController: self, withTitle: "Error", block: {

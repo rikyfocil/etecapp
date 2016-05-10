@@ -48,6 +48,7 @@ class DriverViewController: UIViewController, CLLocationManagerDelegate {
         
         manager.requestAlwaysAuthorization()
         manager.startUpdatingLocation()
+        manager.delegate = self
         
         nameLabel.text = "Bienvenido \(driver.name)"
         routeLabel.text = "Ruta \(driver.route.name)"

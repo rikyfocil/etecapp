@@ -161,7 +161,7 @@ public class LoginSystem: NSObject {
         
         do{
             
-            try LoginSystem.validatePassword(id)
+            try LoginSystem.validateID(id)
             try LoginSystem.validatePassword(password)
             
             let params = HTTPRequestSimplified.generateParamString(["username":id!.uppercaseString, "password":password!])
