@@ -280,7 +280,7 @@ def mobileLogin(request):
 
     The mobileLogin view returns whether *username* and *password* are a valid
     combination for an existing user and, if so, also returns its *routes*,
-    *name* and profile *id*.
+    *name*, *username* and profile *id*.
     """
     result = FAIL
     message = ''
@@ -306,7 +306,7 @@ def mobileLogin(request):
 
     return JsonResponse({'result': result, 'message': message,
                          'routes': routes, 'id': profileId,
-                         'name': first_name})
+                         'name': first_name, 'username': username})
 
 
 @csrf_exempt
@@ -317,8 +317,8 @@ def driverLogin(request):
     **Returns**: result, message, id (integer), name (string) and route.
 
     The driverLogin view returns whether *username* and *password* are a valid
-    combination for a driver and, if so, also returns its *route*, *name* and
-    *id*.
+    combination for a driver and also returns its *route*, *name*, *id* and
+    *username*.
     """
     result = FAIL
     message = ''
@@ -343,4 +343,5 @@ def driverLogin(request):
         message = NO_ROUTE
 
     return JsonResponse({'result': result, 'message': message,
-                         'route': route, 'id': id, 'name': name})
+                         'route': route, 'id': id, 'name': name,
+                         'username': username})
