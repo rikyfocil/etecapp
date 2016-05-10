@@ -336,12 +336,14 @@ class MobileLoginTest(TestUser):
         self.checkSuc(response)
         self.checkJson(response, 'id', 1)
         self.checkJson(response, 'name', 'test')
+        self.checkJson(response, 'username', username)
 
     def checkFailLogin(self, username, password):
         response = self.login(username, password)
         self.checkFail(response)
         self.checkJson(response, 'id', -1)
         self.checkJson(response, 'name', '')
+        self.checkJson(response, 'username', username)
 
     # Right
     def testLogin(self):
