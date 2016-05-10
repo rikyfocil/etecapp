@@ -48,8 +48,9 @@ death.</li>
 <li>Except for getRoutes, they all return a <strong>result</strong>, which can be <em>success</em>
 or <em>failure</em>, and a message, which can be an empty string if the result was
 <em>success</em> or a string describing an error if the result was <em>failure</em>.</li>
-<li>A routes array contains routes with the following properties: name (string),
-id (integer), driver (string), color (string) and page (string)</li>
+<li>A route is composed of the following properties: name (string),
+id (integer), driver (string), color (string) and page (string). They can be
+included in arrays.</li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -77,6 +78,18 @@ to.</dd>
 <hr class="docutils" />
 <div class="section" id="list-of-views">
 <h2>List of views<a class="headerlink" href="#list-of-views" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="routes.views.driverLogin">
+<code class="descclassname">routes.views.</code><code class="descname">driverLogin</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#routes.views.driverLogin" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><strong>Parameters</strong>: username (string) and password (string)</div>
+</div>
+<p><strong>Returns</strong>: result, message, id (integer), name (string) and route.</p>
+<p>The driverLogin view returns whether <em>username</em> and <em>password</em> are a valid
+combination for a driver and, if so, also returns its <em>route</em>, <em>name</em> and
+<em>id</em>.</p>
+</dd></dl>
+
 <dl class="function">
 <dt id="routes.views.get">
 <code class="descclassname">routes.views.</code><code class="descname">get</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#routes.views.get" title="Permalink to this definition">¶</a></dt>
@@ -119,7 +132,7 @@ to.</dd>
 <p><strong>Returns</strong>: result, message, id (integer), name (string) and routes
 (array).</p>
 <p>The mobileLogin view returns whether <em>username</em> and <em>password</em> are a valid
-combination for and existing user and, if so, also returns its <em>routes</em>,
+combination for an existing user and, if so, also returns its <em>routes</em>,
 <em>name</em> and profile <em>id</em>.</p>
 </dd></dl>
 
