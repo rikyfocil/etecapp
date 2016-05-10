@@ -35,6 +35,7 @@ class LoginTestCase: XCTestCase {
         idTestForError("B01327311", expectedError: LoginError.IDMalformed)
         idTestForError("'01327311", expectedError: LoginError.IDMalformed)
         idTestForError("B01327311", expectedError: LoginError.IDMalformed)
+        idTestForError("e01327311", expectedError: LoginError.IDMalformed)
         idTestForError("F01327311", expectedError: LoginError.IDMalformed)
         idTestForError("h01327311", expectedError: LoginError.IDMalformed)
         idTestForError("001327311", expectedError: LoginError.IDMalformed)
@@ -56,6 +57,8 @@ class LoginTestCase: XCTestCase {
         idTestForError("L01323311", expectedError: nil)
         idTestForError("a01323311", expectedError: nil)
         idTestForError("l01323311", expectedError: nil)
+        idTestForError("D01323311", expectedError: nil)
+        idTestForError("d01323311", expectedError: nil)
     }
     
     func idTestForError(str : String?, expectedError : LoginError?){

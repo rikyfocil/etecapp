@@ -90,7 +90,7 @@ public class User: NSObject {
             try validateID(id)
             try validatePassword(password)
             
-            let request = HTTPRequestSimplified.getStandardOnlyTextRequest("mobileLogin", method: .POST, httpdata: HTTPRequestSimplified.generateParamString(["username":id!, "password":password!]))
+            let request = HTTPRequestSimplified.getStandardOnlyTextRequest("mobileLogin", method: .POST, httpdata: HTTPRequestSimplified.generateParamString(["username":id!.uppercaseString, "password":password!]))
             
             HTTPRequestSimplified.getDictionaryOfParsingJSONFromRequest(request, callback: {
                 
@@ -110,7 +110,7 @@ public class User: NSObject {
                     
                     if let user = User(dictionary: dictionary){
                         
-                        user.userID = id!
+                        user.userID = id!.uppercaseString
                         callback(user, nil)
                         
                     }
@@ -163,7 +163,9 @@ public class User: NSObject {
         
         //Validate string formation
         
-        if !(text.characters.first! == "A" || text.characters.first! == "L" || text.characters.first! == "l" || text.characters.first! == "a"){
+        let upperTextFirstLetter = text.uppercaseString.characters.first!
+        
+        if !(upperTextFirstLetter == "A" || upperTextFirstLetter == "L" || upperTextFirstLetter == "D"){
             throw LoginError.IDMalformed
         }
         
