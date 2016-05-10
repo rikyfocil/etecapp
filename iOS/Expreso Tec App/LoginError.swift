@@ -23,6 +23,8 @@ public enum LoginError : ErrorType{
     case IDMalformed
     /// The id provided was nil
     case IDNull
+    /// The id does not correspond to the attempted login (DXXXXXXXX for loging user or [AL](0-9){8} for logging a driver
+    case IDInvalidForLoginFunction
     
     /// The password provided was empty
     case PasswordEmpty

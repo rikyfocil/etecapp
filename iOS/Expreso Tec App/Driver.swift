@@ -14,42 +14,51 @@ import UIKit
  
  This object should be instanciated via *login*
  */
-class Driver: NSObject {
+public class Driver: NSObject {
     
     /// The database id that represents the driver
-    private var id : Int = 0
+    private let id : Int
     
     /// The drivers name
-    private(set) var name = ""
+    public var name : String
     
     /// The route that the driver drive
-    private(set) var route : Route!
+    private(set) var route : Route
     
     /**
      
-     This method is a class function that will request the webservice for logging in a certain driver.
+     This is the default initiliazer of a driver 
      
-     **Note:** In order for a driver to login he must accomplish 2 conditions
-     1. ID and password match a database tuple
-     2. The driver is assigned to a route
-
-     - parameter databaseID: The ID that uniquely identifies the driver
-     - parameter password: The password supplied by the user
-     - parameter callback: The code block that should be called when the action is complete. 
-        + Driver?: The logged in driver 
-        + LoginError?: The reason that explains why *Driver?* is nil
+     **This method should only be called with the result of a web service call**
+     
+     - parameter dictionary: The dictionary contatining the driver data. The keys that must be present are:
+        + id : Int -> The database id of the driver
+        + name : String -> The name of the driver
+        + route : NSDictionary -> A dictionary with all the information of the route that the driver drives
+     
+     - returns: nil if the dictionary is not well formed
      
      */
-    class func login(databaseID : String, password : String, callback: (Driver?, LoginError?)->()){
+    public init?(dictionary : NSDictionary){
+
+        let id = dictionary["id"] as? Int
+        let name = dictionary["name"] as? String
+        let route = dictionary["route"] as? NSDictionary
         
-        let d = Driver()
-        d.id = 1
-        d.name = "Carlos"
+        guard id != nil && name != nil && route != nil else{
+            return nil
+        }
         
-    }
+        if let parsedRoute = Route(route: route!){
+            self.route = parsedRoute
+        }
+        else{
+            return nil
+        }
+        
+        self.name = name!
+        self.id = id!
     
-    /// To be removed when final login is ready
-    @available(*, deprecated=9.0)
-    private override init(){}
+    }
     
 }

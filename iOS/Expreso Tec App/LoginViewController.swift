@@ -23,7 +23,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     /// The view that blocks all the content when the user validation is on progress
     @IBOutlet weak var opaqueView: UIView!
-    /// This is a subview of *opaqueView* and its function is to tell the user that there is an action in progress.
+    /// This is a subvvar of *opaqueView* and its function is to tell the user that there is an action in progress.
     @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     
     /**
@@ -40,53 +40,73 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
      */
     @IBAction func loginButtonPressed(sender: AnyObject) {
         
+        
+        func unblockUI(){
+        
+            self.opaqueView.hidden = true
+            self.view.userInteractionEnabled = true
+        
+        }
+        
+        func resetTextFields(){
+            
+            self.idTextField.text = ""
+            self.passwordTextField.text = ""
+        
+        }
+        
         self.view.userInteractionEnabled = false
         self.opaqueView.hidden = false
         self.indicatorView.startAnimating()
-        User.loginWithData(self.idTextField.text, password: self.passwordTextField.text, callback: {
-            
-            (logedUser, loginError) in
-            
-            self.opaqueView.hidden = true
-            self.view.userInteractionEnabled = true
-            if let le = loginError{
-                switch le {
-                case .IDEmpty, .IDNull:
-                    UIAlertController.showAlertMessage("Por favor introduce tu Matrícula / Nómina / Identificador", inController: self, withTitle: "Error", block: {
-                        self.idTextField.becomeFirstResponder()
-                    })
-                case .IDInvalidLength, .IDMalformed:
-                    UIAlertController.showAlertMessage("Tu identificador es incorrecto. Por favor verifica que tenga 9 caracteres y que este formado como A, L o D seguido 8 números", inController: self, withTitle: "Error", block: {
-                        self.idTextField.becomeFirstResponder()
-                    })
-                case .PasswordEmpty, .PasswordNull:
-                    UIAlertController.showAlertMessage("Por favor introduce tu contraseña", inController: self, withTitle: "Error", block: {
-                        self.passwordTextField.becomeFirstResponder()
-                    })
-                case .PasswordTooShort:
-                    UIAlertController.showAlertMessage("Parece que el password es muy corto. Por favor intentalo de nuevo con tu contraseña del ITESM", inController: self, withTitle: "Error", block: {
-                        self.passwordTextField.becomeFirstResponder()
-                    })
-                case .InvalidData:
-                    UIAlertController.showAlertMessage("Parece que los datos son incorrectos. Por favor intentalo de nuevo con los datos de tu cuenta del ITESM", inController: self, withTitle: "Error", block: nil)
-                
-                default:
-                    UIAlertController.showAlertMessage("Parece que algo anda mal. Por favor verifica tu conexión a Internet y vuelve a intentarlo", inController: self, withTitle: "Error", block: nil)
-                }
-            }
-            
-            else if let user = logedUser{
-                
-                self.performSegueWithIdentifier("showMap", sender: user)
-                self.idTextField.text = ""
-                self.passwordTextField.text = ""
-                
-            }
-            else{
-                fatalError("Both user and error cannot be nil.")
-            }
-        })
         
+        LoginSystem.loginWithData(self.idTextField.text, password: self.passwordTextField.text, userSuccess: {
+            
+            (user) in
+            unblockUI()
+            self.performSegueWithIdentifier("showMap", sender: user)
+            resetTextFields()
+            
+        }, driverSuccess: {
+            
+            (driver) in
+            unblockUI()
+            self.performSegueWithIdentifier("driverLogin", sender: driver)
+            resetTextFields()
+        
+        }) {
+            
+            (le) in
+            unblockUI()
+            
+            switch le {
+            case .IDEmpty, .IDNull:
+                UIAlertController.showAlertMessage("Por favor introduce tu Matrícula / Nómina / Identificador", inController: self, withTitle: "Error", block: {
+                    self.idTextField.becomeFirstResponder()
+                })
+            
+            case .IDInvalidLength, .IDMalformed:
+                UIAlertController.showAlertMessage("Tu identificador es incorrecto. Por favor verifica que tenga 9 caracteres y que este formado como A, L o D seguido 8 números", inController: self, withTitle: "Error", block: {
+                    self.idTextField.becomeFirstResponder()
+                })
+            
+            case .PasswordEmpty, .PasswordNull:
+                UIAlertController.showAlertMessage("Por favor introduce tu contraseña", inController: self, withTitle: "Error", block: {
+                    self.passwordTextField.becomeFirstResponder()
+                })
+            
+            case .PasswordTooShort:
+                UIAlertController.showAlertMessage("Parece que el password es muy corto. Por favor intentalo de nuevo con tu contraseña del ITESM", inController: self, withTitle: "Error", block: {
+                    self.passwordTextField.becomeFirstResponder()
+                })
+            
+            case .InvalidData:
+                UIAlertController.showAlertMessage("Parece que los datos son incorrectos. Por favor intentalo de nuevo con los datos de tu cuenta del ITESM", inController: self, withTitle: "Error", block: nil)
+                
+            default:
+                UIAlertController.showAlertMessage("Parece que algo anda mal. Por favor verifica tu conexión a Internet y vuelve a intentarlo", inController: self, withTitle: "Error", block: nil)
+            }
+
+        }
     }
     
     /**
@@ -200,5 +220,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let vc = nvc.viewControllers[0] as! MapViewController 
             vc.user = sender as! User
         }
+        else if segue.identifier == "driverLogin"{
+            
+            let dvc = segue.destinationViewController as! DriverViewController
+            dvc.driver = sender as! Driver
+            
+        }
+
     }
 }

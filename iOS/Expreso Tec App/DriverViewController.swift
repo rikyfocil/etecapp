@@ -29,7 +29,7 @@ class DriverViewController: UIViewController, CLLocationManagerDelegate {
     private let manager = CLLocationManager()
     
     /// The current driver. This variable must be set by the previous controller
-    let driver : Driver! = nil
+    var driver : Driver! = nil
     
     /// Tells wheter the location has been uploaded at least once. With this booleean the distance verification is ommited the first time
     private var updatedOnce = false

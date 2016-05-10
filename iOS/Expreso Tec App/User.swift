@@ -22,14 +22,14 @@ import UIKit
 public class User: NSObject {
 
     /// The user unique identifier. The one with which he logs in
-    public private(set) var userID : String = ""
+    public let userID : String
     
     /// The user name
     public let name : String
     
     /// The database id that uniquely identifies this user
-    private var databaseID = 0
-
+    private var databaseID : Int
+    
     /// An array of the routes to which the user is suscribed to
     public private(set) var subscribedRoutes = [Route]()
     
@@ -38,7 +38,7 @@ public class User: NSObject {
 
     /**
      
-     The only user constructor. This constructor is kept private to avoid external classes to attempt to avoid the login system. 
+     The only user constructor. Despite the constructor is public please use the login system. 
      
      - parameter dictionary: A dictionary containing all the user information. Required keys:
         + name : String -> The riders name
@@ -48,18 +48,20 @@ public class User: NSObject {
      - returns: nil if the dictionary is invalid for user creation
      
      */
-    private init?(dictionary : NSDictionary){
+    public init?(dictionary : NSDictionary){
         
         let name = dictionary["name"] as? String
         let id = dictionary["id"] as? Int
+        let usernameID = dictionary["username"] as? String
         let routes = dictionary["routes"] as? Array<NSDictionary>
         
-        guard name != nil && id != nil && routes != nil else{
+        guard name != nil && id != nil && routes != nil && usernameID != nil else{
             return nil
         }
     
         self.name = name!
         self.databaseID = id!
+        self.userID = usernameID!
         
         for routeDic in routes!{
             if let route = Route(route: routeDic){
@@ -72,137 +74,6 @@ public class User: NSObject {
         
     }
         
-    /**
-     
-     This is the standard way to create a User. 
-     
-     - parameter id: The id that identifies the user
-     - parameter password: The user associated password
-     - parameter callback: A block of code that should be called whit the login result
-        + User?: The logged in user or nil if there was an error
-        + LoginError?: The error explaining why the user in nil
-     
-     */
-    public class func loginWithData(id : String?, password : String?, callback : (User?, LoginError?)->()){
-        
-        do{
-            
-            try validateID(id)
-            try validatePassword(password)
-            
-            let request = HTTPRequestSimplified.getStandardOnlyTextRequest("mobileLogin", method: .POST, httpdata: HTTPRequestSimplified.generateParamString(["username":id!.uppercaseString, "password":password!]))
-            
-            HTTPRequestSimplified.getDictionaryOfParsingJSONFromRequest(request, callback: {
-                
-                (loginDictionaryOptional, error) in
-                
-                if let error = error{
-                    
-                    print("Error. Error while attempting to login user. Dictionary was not formed\n\(error)\n \(#file):\(#line)")
-                    callback(nil, LoginError.UnknownError)
-                    return
-                    
-                }
-                
-                let dictionary = loginDictionaryOptional!
-                
-                if let message = dictionary["result"] as? String where message == "success"{
-                    
-                    if let user = User(dictionary: dictionary){
-                        
-                        user.userID = id!.uppercaseString
-                        callback(user, nil)
-                        
-                    }
-                    else{
-                        callback(nil, LoginError.ApiMalformed)
-                    }
-                    
-                }
-                else{
-                    callback(nil, LoginError.InvalidData)
-                }
-                
-            })
-            
-        }
-        catch{
-            
-            guard let error = error as? LoginError else{
-                fatalError("Unexpected error thrown")
-            }
-            
-            callback(nil,error)
-            return
-        }
-        
-    }
-    
-    /**
-     
-     This method can verify if the user id is valid or not
-     
-     - parameter text: The id that needs to be validated
-     
-     - throws: LoginError if the id is not in the right formed
-     
-     */
-    public class func validateID(text : String?) throws{
-        
-        guard let text = text else{
-            throw LoginError.IDNull
-        }
-        
-        if text.isEmpty{
-            throw LoginError.IDEmpty
-        }
-        
-        if text.characters.count != 9{
-            throw LoginError.IDInvalidLength
-        }
-        
-        //Validate string formation
-        
-        let upperTextFirstLetter = text.uppercaseString.characters.first!
-        
-        if !(upperTextFirstLetter == "A" || upperTextFirstLetter == "L" || upperTextFirstLetter == "D"){
-            throw LoginError.IDMalformed
-        }
-        
-        for character in text.substringWithRange(text.characters.startIndex.advancedBy(1)..<text.characters.endIndex).characters{
-            if !character.isDigit(){
-                throw LoginError.IDMalformed
-            }
-        }
-
-    }
-    
-    /**
-     
-     This method can verify if the user password is valid or not
-     
-     - important: Even if this method doesn't throw an error that doesn't mean the password is associated with the user. It just means that is a valid password for any user.
-
-     - parameter text: The id that needs to be validated
-     
-     - throws: LoginError if the password is not in the right formed
-     
-     
-     */
-    public class func validatePassword(text : String?) throws{
-        guard let text = text else{
-            throw LoginError.PasswordNull
-        }
-        
-        if text.isEmpty{
-            throw LoginError.PasswordEmpty
-        }
-        
-        if text.characters.count < 6{
-            throw LoginError.PasswordTooShort
-        }
-    }
-    
     /**
      
      This is the standard way to register some code block to be called whenever the user registered routes change
