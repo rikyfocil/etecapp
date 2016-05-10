@@ -179,6 +179,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
      This overriding provides the following behaviors:
      
      + If the segue is to settings the user will be passed to the controller
+     + If the segue is to schedule, the sender as route will be passed to the schedule 
      + Otherwise the segue will be continued in an unnmodified manner
      
      */
@@ -190,6 +191,56 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             vc.user = user
    
         }
+        else if segue.identifier == "showSchedule"{
+            
+            let vc = segue.destinationViewController as! ScheduleViewController
+            vc.route = sender as! Route
+            
+        }
     
     }
+    
+    /**
+     
+     This method will allow the user to select which route does he want to check the schedule or if he has only one then the segue will happen inmediatly
+     
+     - parameter sender: The button that triggered the action. **Will be allways ignored**
+     
+     */
+    @IBAction func goSchedule(sender: AnyObject) {
+        
+    
+        if self.trackingRoutes.count == 1{
+            self.performSegueWithIdentifier("showSchedule", sender: self.trackingRoutes.first!)
+        }
+        else{
+        
+            let controller = UIAlertController(title: "Elige la ruta", message: "Elige de que ruta deseas consultar el horario", preferredStyle: .ActionSheet)
+            
+            for route in self.trackingRoutes.sort({
+                
+                (first, second) -> Bool in
+                return first.name.compare(second.name) == NSComparisonResult.OrderedAscending
+                
+            }){
+            
+                let action = UIAlertAction(title: route.name, style: .Default, handler: {
+                    _ in
+                    self.performSegueWithIdentifier("showSchedule", sender: route)
+
+                })
+                
+                controller.addAction(action)
+                
+            }
+        
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .Cancel, handler: nil)
+            controller.addAction(cancelAction)
+            self.presentViewController(controller, animated: true, completion: nil)
+            
+        }
+        
+    }
+    
+    
 }

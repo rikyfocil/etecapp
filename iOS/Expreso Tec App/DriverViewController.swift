@@ -90,7 +90,7 @@ class DriverViewController: UIViewController, CLLocationManagerDelegate {
      */
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         
-        if newLocation.distanceFromLocation(oldLocation) > 30 || !updatedOnce{
+        if abs(newLocation.distanceFromLocation(oldLocation)) > 30 || !updatedOnce{
             let request = HTTPRequestSimplified.getStandardOnlyTextRequest("set", httpdata: HTTPRequestSimplified.generateParamString(["route":driver.route.name, "lat":"\(newLocation.coordinate.latitude)","lng": "\(newLocation.coordinate.longitude)"]))
             HTTPRequestSimplified.getDictionaryOfParsingJSONFromRequest(request, callback: {
                 

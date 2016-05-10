@@ -236,9 +236,12 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1hU-Ld-itc">
                                 <rect key="frame" x="0.0" y="64" width="600" height="490"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wrg-dW-9Vi">
-                                <rect key="frame" x="233" y="562" width="134" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wrg-dW-9Vi">
+                                <rect key="frame" x="233" y="561" width="134" height="30"/>
                                 <state key="normal" title="Ver rutas y horarios"/>
+                                <connections>
+                                    <action selector="goSchedule:" destination="LW9-Rr-l6F" eventType="touchUpInside" id="8qO-FC-ZKL"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -260,11 +263,46 @@
                     </navigationItem>
                     <connections>
                         <outlet property="map" destination="1hU-Ld-itc" id="ODe-3R-pG1"/>
+                        <segue destination="OFC-bb-wZ0" kind="push" identifier="showSchedule" id="jBJ-fa-xgo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5t-PG-zoz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2239" y="667"/>
+        </scene>
+        <!--Horario-->
+        <scene sceneID="8Ty-Vu-FBo">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="OFC-bb-wZ0" customClass="ScheduleViewController" customModule="Expreso_Tec_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="taR-Pc-bqf"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yhf-Rd-oiG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="12L-fF-mAP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GKD-mD-vBj">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GKD-mD-vBj" firstAttribute="leading" secondItem="12L-fF-mAP" secondAttribute="leadingMargin" constant="-20" id="1gH-Rw-98H"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GKD-mD-vBj" secondAttribute="trailing" constant="-20" id="6xM-Vv-fBp"/>
+                            <constraint firstItem="GKD-mD-vBj" firstAttribute="top" secondItem="taR-Pc-bqf" secondAttribute="bottom" id="PgD-wt-lIU"/>
+                            <constraint firstItem="Yhf-Rd-oiG" firstAttribute="top" secondItem="GKD-mD-vBj" secondAttribute="bottom" id="oyG-mp-ndI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Horario" id="t34-lM-J47"/>
+                    <connections>
+                        <outlet property="webView" destination="GKD-mD-vBj" id="WcT-Yt-KIZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KvR-nk-oVw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2239" y="1380"/>
         </scene>
         <!--Mi Perfil-->
         <scene sceneID="WUp-dm-Wpq">

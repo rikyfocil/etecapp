@@ -10,6 +10,7 @@
 		B31A1E2B1CDEE04700240A12 /* BusMapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31A1E2A1CDEE04700240A12 /* BusMapAnnotationView.swift */; };
 		B31A1E2D1CDF003600240A12 /* DriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31A1E2C1CDF003600240A12 /* DriverViewController.swift */; };
 		B31A1E2F1CDF010700240A12 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31A1E2E1CDF010700240A12 /* Driver.swift */; };
+		B31A59021CE21473003DC853 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31A59011CE21473003DC853 /* ScheduleViewController.swift */; };
 		B31B2EE71CC9A58200256D82 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B31B2EE61CC9A58200256D82 /* CoreLocation.framework */; };
 		B31FF3031CA8A64000DB8428 /* LoginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31FF3021CA8A64000DB8428 /* LoginTestCase.swift */; };
 		B321A31C1CE0434F00456F3E /* GenericError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321A31B1CE0434F00456F3E /* GenericError.swift */; };
@@ -55,6 +56,7 @@
 		B31A1E2A1CDEE04700240A12 /* BusMapAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusMapAnnotationView.swift; sourceTree = "<group>"; };
 		B31A1E2C1CDF003600240A12 /* DriverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverViewController.swift; sourceTree = "<group>"; };
 		B31A1E2E1CDF010700240A12 /* Driver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
+		B31A59011CE21473003DC853 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		B31B2EE61CC9A58200256D82 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B31FF3021CA8A64000DB8428 /* LoginTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTestCase.swift; sourceTree = "<group>"; };
 		B321A31B1CE0434F00456F3E /* GenericError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericError.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				B32A47A81CC9EACB00E72CA1 /* Route.swift */,
 				B32A47AA1CC9EB8200E72CA1 /* RouteLoader.swift */,
 				B32A47B01CCA012200E72CA1 /* RouteTableViewCell.swift */,
+				B31A59011CE21473003DC853 /* ScheduleViewController.swift */,
 				B32A47AE1CC9FACD00E72CA1 /* SettingsViewController.swift */,
 				B3672C391CD4930000EC131F /* UIColor+Hex.h */,
 				B3672C3A1CD4930000EC131F /* UIColor+Hex.m */,
@@ -350,6 +353,7 @@
 				B35CC98F1CE1737C00F0064C /* LoginSystem.swift in Sources */,
 				B31A1E2F1CDF010700240A12 /* Driver.swift in Sources */,
 				B31A1E2B1CDEE04700240A12 /* BusMapAnnotationView.swift in Sources */,
+				B31A59021CE21473003DC853 /* ScheduleViewController.swift in Sources */,
 				B3672C3B1CD4930000EC131F /* UIColor+Hex.m in Sources */,
 				B321A31C1CE0434F00456F3E /* GenericError.swift in Sources */,
 				B32A47B11CCA012200E72CA1 /* RouteTableViewCell.swift in Sources */,
