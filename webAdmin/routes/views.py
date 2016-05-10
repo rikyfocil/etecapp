@@ -309,6 +309,7 @@ def mobileLogin(request):
                          'name': first_name})
 
 
+@csrf_exempt
 @require_POST
 def driverLogin(request):
     """| **Parameters**: username (string) and password (string)
