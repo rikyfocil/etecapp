@@ -13,6 +13,7 @@
 		B31A59021CE21473003DC853 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31A59011CE21473003DC853 /* ScheduleViewController.swift */; };
 		B31B2EE71CC9A58200256D82 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B31B2EE61CC9A58200256D82 /* CoreLocation.framework */; };
 		B31FF3031CA8A64000DB8428 /* LoginTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31FF3021CA8A64000DB8428 /* LoginTestCase.swift */; };
+		B32122A01CE2AF0900FF2D5E /* UIColorHexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321229F1CE2AF0900FF2D5E /* UIColorHexTest.swift */; };
 		B321A31C1CE0434F00456F3E /* GenericError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321A31B1CE0434F00456F3E /* GenericError.swift */; };
 		B321A31E1CE057ED00456F3E /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321A31D1CE057EC00456F3E /* LoginError.swift */; };
 		B32A47A91CC9EACB00E72CA1 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A47A81CC9EACB00E72CA1 /* Route.swift */; };
@@ -33,6 +34,7 @@
 		B38B8CFF1CA8676F003B6C5F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B8CFE1CA8676F003B6C5F /* User.swift */; };
 		B38B8D011CA86C7E003B6C5F /* ExtensionFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B8D001CA86C7E003B6C5F /* ExtensionFile.swift */; };
 		B39BCAA71CDCF312004D0192 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39BCAA61CDCF312004D0192 /* MapViewController.swift */; };
+		B3E26FF41CE2CD180089755A /* UserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E26FF31CE2CD180089755A /* UserTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,7 @@
 		B31A59011CE21473003DC853 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		B31B2EE61CC9A58200256D82 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B31FF3021CA8A64000DB8428 /* LoginTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTestCase.swift; sourceTree = "<group>"; };
+		B321229F1CE2AF0900FF2D5E /* UIColorHexTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorHexTest.swift; sourceTree = "<group>"; };
 		B321A31B1CE0434F00456F3E /* GenericError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericError.swift; sourceTree = "<group>"; };
 		B321A31D1CE057EC00456F3E /* LoginError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
 		B32A47A81CC9EACB00E72CA1 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
@@ -87,6 +90,7 @@
 		B38B8CFE1CA8676F003B6C5F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B38B8D001CA86C7E003B6C5F /* ExtensionFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionFile.swift; sourceTree = "<group>"; };
 		B39BCAA61CDCF312004D0192 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		B3E26FF31CE2CD180089755A /* UserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +186,8 @@
 			children = (
 				B38B8CE51CA8513F003B6C5F /* Expreso_Tec_AppTests.swift */,
 				B31FF3021CA8A64000DB8428 /* LoginTestCase.swift */,
+				B321229F1CE2AF0900FF2D5E /* UIColorHexTest.swift */,
+				B3E26FF31CE2CD180089755A /* UserTest.swift */,
 				B38B8CE71CA8513F003B6C5F /* Info.plist */,
 			);
 			path = "Expreso Tec AppTests";
@@ -375,7 +381,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3E26FF41CE2CD180089755A /* UserTest.swift in Sources */,
 				B38B8CE61CA8513F003B6C5F /* Expreso_Tec_AppTests.swift in Sources */,
+				B32122A01CE2AF0900FF2D5E /* UIColorHexTest.swift in Sources */,
 				B31FF3031CA8A64000DB8428 /* LoginTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

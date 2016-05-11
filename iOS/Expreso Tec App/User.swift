@@ -116,6 +116,7 @@ public class User: NSObject {
         
         if subcribingRoutes.isEmpty && deSuscribedroutes.isEmpty{
             doneCallback(true)
+            return
         }
         
         var allCompleted = true

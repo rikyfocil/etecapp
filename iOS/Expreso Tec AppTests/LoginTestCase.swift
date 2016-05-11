@@ -170,10 +170,6 @@ class LoginTestCase: XCTestCase {
         
     }
     
-    func specializedUserTest(str : String?, validFor : ValidType){
-        
-    }
-    
     func testPassword(){
         passwordTestForError(nil, expectedError: LoginError.PasswordNull)
         passwordTestForError("", expectedError: LoginError.PasswordEmpty)
@@ -212,6 +208,14 @@ class LoginTestCase: XCTestCase {
         loginTestGeneric("D00000001", password: "TESTINGD", login: ValidType.Invalid(LoginError.UnknownError))
         loginTestGeneric("A01327311", password: "Testing1", login: ValidType.Invalid(LoginError.UnknownError))
         loginTestGeneric("A01327311", password: "TESTING1", login: ValidType.Invalid(LoginError.UnknownError))
+
+        //Send invalid data to login
+        loginTestGeneric("D0000 0001", password: "Testingd", login: ValidType.Invalid(LoginError.UnknownError))
+        loginTestGeneric("D00000001", password: "", login: ValidType.Invalid(LoginError.UnknownError))
+        loginTestGeneric("", password: "1234567", login: ValidType.Invalid(LoginError.UnknownError))
+        loginTestGeneric("D200000001", password: "testingd", login: ValidType.Invalid(LoginError.UnknownError))
+        loginTestGeneric("M00000001", password: "testingd", login: ValidType.Invalid(LoginError.UnknownError))
+        loginTestGeneric("Q00000001", password: "testingd", login: ValidType.Invalid(LoginError.UnknownError))
 
         
     }
