@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>RouteTableViewCell Class Reference</title>
+    <title>BusMapAnnotationView Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/RouteTableViewCell" class="dashAnchor"></a>
-    <a title="RouteTableViewCell Class Reference"></a>
+    <a name="//apple_ref/swift/Class/BusMapAnnotationView" class="dashAnchor"></a>
+    <a title="BusMapAnnotationView Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (100% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        RouteTableViewCell Class Reference
+        BusMapAnnotationView Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -102,16 +102,16 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>RouteTableViewCell</h1>
+            <h1>BusMapAnnotationView</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">RouteTableViewCell</span><span class="p">:</span> <span class="kt">UITableViewCell</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">BusMapAnnotationView</span><span class="p">:</span> <span class="kt">MKAnnotationView</span></code></pre>
 
                 </div>
               </div>
-            <p>This class is associated with a table view cell on interface builder</p>
+            <p>This class provides the bus annotation that the user can see in the map. </p>
 
-<p>The main purpose of this class is to provide an easy way to configure a cell with a route</p>
+<p>This annotation is created as a bus with a certain color that represents the route</p>
 
           </section>
           <section class="section task-group-section">
@@ -120,9 +120,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15Expreso_Tec_App18RouteTableViewCell5routeGSqCS_5Route_"></a>
-                    <a name="//apple_ref/swift/Property/route" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15Expreso_Tec_App18RouteTableViewCell5routeGSqCS_5Route_">route</a>
+                    <a name="/s:FC15Expreso_Tec_App20BusMapAnnotationView11setBusColorFCSo7UIColorT_"></a>
+                    <a name="//apple_ref/swift/Method/setBusColor(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App20BusMapAnnotationView11setBusColorFCSo7UIColorT_">setBusColor(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -130,11 +130,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The route that the cell displays. Setting this property autoatically configures the cell with the following behavior:</p>
+                        <p>This method has two functions</p>
 
 <ul>
-<li>Not nil Route: The cell is configured to display the Route information.</li>
-<li>Nil Route: The cell information is cleaned up.</li>
+<li>It provides a way to create the image view if it hasn&rsquo;t been created yet</li>
+<li><p>It changes the tint color of the bus when needed</p></li>
 </ul>
 
                       </div>
@@ -142,9 +142,29 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">route</span> <span class="p">:</span> <span class="kt">Route</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setBusColor</span><span class="p">(</span><span class="nv">color</span> <span class="p">:</span> <span class="kt">UIColor</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>color</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The color that represents the route</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>

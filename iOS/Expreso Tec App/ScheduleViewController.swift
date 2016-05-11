@@ -26,8 +26,13 @@ public class ScheduleViewController: UIViewController {
     /// This override only loads the schedule web page in the web view
     public override func viewDidLoad() {
         
-        let url: NSURL = NSURL(string: route.webImage)!
-        let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        let url = NSURL(string: route.webImage)
+        
+        if url == nil{
+            return
+        }
+        
+        let request: NSMutableURLRequest = NSMutableURLRequest(URL: url!)
         webView.loadRequest(request)
         
     }

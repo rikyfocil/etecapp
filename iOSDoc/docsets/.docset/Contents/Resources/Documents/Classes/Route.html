@@ -15,6 +15,7 @@
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/PhysicsApp/etecapp"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -31,6 +32,27 @@
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Classes/BusMapAnnotationView.html">BusMapAnnotationView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Driver.html">Driver</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DriverViewController.html">DriverViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HTTPRequestSimplified.html">HTTPRequestSimplified</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoginSystem.html">LoginSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoginViewController.html">LoginViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MapViewController.html">MapViewController</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Route.html">Route</a>
               </li>
               <li class="nav-group-task">
@@ -38,6 +60,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/RouteTableViewCell.html">RouteTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ScheduleViewController.html">ScheduleViewController</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/SettingsViewController.html">SettingsViewController</a>
@@ -51,10 +76,24 @@
             <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Enums/GenericError.html">GenericError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/HTTPMethod.html">HTTPMethod</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/LoginError.html">LoginError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Character.html">Character</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIAlertController.html">UIAlertController</a>
               </li>
             </ul>
           </li>
@@ -187,6 +226,33 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:vC15Expreso_Tec_App5Route8webImageSS"></a>
+                    <a name="//apple_ref/swift/Property/webImage" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC15Expreso_Tec_App5Route8webImageSS">webImage</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The site that should be requested to check the bus schedule</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">webImage</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:FC15Expreso_Tec_App5Route7isEqualFGSqPs9AnyObject__Sb"></a>
                     <a name="//apple_ref/swift/Method/isEqual(_:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:FC15Expreso_Tec_App5Route7isEqualFGSqPs9AnyObject__Sb">isEqual(_:)</a>
@@ -236,12 +302,62 @@
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC15Expreso_Tec_App5RoutecFT5routeGSqCSo12NSDictionary__GSqS0__"></a>
+                    <a name="//apple_ref/swift/Method/init(route:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App5RoutecFT5routeGSqCSo12NSDictionary__GSqS0__">init(route:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the default constructor for a route</p>
+
+<p><strong>Never attempt to create a route with a custom created dictionary</strong> 
+The success of all the application depends on the database data. Because of this if there are routes without its correspondent database instance weird errors may occur.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">route</span> <span class="p">:</span> <span class="kt">NSDictionary</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>route</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A dictionary containing the route information. The dictionary must contain the following fields:</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-05-09)</p>
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Ali baba and the 4 thieves</a>. All rights reserved. (Last updated: 2016-05-11)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.6.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

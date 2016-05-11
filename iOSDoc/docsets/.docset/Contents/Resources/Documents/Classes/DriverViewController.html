@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Route Class Reference</title>
+    <title>DriverViewController Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/Route" class="dashAnchor"></a>
-    <a title="Route Class Reference"></a>
+    <a name="//apple_ref/swift/Class/DriverViewController" class="dashAnchor"></a>
+    <a title="DriverViewController Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (100% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Route Class Reference
+        DriverViewController Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -102,14 +102,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Route</h1>
+            <h1>DriverViewController</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Route</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DriverViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="kt">CLLocationManagerDelegate</span></code></pre>
 
                 </div>
               </div>
-            <p>This class is the model that represents a route.</p>
+            <p>This class provides all the functionality that a driver needs in orde to be tracked or not by the users</p>
 
           </section>
           <section class="section task-group-section">
@@ -118,9 +118,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15Expreso_Tec_App5Route9conductorSS"></a>
-                    <a name="//apple_ref/swift/Property/conductor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15Expreso_Tec_App5Route9conductorSS">conductor</a>
+                    <a name="/s:vC15Expreso_Tec_App20DriverViewController6driverGSQCS_6Driver_"></a>
+                    <a name="//apple_ref/swift/Property/driver" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC15Expreso_Tec_App20DriverViewController6driverGSQCS_6Driver_">driver</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -128,14 +128,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The name of the driver that drives the route</p>
+                        <p>The current driver. This variable must be set by the previous controller</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">conductor</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">driver</span> <span class="p">:</span> <span class="kt">Driver</span><span class="o">!</span> <span class="o">=</span> <span class="kc">nil</span></code></pre>
 
                         </div>
                       </div>
@@ -145,9 +145,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15Expreso_Tec_App5Route4nameSS"></a>
-                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15Expreso_Tec_App5Route4nameSS">name</a>
+                    <a name="/s:FC15Expreso_Tec_App20DriverViewController11viewDidLoadFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/viewDidLoad()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App20DriverViewController11viewDidLoadFT_T_">viewDidLoad()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -155,14 +155,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The name of the route</p>
+                        <p>This override provides the following behavior:</p>
+
+<ul>
+<li>Requests user authorization</li>
+<li>Starts updating the user location</li>
+<li>Sets the UI content</li>
+</ul>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">name</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="k">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -172,9 +178,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15Expreso_Tec_App5Route5colorCSo7UIColor"></a>
-                    <a name="//apple_ref/swift/Property/color" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15Expreso_Tec_App5Route5colorCSo7UIColor">color</a>
+                    <a name="/s:FC15Expreso_Tec_App20DriverViewController6logoutFPs9AnyObject_T_"></a>
+                    <a name="//apple_ref/swift/Method/logout(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App20DriverViewController6logoutFPs9AnyObject_T_">logout(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -182,14 +188,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The color that represents the route</p>
+                        <p>This method is triggered when the user presses the logout button</p>
+
+<p>A confirmation is displayed and if the user accepts it the <em>manager</em> stops updating the location and the controller is dismised.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">color</span> <span class="p">:</span> <span class="kt">UIColor</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@IBAction</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">logout</span><span class="p">(</span><span class="nv">sender</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -199,9 +207,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15Expreso_Tec_App5Route2idSi"></a>
-                    <a name="//apple_ref/swift/Property/id" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15Expreso_Tec_App5Route2idSi">id</a>
+                    <a name="/s:FC15Expreso_Tec_App20DriverViewController15locationManagerFTCSo17CLLocationManager19didUpdateToLocationCSo10CLLocation12fromLocationS2__T_"></a>
+                    <a name="//apple_ref/swift/Method/locationManager(_:didUpdateToLocation:fromLocation:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App20DriverViewController15locationManagerFTCSo17CLLocationManager19didUpdateToLocationCSo10CLLocation12fromLocationS2__T_">locationManager(_:didUpdateToLocation:fromLocation:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -209,68 +217,22 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The identifier on the database of the route</p>
+                        <p><strong>This method should only be called by *manager</strong>*</p>
+
+<p>This method is called when there is new location information available. This method have the following behavior</p>
+
+<ul>
+<li>If the location has never being updated the location is informed to the server</li>
+<li>If the new location has a difference greater than 30 meters from the old one then its informed to the server</li>
+<li><p>Otherwise the new location is discarded</p></li>
+</ul>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">id</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC15Expreso_Tec_App5Route8webImageSS"></a>
-                    <a name="//apple_ref/swift/Property/webImage" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15Expreso_Tec_App5Route8webImageSS">webImage</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The site that should be requested to check the bus schedule</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">webImage</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC15Expreso_Tec_App5Route7isEqualFGSqPs9AnyObject__Sb"></a>
-                    <a name="//apple_ref/swift/Method/isEqual(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC15Expreso_Tec_App5Route7isEqualFGSqPs9AnyObject__Sb">isEqual(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>This function tells if another route is equal by comparing the id</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">isEqual</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">locationManager</span><span class="p">(</span><span class="nv">manager</span><span class="p">:</span> <span class="kt">CLLocationManager</span><span class="p">,</span> <span class="n">didUpdateToLocation</span> <span class="nv">newLocation</span><span class="p">:</span> <span class="kt">CLLocation</span><span class="p">,</span> <span class="n">fromLocation</span> <span class="nv">oldLocation</span><span class="p">:</span> <span class="kt">CLLocation</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -281,12 +243,38 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>object</em>
+                                <em>manager</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>An object to compare. This object must be a route or the behavior is the one of the superclass</p>
+                                  <p>The manager that is triggering the action</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>didUpdateToLocation</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new recorded user location</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fromLocation</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The old registered location</p>
 
                                 </div>
                               </td>
@@ -294,20 +282,15 @@
                           </tbody>
                         </table>
                       </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>A bool telling if the objects should be considered equal</p>
-
-                      </div>
                     </section>
                   </div>
                 </li>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC15Expreso_Tec_App5RoutecFT5routeGSqCSo12NSDictionary__GSqS0__"></a>
-                    <a name="//apple_ref/swift/Method/init(route:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC15Expreso_Tec_App5RoutecFT5routeGSqCSo12NSDictionary__GSqS0__">init(route:)</a>
+                    <a name="/s:FC15Expreso_Tec_App20DriverViewController14attempToUpdateFPs9AnyObject_T_"></a>
+                    <a name="//apple_ref/swift/Method/attempToUpdate(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App20DriverViewController14attempToUpdateFPs9AnyObject_T_">attempToUpdate(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -315,17 +298,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This is the default constructor for a route</p>
+                        <p>This method is called when the user toogles the switch of tracking location. The behavior is as follows:</p>
 
-<p><strong>Never attempt to create a route with a custom created dictionary</strong> 
-The success of all the application depends on the database data. Because of this if there are routes without its correspondent database instance weird errors may occur.</p>
+<ul>
+<li>if the new state is off the action is confirmed to the user. If he confirms then the manager location updates are stoped and <em>updatedOnce</em> is reset.</li>
+<li><p>If the new state is on, the manager is told to recieve notifications without user confirmation</p></li>
+</ul>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">route</span> <span class="p">:</span> <span class="kt">NSDictionary</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@IBAction</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">attempToUpdate</span><span class="p">(</span><span class="nv">sender</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -336,12 +321,12 @@ The success of all the application depends on the database data. Because of this
                             <tr>
                               <td>
                                 <code>
-                                <em>route</em>
+                                <em>sender</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>A dictionary containing the route information. The dictionary must contain the following fields:</p>
+                                  <p>The item that is triggering the action </p>
 
                                 </div>
                               </td>

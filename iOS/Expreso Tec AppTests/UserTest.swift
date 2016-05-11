@@ -174,5 +174,18 @@ class UserTest: XCTestCase {
         XCTAssertEqual(uroutes.count + 1, nuser!.subscribedRoutes.count)
         
     }
+    
+    func testThatNoChangesReturnInmediatly(){
+    
+        var called = false
+        
+        user!.updateRouteSubscriptions(user!.subscribedRoutes) {
+            (completed) in
+            XCTAssertTrue(completed, "There should be not reason for failing this test")
+            called = true
+        }
+        
+        XCTAssertTrue(called, "Callback should have been called from user call inmeadiatly")
+    }
 
 }

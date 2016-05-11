@@ -14,7 +14,7 @@ import MapKit
  This annotation is created as a bus with a certain color that represents the route
  
  */
-class BusMapAnnotationView: MKAnnotationView {
+public class BusMapAnnotationView: MKAnnotationView {
     
     /// The image view that displays the bus image
     private var imageView : UIImageView?
@@ -27,7 +27,7 @@ class BusMapAnnotationView: MKAnnotationView {
      
       - parameter color: The color that represents the route
      */
-    func setBusColor(color : UIColor){
+    public func setBusColor(color : UIColor){
         
         if let iv = imageView{
             iv.tintColor = color

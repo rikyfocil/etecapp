@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Route Class Reference</title>
+    <title>LoginViewController Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/Route" class="dashAnchor"></a>
-    <a title="Route Class Reference"></a>
+    <a name="//apple_ref/swift/Class/LoginViewController" class="dashAnchor"></a>
+    <a title="LoginViewController Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (100% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Route Class Reference
+        LoginViewController Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -102,14 +102,16 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Route</h1>
+            <h1>LoginViewController</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Route</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">LoginViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="kt">UITextFieldDelegate</span></code></pre>
 
                 </div>
               </div>
-            <p>This class is the model that represents a route.</p>
+            <p>This class is the first view controller that the user see. This class provide Model and UI logic that validates his input and validates the data.</p>
+
+<p>This class is also responsible for calling the appopiate method according to the introduced ID and to change the screen when the user is logged.</p>
 
           </section>
           <section class="section task-group-section">
@@ -118,9 +120,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15Expreso_Tec_App5Route9conductorSS"></a>
-                    <a name="//apple_ref/swift/Property/conductor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15Expreso_Tec_App5Route9conductorSS">conductor</a>
+                    <a name="/s:FC15Expreso_Tec_App19LoginViewController11viewDidLoadFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/viewDidLoad()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App19LoginViewController11viewDidLoadFT_T_">viewDidLoad()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -128,14 +130,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The name of the driver that drives the route</p>
+                        <p>This override only provide the following behaviors:</p>
+
+<ul>
+<li>Register the class for moving the view when a keyboard comes to it</li>
+<li>Adds a gesture recognizer to dismiss the keyboard</li>
+</ul>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">conductor</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="k">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -145,9 +152,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15Expreso_Tec_App5Route4nameSS"></a>
-                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15Expreso_Tec_App5Route4nameSS">name</a>
+                    <a name="/s:FC15Expreso_Tec_App19LoginViewController15dismissKeyboardFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/dismissKeyboard()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App19LoginViewController15dismissKeyboardFT_T_">dismissKeyboard()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -155,14 +162,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The name of the route</p>
+                        <p>This method dissmises any editinf action that is going on on the controller</p>
+
+<p>Tipically its triggered when the user triggers the tap gesture recognizer or when he taps the login button</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">name</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dismissKeyboard</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -172,9 +181,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC15Expreso_Tec_App5Route5colorCSo7UIColor"></a>
-                    <a name="//apple_ref/swift/Property/color" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15Expreso_Tec_App5Route5colorCSo7UIColor">color</a>
+                    <a name="/s:FC15Expreso_Tec_App19LoginViewController12showKeyboardFCSo14NSNotificationT_"></a>
+                    <a name="//apple_ref/swift/Method/showKeyboard(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App19LoginViewController12showKeyboardFCSo14NSNotificationT_">showKeyboard(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -182,95 +191,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The color that represents the route</p>
+                        <p><strong>This method should only be called by *NSNotificationCenter</strong>*</p>
+
+<p>This method should calculate the size of the keyboard and ove the view so the <em>firstResponder</em> is not hided.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">color</span> <span class="p">:</span> <span class="kt">UIColor</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC15Expreso_Tec_App5Route2idSi"></a>
-                    <a name="//apple_ref/swift/Property/id" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15Expreso_Tec_App5Route2idSi">id</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The identifier on the database of the route</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">id</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC15Expreso_Tec_App5Route8webImageSS"></a>
-                    <a name="//apple_ref/swift/Property/webImage" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC15Expreso_Tec_App5Route8webImageSS">webImage</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The site that should be requested to check the bus schedule</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">webImage</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC15Expreso_Tec_App5Route7isEqualFGSqPs9AnyObject__Sb"></a>
-                    <a name="//apple_ref/swift/Method/isEqual(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC15Expreso_Tec_App5Route7isEqualFGSqPs9AnyObject__Sb">isEqual(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>This function tells if another route is equal by comparing the id</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">isEqual</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">showKeyboard</span><span class="p">(</span><span class="nv">aNotification</span> <span class="p">:</span> <span class="kt">NSNotification</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -281,12 +211,12 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>object</em>
+                                <em>aNotification</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>An object to compare. This object must be a route or the behavior is the one of the superclass</p>
+                                  <p>The generated NSNotification</p>
 
                                 </div>
                               </td>
@@ -294,20 +224,15 @@
                           </tbody>
                         </table>
                       </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>A bool telling if the objects should be considered equal</p>
-
-                      </div>
                     </section>
                   </div>
                 </li>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC15Expreso_Tec_App5RoutecFT5routeGSqCSo12NSDictionary__GSqS0__"></a>
-                    <a name="//apple_ref/swift/Method/init(route:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC15Expreso_Tec_App5RoutecFT5routeGSqCSo12NSDictionary__GSqS0__">init(route:)</a>
+                    <a name="/s:FC15Expreso_Tec_App19LoginViewController12hideKeyboardFCSo14NSNotificationT_"></a>
+                    <a name="//apple_ref/swift/Method/hideKeyboard(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App19LoginViewController12hideKeyboardFCSo14NSNotificationT_">hideKeyboard(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -315,17 +240,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This is the default constructor for a route</p>
+                        <p><strong>This method should only be called by *NSNotificationCenter</strong>*</p>
 
-<p><strong>Never attempt to create a route with a custom created dictionary</strong> 
-The success of all the application depends on the database data. Because of this if there are routes without its correspondent database instance weird errors may occur.</p>
+<p>This method should restore the view position after the keyboard is dismissed</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">route</span> <span class="p">:</span> <span class="kt">NSDictionary</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">hideKeyboard</span><span class="p">(</span><span class="nv">aNotification</span> <span class="p">:</span> <span class="kt">NSNotification</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -336,12 +260,115 @@ The success of all the application depends on the database data. Because of this
                             <tr>
                               <td>
                                 <code>
-                                <em>route</em>
+                                <em>aNotification</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>A dictionary containing the route information. The dictionary must contain the following fields:</p>
+                                  <p>The generated NSNotification </p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC15Expreso_Tec_App19LoginViewController21textFieldShouldReturnFCSo11UITextFieldSb"></a>
+                    <a name="//apple_ref/swift/Method/textFieldShouldReturn(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App19LoginViewController21textFieldShouldReturnFCSo11UITextFieldSb">textFieldShouldReturn(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Default delegate implementation for <em>UITextField</em></p>
+
+<p>This method provides the following behavior:</p>
+
+<ul>
+<li>If the id is the current responder then the password becomes the first responder</li>
+<li><p>If the password is the current responder the ogin is triggered</p></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">textFieldShouldReturn</span><span class="p">(</span><span class="nv">textField</span><span class="p">:</span> <span class="kt">UITextField</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>true</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC15Expreso_Tec_App19LoginViewController15prepareForSegueFTCSo17UIStoryboardSegue6senderGSqPs9AnyObject___T_"></a>
+                    <a name="//apple_ref/swift/Method/prepareForSegue(_:sender:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App19LoginViewController15prepareForSegueFTCSo17UIStoryboardSegue6senderGSqPs9AnyObject___T_">prepareForSegue(_:sender:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This override provides the following behaviors: </p>
+
+<ul>
+<li><p>if the segue is because of a normal user login, it will pass the user to the <em>MapViewController</em></p></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">prepareForSegue</span><span class="p">(</span><span class="nv">segue</span><span class="p">:</span> <span class="kt">UIStoryboardSegue</span><span class="p">,</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>segue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The storybooard segue containing information such as  and </p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sender</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>This param vary according to the login type:</p>
 
                                 </div>
                               </td>

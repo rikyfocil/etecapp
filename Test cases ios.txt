@@ -1,0 +1,46 @@
+Manual testing
+
+	+ Login
+		- Empty ID should prompt user
+		- Invalid length 
+		- Invalid characters
+		- Invalid Format
+
+		- Empty password
+		- Too short password
+
+		- Invalid data
+		- No Internet connection
+
+		- Valid data for driver and rider
+		- Fields should be reseted after login
+	
+
+	+ User map
+		- If there are no subscriptions the map goes to settings automatically
+		- There appear as many busses as subscriptions
+		- The buses that appear on screen are of the same color as the subscription
+		- If there is no data available, the bus location appears to be at ITESM 
+		- If there is only one subscription and the user taps in the schedule, it loads immediately (without user input)
+		- If there are more than one subscription then the user is prompted for the selection
+		- The map reflects changes in at most 30 seconds
+
+	+ Subscriptions
+		- The user can’t return to the map if he has not at least one route selected
+		- The screen is blocked while uploading
+		- The user preferences are loaded in the screen
+		- The logout button prompts confirmation
+		- If there are no changes the view goes out almost immediately
+		- If there is an error, the app tells the user and reflects the new configuration
+
+	+ Watch schedule
+		- The showed result is the requested one
+		* if there is no internet connection the message appears to the user telling so
+
+	+ Driver screen
+		- The screen displays the driver name
+		- The screen displays the current route
+		- The switch is initially on
+		* If the switch is on the location is updated (With app active and in background)
+		- If the switch is off the location is not updated
+		- Toggling the switch and logging out prompts confirmation

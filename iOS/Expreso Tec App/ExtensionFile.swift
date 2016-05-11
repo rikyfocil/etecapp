@@ -11,7 +11,7 @@ import UIKit
 /**
  This extension provides a method for determining if a certain character is a digit or not
  */
-extension Character{
+public extension Character{
     
     /**
      This method tells wheter a character is a digit (0-9) or not
@@ -19,7 +19,7 @@ extension Character{
      - returns: A bool telling if the character is in the digit range or not
      
      */
-    func isDigit() -> Bool{
+    public func isDigit() -> Bool{
         if self >= "0" && self <= "9"{
             return true
         }
@@ -31,7 +31,7 @@ extension Character{
 /**
  This extension provides UIAlertController old style capabilities that allow forming alert messages without having a lot of duplicated code among different view controllers
  */
-extension UIAlertController{
+public extension UIAlertController{
     
     /**
      This method show a standard alert message to inform something to the user. 
@@ -44,7 +44,7 @@ extension UIAlertController{
      - parameter block: An optional code block that is going to be called when the alert is dismissed
      
      */
-    class func showAlertMessage(message : String, inController : UIViewController, withTitle : String, block : (()->())?){
+    public class func showAlertMessage(message : String, inController : UIViewController, withTitle : String, block : (()->())?){
         
         let c = UIAlertController(title: withTitle, message: message, preferredStyle: .Alert)
         c.addAction(UIAlertAction(title: "Ok", style: .Default, handler: {
@@ -69,7 +69,7 @@ extension UIAlertController{
      - parameter cancelAction: An optional code block that should perform some clean up actions when the user cancels its decision such as restoring the user interface or toggling switches to the previous state
      
      */
-    class func presentConfirmationAlertViewController(title : String, description : String, confirmText : String, cancelText : String, controller : UIViewController, destructive : Bool, confirmAction : ()->(), cancelAction : (()->())?){
+    public class func presentConfirmationAlertViewController(title : String, description : String, confirmText : String, cancelText : String, controller : UIViewController, destructive : Bool, confirmAction : ()->(), cancelAction : (()->())?){
         
         let alert = UIAlertController(title: title, message: description, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: confirmText, style: destructive ? .Destructive : .Default , handler: {
@@ -97,7 +97,7 @@ extension UIAlertController{
      - parameter completition: An optional code block that is going to be invocked when the user dismisses the alert view
      
      */
-    class func presentErrorMessage(title : String = "Error", description : String,  okText : String = "Ok", controller : UIViewController, completition : (()->())?){
+    public class func presentErrorMessage(title : String = "Error", description : String,  okText : String = "Ok", controller : UIViewController, completition : (()->())?){
         
         let alert = UIAlertController(title: title, message: description, preferredStyle: .Alert)
         

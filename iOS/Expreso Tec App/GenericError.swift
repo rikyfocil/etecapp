@@ -15,7 +15,7 @@ import Foundation
  This avoid the need of creating a lot of enums with only one case.
  
  */
-enum GenericError : ErrorType{
+public enum GenericError : ErrorType{
     
     /// An error that happen but with unespecified cause
     case GenericError

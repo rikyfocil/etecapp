@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>LoginError Enum Reference</title>
+    <title>MapViewController Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/LoginError" class="dashAnchor"></a>
-    <a title="LoginError Enum Reference"></a>
+    <a name="//apple_ref/swift/Class/MapViewController" class="dashAnchor"></a>
+    <a title="MapViewController Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (100% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        LoginError Enum Reference
+        MapViewController Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -102,14 +102,22 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>LoginError</h1>
+            <h1>MapViewController</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">LoginError</span> <span class="p">:</span> <span class="kt">ErrorType</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">MapViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="kt">CLLocationManagerDelegate</span><span class="p">,</span> <span class="kt">MKMapViewDelegate</span></code></pre>
 
                 </div>
               </div>
-            <p>This enum provides a set of all errors that can occur during a Login.</p>
+            <p>This class is the main user view controller where he can track the location of all his subscribed routes</p>
+
+<div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    If the user hasn&rsquo;t suscribed to any route yet he is going to be taken to the settings screen where he will be able to select at least one
+
+</div>
+
+<p>This class registers itself as observer for the user subscribed routes changes.</p>
 
           </section>
           <section class="section task-group-section">
@@ -118,9 +126,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO15Expreso_Tec_App10LoginError7IDEmptyFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/IDEmpty" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO15Expreso_Tec_App10LoginError7IDEmptyFMS0_S0_">IDEmpty</a>
+                    <a name="/s:vC15Expreso_Tec_App17MapViewController14trackingRoutesGSaCS_5Route_"></a>
+                    <a name="//apple_ref/swift/Property/trackingRoutes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC15Expreso_Tec_App17MapViewController14trackingRoutesGSaCS_5Route_">trackingRoutes</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -128,30 +136,26 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The id provided is empty</p>
+                        <p>The routes that are being tracked</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">IDEmpty</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">trackingRoutes</span> <span class="o">=</span> <span class="p">[</span><span class="kt">Route</span><span class="p">]()</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO15Expreso_Tec_App10LoginError15IDInvalidLengthFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/IDInvalidLength" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO15Expreso_Tec_App10LoginError15IDInvalidLengthFMS0_S0_">IDInvalidLength</a>
+                    <a name="/s:vC15Expreso_Tec_App17MapViewController10annotationGSaCSo17MKPointAnnotation_"></a>
+                    <a name="//apple_ref/swift/Property/annotation" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC15Expreso_Tec_App17MapViewController10annotationGSaCSo17MKPointAnnotation_">annotation</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -159,30 +163,26 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The id provided does not contains 9 characters</p>
+                        <p>The annotations associated to the routes</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">IDInvalidLength</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">annotation</span> <span class="o">=</span> <span class="p">[</span><span class="kt">MKPointAnnotation</span><span class="p">]()</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO15Expreso_Tec_App10LoginError11IDMalformedFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/IDMalformed" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO15Expreso_Tec_App10LoginError11IDMalformedFMS0_S0_">IDMalformed</a>
+                    <a name="/s:vC15Expreso_Tec_App17MapViewController4userGSQCS_4User_"></a>
+                    <a name="//apple_ref/swift/Property/user" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC15Expreso_Tec_App17MapViewController4userGSQCS_4User_">user</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -190,30 +190,26 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The id is not on the format (A | L | D)[0-9]{8}</p>
+                        <p>The current logged user instance. The previous view controller is responsable for assigning this variable</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">IDMalformed</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">user</span> <span class="p">:</span> <span class="kt">User</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO15Expreso_Tec_App10LoginError6IDNullFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/IDNull" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO15Expreso_Tec_App10LoginError6IDNullFMS0_S0_">IDNull</a>
+                    <a name="/s:vC15Expreso_Tec_App17MapViewController8updatingSb"></a>
+                    <a name="//apple_ref/swift/Property/updating" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC15Expreso_Tec_App17MapViewController8updatingSb">updating</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -221,30 +217,26 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The id provided was nil</p>
+                        <p>A variable that tells wheter the buses are being tracked or not</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">IDNull</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">updating</span> <span class="o">=</span> <span class="kc">false</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO15Expreso_Tec_App10LoginError25IDInvalidForLoginFunctionFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/IDInvalidForLoginFunction" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO15Expreso_Tec_App10LoginError25IDInvalidForLoginFunctionFMS0_S0_">IDInvalidForLoginFunction</a>
+                    <a name="/s:FC15Expreso_Tec_App17MapViewController11viewDidLoadFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/viewDidLoad()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App17MapViewController11viewDidLoadFT_T_">viewDidLoad()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -252,30 +244,33 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The id does not correspond to the attempted login (DXXXXXXXX for loging user or <a href="0-9">AL</a>{8} for logging a driver</p>
+                        <p>This overriding perform the following actions:</p>
+
+<ul>
+<li>Request user permission for getting his location</li>
+<li>Register as observer for changes on the user suscribed routes</li>
+<li>Assign itself as a delegate for the map events</li>
+<li>Triggers the buses continue updating</li>
+</ul>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">IDInvalidForLoginFunction</span></code></pre>
+                          <pre class="highlight"><code><span class="k">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO15Expreso_Tec_App10LoginError13PasswordEmptyFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/PasswordEmpty" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO15Expreso_Tec_App10LoginError13PasswordEmptyFMS0_S0_">PasswordEmpty</a>
+                    <a name="/s:FC15Expreso_Tec_App17MapViewController15updateAllBussesFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/updateAllBusses()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App17MapViewController15updateAllBussesFT_T_">updateAllBusses()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -283,30 +278,34 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The password provided was empty</p>
+                        <p>This method is the starting point for the bus tracking system. This method creates the annotations and the tracking information with the user. This method should be called in the following ocations: </p>
+
+<p><li>When the view is fully loaded</li>
+<li><p>When the user changes its registered routes</p></li>
+<div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    <p>This method will perform all the clean up before changing the routes so no extra calls are needed.</p></p>
+
+<p></div></p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">PasswordEmpty</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">updateAllBusses</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO15Expreso_Tec_App10LoginError12PasswordNullFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/PasswordNull" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO15Expreso_Tec_App10LoginError12PasswordNullFMS0_S0_">PasswordNull</a>
+                    <a name="/s:FC15Expreso_Tec_App17MapViewController16getBusesLocationFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/getBusesLocation()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App17MapViewController16getBusesLocationFT_T_">getBusesLocation()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -314,30 +313,32 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The password provided was nil</p>
+                        <p>This method is responsable for calling the web service and recieving each bus location.</p>
+
+<div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    Once called, this method is going to call himself back every 30 seconds so no extra calling is needed after it has started.
+
+</div>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">PasswordNull</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getBusesLocation</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO15Expreso_Tec_App10LoginError16PasswordTooShortFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/PasswordTooShort" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO15Expreso_Tec_App10LoginError16PasswordTooShortFMS0_S0_">PasswordTooShort</a>
+                    <a name="/s:FC15Expreso_Tec_App17MapViewController7mapViewFTCSo9MKMapView17viewForAnnotationPSo12MKAnnotation__GSqCSo16MKAnnotationView_"></a>
+                    <a name="//apple_ref/swift/Method/mapView(_:viewForAnnotation:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App17MapViewController7mapViewFTCSo9MKMapView17viewForAnnotationPSo12MKAnnotation__GSqCSo16MKAnnotationView_">mapView(_:viewForAnnotation:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -345,30 +346,99 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The password length was unaceptable by the ITESM system</p>
+                        <p>This method implements a map kit delegate method. Its function is to provide the annotations for each part of the map. </p>
+
+<p>The method will check if the annotation is not the user location and then it will create (if a reuse is not possible) a new bus annotation. </p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">PasswordTooShort</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="nv">mapView</span><span class="p">:</span> <span class="kt">MKMapView</span><span class="p">,</span> <span class="n">viewForAnnotation</span> <span class="nv">annotation</span><span class="p">:</span> <span class="kt">MKAnnotation</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MKAnnotationView</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mapView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The map that requests the view</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>annotation</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The annotation that is going to be displayed</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Abus annotation or nil if the user location annotation was requested</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC15Expreso_Tec_App17MapViewController15prepareForSegueFTCSo17UIStoryboardSegue6senderGSqPs9AnyObject___T_"></a>
+                    <a name="//apple_ref/swift/Method/prepareForSegue(_:sender:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App17MapViewController15prepareForSegueFTCSo17UIStoryboardSegue6senderGSqPs9AnyObject___T_">prepareForSegue(_:sender:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This overriding provides the following behaviors:</p>
+
+<ul>
+<li>If the segue is to settings the user will be passed to the controller</li>
+<li>If the segue is to schedule, the sender as route will be passed to the schedule</li>
+<li>Otherwise the segue will be continued in an unnmodified manner</li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">prepareForSegue</span><span class="p">(</span><span class="nv">segue</span><span class="p">:</span> <span class="kt">UIStoryboardSegue</span><span class="p">,</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">?)</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO15Expreso_Tec_App10LoginError11InvalidDataFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/InvalidData" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO15Expreso_Tec_App10LoginError11InvalidDataFMS0_S0_">InvalidData</a>
+                    <a name="/s:FC15Expreso_Tec_App17MapViewController10goScheduleFPs9AnyObject_T_"></a>
+                    <a name="//apple_ref/swift/Method/goSchedule(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC15Expreso_Tec_App17MapViewController10goScheduleFPs9AnyObject_T_">goSchedule(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -376,78 +446,36 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The login data was not correct</p>
+                        <p>This method will allow the user to select which route does he want to check the schedule or if he has only one then the segue will happen inmediatly</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">InvalidData</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@IBAction</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">goSchedule</span><span class="p">(</span><span class="nv">sender</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FO15Expreso_Tec_App10LoginError12ApiMalformedFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/ApiMalformed" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO15Expreso_Tec_App10LoginError12ApiMalformedFMS0_S0_">ApiMalformed</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The web service response have changed. This may mean an update available.</p>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sender</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The button that triggered the action. </p>
 
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">ApiMalformed</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FO15Expreso_Tec_App10LoginError12UnknownErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/UnknownError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO15Expreso_Tec_App10LoginError12UnknownErrorFMS0_S0_">UnknownError</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The error reason is not known</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">UnknownError</span></code></pre>
-
-                        </div>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>

@@ -12,7 +12,7 @@ import UIKit
  This class provides a lot of class level methods that allow making HTTP requests in a painless way without having a lot of duplicated code
  
  */
-class HTTPRequestSimplified{
+public class HTTPRequestSimplified{
     
     /// This method retuns the base url that preceds all requests.
     class private func getURL() -> String{
@@ -33,7 +33,7 @@ class HTTPRequestSimplified{
      - seealso: getDictionaryOfParsingJSONFromRequest(_:callback:)
 
      */
-    class func getStandardOnlyTextRequest(site : String, method : HTTPMethod = .GET,  httpdata: String? = nil)->NSMutableURLRequest{
+    public class func getStandardOnlyTextRequest(site : String, method : HTTPMethod = .GET,  httpdata: String? = nil)->NSMutableURLRequest{
         
         
         if method == .GET{
@@ -85,7 +85,7 @@ class HTTPRequestSimplified{
      - returns: A string with the invalid characters escaped with percent characters
      
      */
-    class func prepareForHttpSending(string : String) -> String{
+    public class func prepareForHttpSending(string : String) -> String{
         return string.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
     }
     
@@ -100,7 +100,7 @@ class HTTPRequestSimplified{
      - returns: A string that scontains all keys and values sanitized and is formed as *param1=value1&param2=value2&...&paramN=valueN*
      
      */
-    class func generateParamString(dic : [String:String])->String{
+    public class func generateParamString(dic : [String:String])->String{
         
         var first = true
         var str = ""
@@ -162,7 +162,7 @@ class HTTPRequestSimplified{
      
      
      */
-    class func getDictionaryOfParsingJSONFromRequest(request : NSURLRequest, callback : ( (NSDictionary?, GenericError?)->() ) ){
+    public class func getDictionaryOfParsingJSONFromRequest(request : NSURLRequest, callback : ( (NSDictionary?, GenericError?)->() ) ){
         
         HTTPRequestSimplified.performRequest(request) { (data, response, error) in
             

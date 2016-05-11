@@ -14,7 +14,7 @@ import CoreLocation
  This class provides all the functionality that a driver needs in orde to be tracked or not by the users
  
  */
-class DriverViewController: UIViewController, CLLocationManagerDelegate {
+public class DriverViewController: UIViewController, CLLocationManagerDelegate {
 
     /// The label greeting the driver
     @IBOutlet weak var nameLabel: UILabel!
@@ -29,7 +29,7 @@ class DriverViewController: UIViewController, CLLocationManagerDelegate {
     private let manager = CLLocationManager()
     
     /// The current driver. This variable must be set by the previous controller
-    var driver : Driver! = nil
+    public var driver : Driver! = nil
     
     /// Tells wheter the location has been uploaded at least once. With this booleean the distance verification is ommited the first time
     private var updatedOnce = false
@@ -43,7 +43,7 @@ class DriverViewController: UIViewController, CLLocationManagerDelegate {
      + Sets the UI content
      
      */
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         manager.requestAlwaysAuthorization()
@@ -64,7 +64,7 @@ class DriverViewController: UIViewController, CLLocationManagerDelegate {
      A confirmation is displayed and if the user accepts it the *manager* stops updating the location and the controller is dismised.
      
      */
-    @IBAction func logout(sender: AnyObject) {
+    @IBAction public func logout(sender: AnyObject) {
         
         UIAlertController.presentConfirmationAlertViewController("Cerrar sesión", description: "Si cierras sesión los alumnos no podrán ver donde estas", confirmText: "Sí, cerrar sesión", cancelText: "Mejor no", controller: self, destructive: true, confirmAction: { 
                 self.manager.stopUpdatingLocation()
@@ -88,7 +88,7 @@ class DriverViewController: UIViewController, CLLocationManagerDelegate {
      - parameter fromLocation: The old registered location
      
      */
-    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+    public func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         
         if abs(newLocation.distanceFromLocation(oldLocation)) > 30 || !updatedOnce{
             let request = HTTPRequestSimplified.getStandardOnlyTextRequest("set", httpdata: HTTPRequestSimplified.generateParamString(["route":driver.route.name, "lat":"\(newLocation.coordinate.latitude)","lng": "\(newLocation.coordinate.longitude)"]))
@@ -117,7 +117,7 @@ class DriverViewController: UIViewController, CLLocationManagerDelegate {
      - parameter sender: The item that is triggering the action **This param is allways ignored**
      
      */
-    @IBAction func attempToUpdate(sender: AnyObject) {
+    @IBAction public func attempToUpdate(sender: AnyObject) {
         
         if !trackingSwitch.on{
         

@@ -15,7 +15,7 @@ import UIKit
  This class is also responsible for calling the appopiate method according to the introduced ID and to change the screen when the user is logged.
  
  */
-class LoginViewController: UIViewController, UITextFieldDelegate {
+public class LoginViewController: UIViewController, UITextFieldDelegate {
 
     /// The text field in whic the user introduces his id
     @IBOutlet weak var idTextField: UITextField!
@@ -117,7 +117,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
      + Adds a gesture recognizer to dismiss the keyboard
      
      */
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.showKeyboard(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.hideKeyboard(_:)), name: UIKeyboardWillHideNotification, object: nil)
@@ -131,7 +131,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
      Tipically its triggered when the user triggers the tap gesture recognizer or when he taps the login button
      
      */
-    func dismissKeyboard(){
+    public func dismissKeyboard(){
         self.view.endEditing(true)
     }
     
@@ -144,7 +144,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
      - parameter aNotification: The generated NSNotification
      
      */
-    func showKeyboard(aNotification : NSNotification){
+    public func showKeyboard(aNotification : NSNotification){
         
         let kbRect = aNotification.userInfo![UIKeyboardFrameEndUserInfoKey]?.CGRectValue()
         
@@ -167,7 +167,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
      - parameter aNotification: The generated NSNotification **This parameter is allways ignored**
      
      */
-    func hideKeyboard(aNotification : NSNotification){
+    public func hideKeyboard(aNotification : NSNotification){
         self.view.frame.origin.y = 0
     }
     
@@ -183,7 +183,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
      - returns: true
      
      */
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == idTextField{
             self.passwordTextField.becomeFirstResponder()
         }
@@ -214,7 +214,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         + *showMap* segue should have a user as a sender
      
      */
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override public func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showMap"{
             let nvc = segue.destinationViewController as! UINavigationController
             let vc = nvc.viewControllers[0] as! MapViewController 

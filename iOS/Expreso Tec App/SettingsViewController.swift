@@ -25,7 +25,7 @@ public class SettingsViewController: UIViewController, UITableViewDataSource, UI
     private var selectedRoutes : [Route]!
     
     /// The user instance that will be modified. Setting this variable is responsability of the previous view controller
-    var user : User!
+    public var user : User!
     
     /// The label that displays the user name
     @IBOutlet weak var userNameLabel: UILabel!
@@ -98,7 +98,7 @@ public class SettingsViewController: UIViewController, UITableViewDataSource, UI
      A destructive confirmation message will be shown and if the user accepts it then he will be taken back to the login screen
      
      */
-    @IBAction func logout(sender: AnyObject) {
+    @IBAction public func logout(sender: AnyObject) {
         
         UIAlertController.presentConfirmationAlertViewController("¿Estas seguro?", description: "Si cierras sesión no podremos informarte de la ubicación del expreso y dejarás de recibir notificaciones", confirmText: "Sí, cerrar sesión", cancelText: "Cambie de idea", controller: self, destructive: true, confirmAction: { 
             
@@ -264,7 +264,7 @@ public class SettingsViewController: UIViewController, UITableViewDataSource, UI
      + > 0 routes selected = button enabled
      
      */
-    func updateBackButton(){
+    public func updateBackButton(){
         self.backButtonOutlet.enabled = !self.selectedRoutes.isEmpty
     }
 }

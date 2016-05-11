@@ -18,7 +18,7 @@ import MapKit
  This class registers itself as observer for the user subscribed routes changes.
  
  */
-class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+public class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     /// The manager that informs the class about the user location and the responsable of displaying its location
     private let manager = CLLocationManager()
@@ -27,16 +27,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     @IBOutlet weak var map: MKMapView!
     
     /// The routes that are being tracked
-    var trackingRoutes = [Route]()
+    public private(set) var trackingRoutes = [Route]()
     
     /// The annotations associated to the routes
-    var annotation = [MKPointAnnotation]()
+    public private(set) var annotation = [MKPointAnnotation]()
     
     /// The current logged user instance. The previous view controller is responsable for assigning this variable
-    var user : User!
+    public var user : User!
     
     /// A variable that tells wheter the buses are being tracked or not
-    var updating = false
+    public private(set) var updating = false
     
     /**
      This overriding perform the following actions:
@@ -47,7 +47,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
      - Triggers the buses continue updating
      
      */
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         
         super.viewDidLoad()
     
@@ -90,7 +90,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
      - important: This method will perform all the clean up before changing the routes so no extra calls are needed.
      
      */
-    func updateAllBusses(){
+    public func updateAllBusses(){
     
         self.trackingRoutes = user.subscribedRoutes
         
@@ -117,7 +117,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
      
      - important: Once called, this method is going to call himself back every 30 seconds so no extra calling is needed after it has started.
      */
-    func getBusesLocation(){
+    public func getBusesLocation(){
         
         for bus in trackingRoutes{
         
@@ -156,7 +156,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
      - parameter annotation: The annotation that is going to be displayed
      - returns: Abus annotation or nil if the user location annotation was requested
      */
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    public func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         if annotation.isKindOfClass(MKUserLocation.self){
             return nil
@@ -183,7 +183,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
      + Otherwise the segue will be continued in an unnmodified manner
      
      */
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override public func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "goSettings"{
             
@@ -207,7 +207,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
      - parameter sender: The button that triggered the action. **Will be allways ignored**
      
      */
-    @IBAction func goSchedule(sender: AnyObject) {
+    @IBAction public func goSchedule(sender: AnyObject) {
         
     
         if self.trackingRoutes.count == 1{
